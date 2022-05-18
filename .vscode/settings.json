@@ -1,0 +1,23 @@
+{
+	"prettier.printWidth": 150,
+    "prettier.tabWidth": 2,
+
+	"prettier.semi": false,
+	"editor.fontSize": 13
+}
+
+// {
+// 	"prettier.printWidth": 200,
+// 	"prettier.tabWidth": 4,
+// 	"prettier.arrowParens": "avoid",
+// 	"prettier.useTabs": true,
+// 	"prettier.bracketSpacing": true,
+// 	"prettier.trailingComma": "es5",
+// 	"prettier.singleQuote": false,
+// 	"prettier.semi": false,
+// 	"editor.fontFamily": "Fira Code",
+// 	"editor.fontLigatures": true,
+// 	"editor.fontSize": 13
+// }
+
+// 'Droid Sans Mono', 'monospace', monospace

@@ -1,0 +1,106 @@
+.auth {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth > form {
+  width: 441px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--global-ligth-color);
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+}
+
+.auth > form > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 0 0 20px;
+}
+
+.auth > form > div.title {
+  font: var(--global-xl-font-style);
+}
+
+.auth > form > div > label {
+  font: var(--global-m-font-style);
+}
+
+.auth input {
+  width: 401px;
+  height: 35px;
+  padding-left: 10px;
+  background-color: var(--global-ligth-color);
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+}
+
+/* .auth select {
+  width: 401px;
+  height: 35px;
+  padding-left: 10px;
+  background-color: var(--global-ligth-color);
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+} */
+
+.auth button {
+  width: 401px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  font: var(--global-m-font-style);
+  border: 0;
+  background-color: var(--global-primary-color);
+  border-radius: var(--global-radius);
+  color: var(--global-ligth-color);
+}
+
+.auth button:hover {
+  color: var(--global-primary-color);
+  border: 1px solid var(--global-primary-color);
+  background-color: var(--global-ligth-color);
+}
+
+.auth div.register-form {
+  padding: 10px 0 20px 0;
+}
+
+.auth a.register {
+  font: var(--global-m-font-style);
+  text-decoration: none;
+}
+
+.auth input.error,
+.auth select.error {
+  border: 1px solid var(--global-primary-color);
+  outline: none;
+}
+
+/* .auth select.error {
+  border: 1px solid var(--global-primary-color);
+  outline: none;
+} */
+
+.auth span.error {
+  padding-top: 10px;
+}
+
+@media screen and (min-width: 472px) {
+  .auth {
+    background-color: var(--global-ligth-color);
+  }
+
+  .auth > form {
+    width: 400px;
+    border: var(--global-border);
+    border-radius: var(--global-radius);
+    background-color: var(--global-ligth-color);
+  }
+}
