@@ -17,13 +17,16 @@ export const useUserForm = (initialValues) => {
   })
 
   useEffect(() => {
-
+    console.log("location", location)
+    console.log("error en efectoooo -->", error)
     const pathName = location.pathname.slice(1) === "login" ? "/" : "login"
     if (error) alertMsg({ title: "ERROR", text: `${error}`, icon: "error" })
     // else if (user.length) navigate(pathName, { replace: true })
     else if (user.length) console.log("pathName", pathName)
 
-  
+    return () => {
+      console.log("desmontando efectitooo")
+    }
   }, [user, error, navigate, location])
 
   const required = "*Campo obligatorio"
@@ -35,7 +38,7 @@ export const useUserForm = (initialValues) => {
       .required(required),
   })
 
- 
+  console.log("loadingUser, user, error - AFUERA -->", loadingUser, user, error)
 
   const onSubmit = async () => {
     const { userName, password } = formik.values

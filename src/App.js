@@ -3,7 +3,9 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { Login } from "components/views/auth/Login/Login"
+import { Register } from "components/views/auth/Register/Register"
 import { Tasks } from "components/views/Tasks/Tasks"
+import Loading from "components/Loading/Loading"
 
 import "./App.css"
 
@@ -29,6 +31,14 @@ export const App = () => {
           }
         />
         <Route
+          path="/register"
+          element={
+            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+              <Register />
+            </motion.div>
+          }
+        />
+        <Route
           path="/"
           element={
             <RequireAuth>
@@ -42,7 +52,7 @@ export const App = () => {
           path="*"
           element={
             <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Suspense fallback={<>Cargando...</>}>
+              <Suspense fallback={<Loading />}>
                 <Error404 />
               </Suspense>
             </motion.div>
