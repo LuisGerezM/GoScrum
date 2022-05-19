@@ -1,6 +1,6 @@
 import "./SpinnerLoad.styles.css"
 
-const SpinnerLoad = () => {
+export const SpinnerLoad = () => {
   return (
     <main>
       <div className="lds-spinner">
@@ -21,4 +21,3 @@ const SpinnerLoad = () => {
   )
 }
 
-export default SpinnerLoad

@@ -1,5 +1,5 @@
 import { useFormik } from "formik"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -10,13 +10,15 @@ import { startValues, validateUserFormFields } from "utilities/utilAuthUser/util
 import { v4 as uuidv4 } from "uuid"
 
 export const useUserForm = () => {
+  const [showUserNotification, setShowUserNotification] = useState(false)
+
   const location = useLocation()
   const pathName = location.pathname.slice(1)
 
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
-  const { loadingUser, user, error, success, status_code } = useSelector((state) => {
+  const { loadingUser, user, error, success } = useSelector((state) => {
     return state.userReducer
   })
 
@@ -25,34 +27,42 @@ export const useUserForm = () => {
   const validationSchema = validateUserFormFields(pathName)
 
   useEffect(() => {
+    if (showUserNotification) toast(`${pathName === "login" ? `Inicio de sesión exitoso` : `${user.userName} te has registrado con éxito`}`)
+
+    return () => {
+      console.log("desmontando efecto useAuthUserForm --> showUserNotification")
+    }
+  }, [showUserNotification, pathName, user])
+
+  useEffect(() => {
     if (error) {
       alertMsg({ title: "ERROR", text: `${error}`, icon: "error" })
       dispatch(resetUserNotification())
-    }
-    // else if (Object.keys(user).length) {
-    else if (success) {
+    } else if (success) {
       // const possibleNavigate = {
       //   1:"/",
       //   2:"/login",
       //   3:`/registered/${user.teamID}`
       // }
 
-      console.log("status_code -->-->", status_code)
-      toast(`${status_code}`)
-
       let caseNavigate = ""
       if (pathName === "login") caseNavigate = 1
       else if (user.role === "Team Member") caseNavigate = 2
       else caseNavigate = 3
 
+      setShowUserNotification(true)
+    
+      dispatch(resetUserNotification())
+
       setTimeout(() => {
-        dispatch(resetUserNotification())
-      }, 2300)
-      // navigate(possibleNavigate[caseNavigate], { replace: true })
-      console.log("user final --> user, status_code -->", user, status_code)
+        setShowUserNotification(false)
+
+      }, 2000)
+    
+      console.log("user final -->", user)
       console.log("caseNavigate -->", caseNavigate)
     }
-  }, [user, error, success, status_code, navigate, pathName, dispatch])
+  }, [user, error, success, navigate, pathName, dispatch])
 
   const onSubmit = () => {
     if (pathName === "login") {
@@ -77,5 +87,5 @@ export const useUserForm = () => {
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
-  return { formik, loadingUser, status_code, handleChangeContinent, handleChangeSwitch }
+  return { formik, loadingUser, showUserNotification, pathName, handleChangeContinent, handleChangeSwitch }
 }
