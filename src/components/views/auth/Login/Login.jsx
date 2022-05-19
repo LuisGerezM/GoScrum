@@ -1,14 +1,18 @@
-import { useUserForm } from "hooks/userForm/useUserForm"
+import { useUserForm } from "hooks/authUser/useAuthUserForm"
 import { Link } from "react-router-dom"
 
 import "../Auth.styles.css"
 
-const initialValues = { userName: "", password: "" }
+// const initialValues = { userName: "", password: "" }
 
 export const Login = () => {
+  // const {
+  //   formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
+  // } = useUserForm(initialValues)
+
   const {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
-  } = useUserForm(initialValues)
+  } = useUserForm()
 
   return (
     <div className="auth">

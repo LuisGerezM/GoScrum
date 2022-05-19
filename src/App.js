@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Login } from "components/views/auth/Login/Login"
 import { Register } from "components/views/auth/Register/Register"
 import { Tasks } from "components/views/Tasks/Tasks"
-import Loading from "components/Loading/Loading"
+import SpinnerLoad from "components/Loading/SpinnerLoad/SpinnerLoad"
 
 import "./App.css"
 
@@ -52,7 +52,7 @@ export const App = () => {
           path="*"
           element={
             <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Suspense fallback={<Loading />}>
+              <Suspense fallback={<SpinnerLoad />}>
                 <Error404 />
               </Suspense>
             </motion.div>
