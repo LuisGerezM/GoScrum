@@ -6,16 +6,15 @@ import { useUserForm } from "hooks/authUser/useAuthUserForm"
 import { useAuthData } from "hooks/authUser/useAuthData"
 
 import "../Auth.styles.css"
-
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 import { Toast } from "components/Loading/Toast/Toast"
 
 export const Register = () => {
   const {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
     loadingUser,
-    status_code,
+    pathName,
+    showUserNotification,
     handleChangeContinent,
     handleChangeSwitch,
   } = useUserForm()
@@ -26,6 +25,7 @@ export const Register = () => {
 
   return (
     <>
+      {loadingUser && <SpinnerLoad />}
       <div className="auth">
         <form onSubmit={handleSubmit}>
           <div>
@@ -157,8 +157,7 @@ export const Register = () => {
           </div>
         </form>
       </div>
-      {console.log('status_code en register -->', status_code)}
-      {status_code && <Toast error={null} />}
+      {showUserNotification && pathName === "register" && <Toast />}
     </>
   )
 }

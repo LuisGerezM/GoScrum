@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Login } from "components/views/auth/Login/Login"
 import { Register } from "components/views/auth/Register/Register"
 import { Tasks } from "components/views/Tasks/Tasks"
-import SpinnerLoad from "components/Loading/SpinnerLoad/SpinnerLoad"
+import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 
 import "./App.css"
 

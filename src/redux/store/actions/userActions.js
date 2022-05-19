@@ -1,4 +1,4 @@
-import { utilStatusFetch } from "utilities/utilStatusFetch/utilStatusFetch"
+import { utilErrorRequest } from "utilities/utilErrorRequest/utilErrorRequest"
 import { TYPES } from "../types/types"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
@@ -23,7 +23,7 @@ export const resetUserNotification = () => ({
 
 export const loginUser = (authDataUser) => (dispatch) => {
   dispatch(userRequest())
-
+  console.log("loginUser", `${BASEURL}auth/login`)
   fetch(`${BASEURL}auth/login`, {
     method: "POST",
     headers: {
@@ -35,13 +35,12 @@ export const loginUser = (authDataUser) => (dispatch) => {
     .then((data) => {
       if (data.status_code === 200) {
         localStorage.setItem("token_user", data.result.token)
-        // console.log(data)
-        dispatch(userSuccess({ userName: data.result.user.userName, role: data.result.user.role, status_code: utilStatusFetch(data.status_code) }))
+        dispatch(userSuccess({ userName: data.result.user.userName, role: data.result.user.role, status_code: utilErrorRequest(data.status_code) }))
       } else {
-        throw new Error("Por favor, ingresá credenciales válidas..")
+        throw new Error(data.status_code)
       }
     })
-    .catch((error) => dispatch(userFailure(error.message)))
+    .catch((error) => dispatch(userFailure(utilErrorRequest(error.message))))
 }
 
 export const registerUser = (newUser) => (dispatch) => {
@@ -71,15 +70,10 @@ export const registerUser = (newUser) => (dispatch) => {
       console.log("data in userActions ->", data)
 
       if (data.status_code === 201) {
-        dispatch(userSuccess({ role: data.result.user.role, teamID: data.result.user.teamID, status_code: utilStatusFetch(data.status_code) }))
+        dispatch(userSuccess({ userName: data.result.user.userName ,role: data.result.user.role, teamID: data.result.user.teamID, status_code: utilErrorRequest(data.status_code) }))
       } else {
-        throw new Error("Ups... Ocurrió un error al registrar el usuario")
+        throw new Error(data.status_code)
       }
     })
-    .catch((error) => {
-      console.log("error", error)
-      console.log("error.message", error.message)
-      console.log("error.message", error.status)
-      dispatch(userFailure(error.message))
-    })
+    .catch((error) => dispatch(userFailure(utilErrorRequest(error.message))))
 }
