@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { useFormik } from "formik"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import * as Yup from "yup"
-import { v4 as uuidv4 } from "uuid"
 import { Switch, FormControlLabel } from "@mui/material"
 
 import "../Auth.styles.css"
@@ -11,8 +10,6 @@ import "../Auth.styles.css"
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const Register = () => {
-  const navigate = useNavigate()
-  //   data to complete select
   const [data, setData] = useState(null)
 
   useEffect(() => {
@@ -20,9 +17,7 @@ export const Register = () => {
       .then((response) => response.json())
       .then((data) => setData(data.result))
   }, [])
-  // ----- end data to complete select
 
-  // ----- formik
   const initialValues = {
     userName: "",
     password: "",
@@ -45,50 +40,18 @@ export const Register = () => {
   })
 
   const handleChangeContinent = (value) => {
-    // con esto corregimos el error de region, cuando no se selecciona continente, asi no tira error por campo obligatorio o no seleccionado;; Por tanto de esta forma, cuándo en continente elegimos en America me muestra la region, cuándo elegimos Europa u otro (DE CONTINENTE), seteamos 'otro' en region dinamicamente
     setFieldValue("continent", value)
     if (value !== "America") setFieldValue("region", "Otro")
   }
 
   const onSubmit = () => {
     console.log(values)
-    const teamID = !values.teamID ? uuidv4() : values.teamID
-    console.log("teamID", teamID)
-
-    const { userName, password, email, role, continent, region } = values
-
-    fetch(`${BASEURL}auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          userName,
-          password,
-          email,
-          teamID,
-          role,
-          continent,
-          region,
-        },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("data", data) //  https://goscrum-api.alkemy.org/auth/register 409 (Conflict) .. capturar errores
-        if (data.result.user.role === "Team Member") navigate(`/login`, { replace: true })
-        else navigate(`/registered/${data.result.user.teamID}`, { replace: true })
-      })
   }
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema })
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values, setFieldValue } = formik
-  // ----- end formik
 
-  // Con este log veo si existe error cuándo aprieto "enviar" y no hace el submit
-  //console.log(errors);
   return (
     <div className="auth">
       <form onSubmit={handleSubmit}>
@@ -138,7 +101,6 @@ export const Register = () => {
                 value={values.switch}
                 onChange={() => formik.setFieldValue("switch", !formik.values.switch)}
                 name="switch"
-                // colorSecondary="warning"
                 input="primary"
               />
             }
@@ -187,7 +149,6 @@ export const Register = () => {
             </select>
             {errors.continent && touched.continent && <span className={errors.continent ? "error" : ""}>{errors.continent}</span>}
           </div>
-          {/* ------------------------- AQUI AGREGAR EFECTO DE FRAMER MOTION ------------------------- */}
           {values.continent === "America" && (
             <div>
               <label>Región</label>
