@@ -41,7 +41,6 @@
 
 * {
   font: var(--global-sm-font-style);
-  color: var(--global-dark);
 }
 
 input:focus,
