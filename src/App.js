@@ -2,14 +2,14 @@ import { lazy, Suspense } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 
-import { Login } from "components/views/auth/Login/Login"
-import { Register } from "components/views/auth/Register/Register"
-import { Tasks } from "components/views/Tasks/Tasks"
+import { Login } from "views/auth/Login/Login"
+import { Register } from "views/auth/Register/Register"
+import { Tasks } from "views/Tasks/Tasks"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 
 import "./App.css"
 
-const Error404 = lazy(() => import("components/views/Error404/Error404"))
+const Error404 = lazy(() => import("views/Error404/Error404"))
 
 const RequireAuth = ({ children }) => {
   if (!localStorage.getItem("token_user")) return <Navigate to="/login" replace={true} />

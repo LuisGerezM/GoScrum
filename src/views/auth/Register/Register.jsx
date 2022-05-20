@@ -2,19 +2,21 @@ import { Link } from "react-router-dom"
 import { Switch, FormControlLabel } from "@mui/material"
 import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
 
-import { useUserForm } from "hooks/authUser/useAuthUserForm"
-import { useAuthData } from "hooks/authUser/useAuthData"
+import { useUserForm } from "hooks/useAuthUser/useAuthUserForm"
+import { useAuthData } from "hooks/useAuthUser/useAuthData"
 
-import "../Auth.styles.css"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 import { Toast } from "components/Loading/Toast/Toast"
+import "react-toastify/dist/ReactToastify.css"
+
+import "../Auth.styles.css"
 
 export const Register = () => {
   const {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
     loadingUser,
     pathName,
-    showUserNotification,
+    showNotification,
     handleChangeContinent,
     handleChangeSwitch,
   } = useUserForm()
@@ -157,7 +159,8 @@ export const Register = () => {
           </div>
         </form>
       </div>
-      {showUserNotification && pathName === "register" && <Toast />}
+      {console.log('showNotification en REGISTER -->>', showNotification)}
+      {showNotification && pathName === "register" && <Toast />}
     </>
   )
 }

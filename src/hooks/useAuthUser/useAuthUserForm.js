@@ -1,75 +1,66 @@
 import { useFormik } from "formik"
+
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
-import { toast } from "react-toastify"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
+
 import { loginUser, registerUser, resetUserNotification } from "redux/store/actions/userActions"
+import { useNotification } from "hooks/useNotification"
 import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
 import { startValues, validateUserFormFields } from "utilities/utilAuthUser/utilUserFormsFields/utilUserFormsFields"
 
 import { v4 as uuidv4 } from "uuid"
 
 export const useUserForm = () => {
-  const [showUserNotification, setShowUserNotification] = useState(false)
-
   const location = useLocation()
   const pathName = location.pathname.slice(1)
 
   const navigate = useNavigate()
 
-  const dispatch = useDispatch()
-  const { loadingUser, user, error, success } = useSelector((state) => {
+  const { loadingUser, user, error, success_request } = useSelector((state) => {
     return state.userReducer
   })
+  const dispatch = useDispatch()
+
+  const { showNotification } = useNotification()
+  // console.log(useNotification(error, success_request))
 
   const initialValues = startValues(pathName)
 
   const validationSchema = validateUserFormFields(pathName)
 
   useEffect(() => {
-    if (showUserNotification) toast(`${pathName === "login" ? `Inicio de sesión exitoso` : `${user.userName} te has registrado con éxito`}`)
-
-    return () => {
-      console.log("desmontando efecto useAuthUserForm --> showUserNotification")
-    }
-  }, [showUserNotification, pathName, user])
-
-  useEffect(() => {
     if (error) {
+      console.log("TRUE ERRORRRRRR", error)
       alertMsg({ title: "ERROR", text: `${error}`, icon: "error" })
       dispatch(resetUserNotification())
-    } else if (success) {
-      // const possibleNavigate = {
-      //   1:"/",
-      //   2:"/login",
-      //   3:`/registered/${user.teamID}`
-      // }
-
-      let caseNavigate = ""
-      if (pathName === "login") caseNavigate = 1
-      else if (user.role === "Team Member") caseNavigate = 2
-      else caseNavigate = 3
-
-      setShowUserNotification(true)
-    
+    } else if (success_request) {
+      console.log("estoy en EFECTOOO --->>", { success_request })
       dispatch(resetUserNotification())
 
-      setTimeout(() => {
-        setShowUserNotification(false)
+      const possibleRoutes = {
+        1: "/",
+        2: "/login",
+        3: `/registered/${user.teamID}`,
+      }
 
-      }, 2000)
-    
+      let routeToNavigate = ""
+      if (pathName === "login") routeToNavigate = 1
+      else if (user.role === "Team Member") routeToNavigate = 2
+      else routeToNavigate = 3
+
+      // navigate(possibleRoutes[routeToNavigate])
+
       console.log("user final -->", user)
-      console.log("caseNavigate -->", caseNavigate)
+      console.log("routeToNavigate -->", routeToNavigate)
+      console.log("possibleRoutes[routeToNavigate] -->", possibleRoutes[routeToNavigate])
     }
-  }, [user, error, success, navigate, pathName, dispatch])
+  }, [user, error, success_request, dispatch, pathName, navigate])
 
   const onSubmit = () => {
-    if (pathName === "login") {
-      dispatch(loginUser(formik.values))
-    } else {
+    if (pathName === "login") dispatch(loginUser(formik.values))
+    else {
       formik.values.teamID = !formik.values.teamID ? uuidv4() : formik.values.teamID
-
       dispatch(registerUser(formik.values))
     }
   }
@@ -81,11 +72,9 @@ export const useUserForm = () => {
   }
 
   // change value switch - checked - not check
-  const handleChangeSwitch = (value) => {
-    formik.setFieldValue("switch", !formik.values.switch)
-  }
+  const handleChangeSwitch = (value) => formik.setFieldValue("switch", !formik.values.switch)
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
-  return { formik, loadingUser, showUserNotification, pathName, handleChangeContinent, handleChangeSwitch }
+  return { formik, loadingUser, showNotification, pathName, handleChangeContinent, handleChangeSwitch }
 }
