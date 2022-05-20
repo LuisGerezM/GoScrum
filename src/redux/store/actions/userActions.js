@@ -68,15 +68,7 @@ export const registerUser = (newUser) => async (dispatch) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          userName,
-          password,
-          email,
-          teamID,
-          role,
-          continent,
-          region,
-        },
+        user: { userName, password, email, teamID, role, continent, region },
       }),
     })
 

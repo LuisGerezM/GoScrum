@@ -1,6 +1,6 @@
 export const utilStatusRequest = (status) => {
   console.log(status)
-  console.log(typeof Number.parseInt(status))
+
   const statusRequest = {
     200: "Inicio de sesión existoso",
     201: "Usuario registrado con éxito",

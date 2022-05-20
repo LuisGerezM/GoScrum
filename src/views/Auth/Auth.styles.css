@@ -89,6 +89,7 @@
 
 /* register  */
 
+/* switch  */
 .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
   padding-left: 20px;
 }
@@ -101,6 +102,10 @@
 /* switch color ball checked  */
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
   color: var(--global-primary-color) !important;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase {
+  transition: all 0.5s ease-in-out !important;
 }
 
 /* switch input */
@@ -124,6 +129,7 @@
 
 .auth select.error > option {
   color: var(--global-dark);
+  font-weight: 500;
 }
 
 @media screen and (max-width: 472px) {
