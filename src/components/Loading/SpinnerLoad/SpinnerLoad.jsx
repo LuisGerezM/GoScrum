@@ -1,6 +1,6 @@
-import "./Loading.styles.css"
+import "./SpinnerLoad.styles.css"
 
-const Loading = () => {
+export const SpinnerLoad = () => {
   return (
     <main>
       <div className="lds-spinner">
@@ -21,4 +21,3 @@ const Loading = () => {
   )
 }
 
-export default Loading
