@@ -2,6 +2,8 @@ import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest
 import { TYPES } from "../types/types"
 import { toast } from "react-toastify"
 
+import apiCall from "services/apiCall/apiCall"
+
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const userRequest = () => ({
@@ -22,68 +24,76 @@ export const resetUserNotification = () => ({
   type: TYPES.RESET_USER_NOTIFICATION,
 })
 
-export const loginUser = (authDataUser) => (dispatch) => {
-  dispatch(userRequest())
-  console.log("loginUser", `${BASEURL}auth/login`)
-  fetch(`${BASEURL}auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(authDataUser),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.status_code === 200) {
-        localStorage.setItem("token_user", data.result.token)
-        toast(utilStatusRequest(data.status_code))
-        dispatch(userSuccess({ userName: data.result.user.userName, role: data.result.user.role, status_code: utilStatusRequest(data.status_code) }))
-      } else {
-        throw new Error(data.status_code)
-      }
+export const loginUser = (authDataUser) => async (dispatch) => {
+  try {
+    dispatch(userRequest())
+
+    const loginResult = await apiCall({
+      method: "POST",
+      url: `${BASEURL}auth/login`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(authDataUser),
     })
-    .catch((error) => dispatch(userFailure(utilStatusRequest(error.message))))
+
+    if (loginResult.status_code === 200) {
+      localStorage.setItem("token_user", loginResult.result.token)
+      toast(utilStatusRequest(loginResult.status_code))
+      dispatch(
+        userSuccess({
+          userName: loginResult.result.user.userName,
+          role: loginResult.result.user.role,
+          status_code: utilStatusRequest(loginResult.status_code),
+        })
+      )
+    } else {
+      throw new Error(loginResult.status_code)
+    }
+  } catch (error) {
+    dispatch(userFailure(utilStatusRequest(error.message)))
+  }
 }
 
-export const registerUser = (newUser) => (dispatch) => {
+export const registerUser = (newUser) => async (dispatch) => {
   const { userName, password, email, teamID, role, continent, region } = newUser
 
-  dispatch(userRequest())
+  try {
+    dispatch(userRequest())
 
-  fetch(`${BASEURL}auth/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      user: {
-        userName,
-        password,
-        email,
-        teamID,
-        role,
-        continent,
-        region,
+    const registerResult = await apiCall({
+      method: "POST",
+      url: `${BASEURL}auth/register`,
+      headers: {
+        "Content-Type": "application/json",
       },
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("data in userActions ->", data)
-
-      if (data.status_code === 201) {
-        toast(utilStatusRequest(data.status_code))
-        dispatch(
-          userSuccess({
-            userName: data.result.user.userName,
-            role: data.result.user.role,
-            teamID: data.result.user.teamID,
-            status_code: utilStatusRequest(data.status_code),
-          })
-        )
-      } else {
-        throw new Error(data.status_code)
-      }
+      body: JSON.stringify({
+        user: {
+          userName,
+          password,
+          email,
+          teamID,
+          role,
+          continent,
+          region,
+        },
+      }),
     })
-    .catch((error) => dispatch(userFailure(utilStatusRequest(error.message))))
+
+    if (registerResult.status_code === 201) {
+      toast(utilStatusRequest(registerResult.status_code))
+      dispatch(
+        userSuccess({
+          userName: registerResult.result.user.userName,
+          role: registerResult.result.user.role,
+          teamID: registerResult.result.user.teamID,
+          status_code: utilStatusRequest(registerResult.status_code),
+        })
+      )
+    } else {
+      throw new Error(registerResult.status_code)
+    }
+  } catch (error) {
+    dispatch(userFailure(utilStatusRequest(error.message)))
+  }
 }
