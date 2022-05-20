@@ -1,13 +1,11 @@
 import { lazy, Suspense } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
-
-import { Login } from "views/auth/Login/Login"
-import { Register } from "views/auth/Register/Register"
 import { Tasks } from "views/Tasks/Tasks"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 
 import "./App.css"
+import { Auth } from "views/Auth/Auth"
 
 const Error404 = lazy(() => import("views/Error404/Error404"))
 
@@ -16,7 +14,20 @@ const RequireAuth = ({ children }) => {
   return children
 }
 
-const pageTransition = { in: { opacity: 1 }, out: { opacity: 0 } }
+const pageTransition = {
+  in: {
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+    },
+  },
+  out: {
+    opacity: 0,
+    transition: {
+      duration: 1.5,
+    },
+  },
+}
 
 export const App = () => {
   return (
@@ -25,16 +36,18 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Login />
-            </motion.div>
+            // <motion.div className="page" initial="out" animate="in" exit="out" transition={{ duration: 5 }} variants={pageTransition}>
+            // <Login pageTransition={pageTransition} />
+            <Auth pageTransition={pageTransition} />
+            // </motion.div>
           }
         />
         <Route
           path="/register"
           element={
             <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Register />
+              {/* <Register pageTransition={pageTransition} /> */}
+              <Auth pageTransition={pageTransition} />
             </motion.div>
           }
         />
@@ -42,9 +55,9 @@ export const App = () => {
           path="/"
           element={
             <RequireAuth>
-              <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-                <Tasks />{" "}
-              </motion.div>
+              {/* <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}> */}
+              <Tasks pageTransition={pageTransition} />
+              {/* </motion.div> */}
             </RequireAuth>
           }
         />
@@ -53,7 +66,7 @@ export const App = () => {
           element={
             <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
               <Suspense fallback={<SpinnerLoad />}>
-                <Error404 />
+                <Error404 pageTransition={pageTransition} />
               </Suspense>
             </motion.div>
           }
