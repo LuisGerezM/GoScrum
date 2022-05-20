@@ -1,5 +1,3 @@
-import { useUserForm } from "hooks/useAuthUser/useAuthUserForm"
-
 const Input = ({ txtLabel, name, type, errors, touched, values, handleChange, handleBlur }) => {
   return (
     <>
@@ -8,7 +6,7 @@ const Input = ({ txtLabel, name, type, errors, touched, values, handleChange, ha
         className={touched[name] && errors[name] ? "error" : ""}
         type={type}
         name={name}
-        value={values[name]}
+        value={values}
         onChange={handleChange}
         onBlur={handleBlur}
       />

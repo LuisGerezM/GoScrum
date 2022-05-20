@@ -14,7 +14,7 @@ export const Login = () => {
     <>
       {loadingUser && <SpinnerLoad />}
       <div className="auth">
-        <Form />
+        <Form pathName={pathName}/>
       </div>
       {showNotification && pathName === "login" && <Toast />}
     </>

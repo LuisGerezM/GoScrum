@@ -1,8 +1,8 @@
 import { useFormik } from "formik"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import { loginUser, registerUser, resetUserNotification } from "redux/store/actions/userActions"
 import { useNotification } from "hooks/useNotification"
@@ -65,6 +65,8 @@ export const useUserForm = () => {
     }
   }
 
+  const formik = useFormik({ initialValues, validationSchema, onSubmit })
+
   // change continent select
   const handleChangeContinent = (value) => {
     formik.setFieldValue("continent", value)
@@ -72,9 +74,7 @@ export const useUserForm = () => {
   }
 
   // change value switch - checked - not check
-  const handleChangeSwitch = (value) => formik.setFieldValue("switch", !formik.values.switch)
+  const handleChangeSwitch = () => formik.setFieldValue("switch", !formik.values.switch)
 
-  const formik = useFormik({ initialValues, validationSchema, onSubmit })
-
-  return { formik, loadingUser, showNotification, pathName, handleChangeContinent, handleChangeSwitch }
+  return { formik, loadingUser, showNotification, pathName, handleChangeSwitch, handleChangeContinent }
 }
