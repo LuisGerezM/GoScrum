@@ -1,5 +1,6 @@
-import { utilErrorRequest } from "utilities/utilErrorRequest/utilErrorRequest"
+import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 import { TYPES } from "../types/types"
+import { toast } from "react-toastify"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
@@ -35,12 +36,13 @@ export const loginUser = (authDataUser) => (dispatch) => {
     .then((data) => {
       if (data.status_code === 200) {
         localStorage.setItem("token_user", data.result.token)
-        dispatch(userSuccess({ userName: data.result.user.userName, role: data.result.user.role, status_code: utilErrorRequest(data.status_code) }))
+        toast(utilStatusRequest(data.status_code))
+        dispatch(userSuccess({ userName: data.result.user.userName, role: data.result.user.role, status_code: utilStatusRequest(data.status_code) }))
       } else {
         throw new Error(data.status_code)
       }
     })
-    .catch((error) => dispatch(userFailure(utilErrorRequest(error.message))))
+    .catch((error) => dispatch(userFailure(utilStatusRequest(error.message))))
 }
 
 export const registerUser = (newUser) => (dispatch) => {
@@ -70,10 +72,18 @@ export const registerUser = (newUser) => (dispatch) => {
       console.log("data in userActions ->", data)
 
       if (data.status_code === 201) {
-        dispatch(userSuccess({ userName: data.result.user.userName ,role: data.result.user.role, teamID: data.result.user.teamID, status_code: utilErrorRequest(data.status_code) }))
+        toast(utilStatusRequest(data.status_code))
+        dispatch(
+          userSuccess({
+            userName: data.result.user.userName,
+            role: data.result.user.role,
+            teamID: data.result.user.teamID,
+            status_code: utilStatusRequest(data.status_code),
+          })
+        )
       } else {
         throw new Error(data.status_code)
       }
     })
-    .catch((error) => dispatch(userFailure(utilErrorRequest(error.message))))
+    .catch((error) => dispatch(userFailure(utilStatusRequest(error.message))))
 }
