@@ -84,7 +84,6 @@ export const registerUser = (newUser) => async (dispatch) => {
       toast(utilStatusRequest(registerResult.status_code))
       dispatch(
         userSuccess({
-          userName: registerResult.result.user.userName,
           role: registerResult.result.user.role,
           teamID: registerResult.result.user.teamID,
           status_code: utilStatusRequest(registerResult.status_code),
