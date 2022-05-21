@@ -25,7 +25,7 @@
   /* example -> create task card */
   --global-xs-font-style: 400 8px/10px "Inter", sans-serif;
 
-  --global-primary-color: rgba(255, 69, 43, 1);
+  --global-primary-color: rgb(255, 66, 41);
   --global-ligth-color: rgba(255, 255, 255, 1);
   /* --global-dim-ligth-color:rgba(233, 233, 233, 1); */
   --global-dark: rgba(0, 0, 0, 1);
