@@ -1,0 +1,20 @@
+.swal2-container.swal2-center > .swal2-popup {
+  color: var(--global-dark);
+  border: 2px solid var(--global-primary-color);
+  background-color: rgba(245, 209, 209, 0.88);
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: rgb(19, 15, 250);
+  outline: 2px solid rgb(3, 1, 158);
+}
+
+.swal2-styled.swal2-confirm:hover {
+  background-color: var(--global-ligth-color);
+  color: rgb(19, 15, 250);
+  outline: 2px solid rgb(19, 15, 250);
+}
+
+.swal2-popup.swal2-modal.swal2-icon-success.swal2-show{
+    border: 2px solid rgb(33, 77, 135);;
+}

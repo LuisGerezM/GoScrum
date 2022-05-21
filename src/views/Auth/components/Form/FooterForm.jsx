@@ -1,3 +1,5 @@
+import { Button } from "components/Button/Button"
+import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 import { useUserForm } from "hooks/useAuthUser/useAuthUserForm"
 import React from "react"
 import { Link } from "react-router-dom"
@@ -6,13 +8,9 @@ const FooterForm = ({ to, valueLink }) => {
   const { loadingUser } = useUserForm()
   return (
     <>
-      <button type="submit" className="submit" disabled={loadingUser ? true : false}>
-        Enviar
-      </button>
+      <Button type="submit" textBtn="Enviar" classN="submit" disabled={loadingUser ? true : false} />
       <div className="div-a">
-        <Link className="a-form" to={to}>
-          {valueLink}
-        </Link>
+        <LinkReactRouter classN="a-form" to={to} valueLink={valueLink} />
       </div>
     </>
   )
