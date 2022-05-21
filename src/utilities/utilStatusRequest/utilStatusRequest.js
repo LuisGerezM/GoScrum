@@ -1,5 +1,5 @@
 export const utilStatusRequest = (status) => {
-  console.log(status)
+  console.log("status", status)
 
   const statusRequest = {
     200: "Inicio de sesión existoso",
@@ -10,5 +10,5 @@ export const utilStatusRequest = (status) => {
     409: "Ups.. Conflicto de solicitúd de usuario",
   }
 
-  return statusRequest[Number.parseInt(status)] ? statusRequest[Number.parseInt(status)] : "Ups.."
+  return statusRequest[status] ? statusRequest[status] : "Ups.."
 }

@@ -52,7 +52,6 @@ const Form = ({ pathName, authData = null }) => {
               handleChange={handleChange}
               handleBlur={handleBlur}
             />
-            {console.log("values", values.switch)}
             <FormControlLabel
               control={
                 <Switch
@@ -113,7 +112,6 @@ const Form = ({ pathName, authData = null }) => {
               handleChange={handleChangeContinent}
               handleBlur={handleBlur}
             />
-
             {values.continent === "America" && (
               <Select
                 dataOption={authData?.region}
