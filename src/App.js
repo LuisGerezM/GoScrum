@@ -42,9 +42,9 @@ export const App = () => {
           path="/"
           element={
             <RequireAuth>
-              {/* <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}> */}
+              <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
               <Tasks pageTransition={pageTransition} />
-              {/* </motion.div> */}
+              </motion.div>
             </RequireAuth>
           }
         />

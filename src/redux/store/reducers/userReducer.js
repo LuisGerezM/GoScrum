@@ -8,7 +8,7 @@ const initialUserState = {
   success_request: false,
 }
 
-const { REQUEST, SUCCESS, FAILURE, RESET_USER_NOTIFICATION } = TYPES
+const { REQUEST, SUCCESS, FAILURE, RESET_NOTIFICATION } = TYPES
 
 export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
@@ -32,7 +32,7 @@ export const userReducer = (state = initialUserState, action) => {
       // console.log("case FAILURE")
       return { loadingUser: false, user: [], error: action.payload, status_code: "", success_request: false }
 
-    case RESET_USER_NOTIFICATION:
+    case RESET_NOTIFICATION:
       // console.log("---->>>>> case SUCCESS - state", state)
       // console.log("RESET_USER_NOTIFICATION --> RETURNNNN --> ", { ...initialUserState, user: state.user })
       return { ...initialUserState, user: state.user }
