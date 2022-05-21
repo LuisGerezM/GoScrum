@@ -1,7 +1,6 @@
 import OptionsSelect from "./OptionsSelect"
 
 const Select = ({ dataOption, txtDefaultOption, txtLabel, name, errors, touched, values, handleChange, handleBlur }) => {
-  // console.log('error', {name, errors, touched, values})
   return (
     <div>
       <label>{txtLabel}</label>

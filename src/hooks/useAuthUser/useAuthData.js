@@ -14,6 +14,11 @@ export const useAuthData = () => {
         setAuthDataError(false)
       })
       .catch((error) => setAuthDataError(true))
+
+    return () => {
+      setAuthData(null)
+      setAuthDataError(false)
+    }
   }, [])
 
   return { authData, authDataError }

@@ -1,10 +1,10 @@
-import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 import { TYPES } from "../types/types"
 // import { toast } from "react-toastify"
 
 import apiCall from "services/apiCall/apiCall"
 import { adapterLogin } from "adapters/adapterAuth/adapterLogin/adapterLogin"
 import { adapterRegister } from "adapters/adapterAuth/adapterRegister/adapterRegister"
+import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
@@ -42,6 +42,7 @@ export const loginUser = (authDataUser) => async (dispatch) => {
     if (loginResult.status_code === 200) {
       // toast(utilStatusRequest(loginResult.status_code))
 
+      localStorage.setItem("token_user", loginResult.result.token)
       const { userName, role, status_code } = adapterLogin(loginResult)
 
       dispatch(

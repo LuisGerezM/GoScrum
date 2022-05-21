@@ -16,10 +16,10 @@ export const useUserForm = () => {
 
   const navigate = useNavigate()
 
+  const dispatch = useDispatch()
   const { loadingUser, user, error, status_code, success_request } = useSelector((state) => {
     return state.userReducer
   })
-  const dispatch = useDispatch()
 
   const initialValues = startValues(pathName)
 
@@ -35,8 +35,6 @@ export const useUserForm = () => {
     formik.resetForm()
   }
 
-  const formik = useFormik({ initialValues, validationSchema, onSubmit })
-
   // change continent select
   const handleChangeContinent = (value) => {
     formik.setFieldValue("continent", value)
@@ -48,11 +46,9 @@ export const useUserForm = () => {
 
   useEffect(() => {
     if (error) {
-      // console.log("TRUE ERRORRRRRR", error)
       alertMsg({ title: "ERROR", text: `${error}`, icon: "error" })
       dispatch(resetUserNotification())
     } else if (success_request) {
-      // console.log("estoy en EFECTOOO --->>", { success_request })
       dispatch(resetUserNotification())
 
       const possibleRoutes = {
@@ -69,14 +65,10 @@ export const useUserForm = () => {
       alertMsg({ title: "ÉXITO", text: `${status_code}`, icon: "success" })
 
       navigate(possibleRoutes[routeToNavigate])
-
-      // console.log("user final -->", user)
-      // console.log("routeToNavigate -->", routeToNavigate)
-      // console.log("possibleRoutes[routeToNavigate] -->", possibleRoutes[routeToNavigate])
-
-      // return () => console.log("desmontando useAuthUSerForm -> efecto")
     }
   }, [user, error, status_code, success_request, dispatch, pathName, navigate])
+
+  const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
   return { formik, loadingUser, pathName, handleChangeSwitch, handleChangeContinent }
 }
