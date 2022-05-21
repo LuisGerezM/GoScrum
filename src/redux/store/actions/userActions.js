@@ -23,7 +23,7 @@ export const userFailure = (error) => ({
 })
 
 export const resetUserNotification = () => ({
-  type: TYPES.RESET_USER_NOTIFICATION,
+  type: TYPES.RESET_NOTIFICATION,
 })
 
 export const loginUser = (authDataUser) => async (dispatch) => {
