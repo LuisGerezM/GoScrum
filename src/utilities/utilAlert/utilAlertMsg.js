@@ -2,14 +2,14 @@ import Swal from "sweetalert2"
 
 import "./utilAlertMsj.styles.css"
 
-export const alertMsg = async ({ position = "center", title, text, icon, confirmButtonText = "Aceptar", typeALert = "success" }) => {
+export const alertMsg = async ({ title, text, icon, confirmButtonText = "Aceptar", typeALert = "success" }) => {
   if (typeALert === "error") {
     Swal.fire({
       title: `${title}`,
       text: `${text}`,
       icon: `${icon}`,
       width: "400px",
-      timer: 3000,
+      timer: 2500,
       confirmButtonText: `${confirmButtonText}`,
       timerProgressBar: true,
       showClass: {

@@ -49,14 +49,14 @@ export const loginUser = (authDataUser) => async (dispatch) => {
         userSuccess({
           userName,
           role,
-          status_code: utilStatusRequest(status_code),
+          status_code: utilStatusRequest({ status: status_code }),
         })
       )
     } else {
       throw new Error(loginResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest(error.message)))
+    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
   }
 }
 
@@ -86,13 +86,13 @@ export const registerUser = (newUser) => async (dispatch) => {
         userSuccess({
           role,
           teamID,
-          status_code: utilStatusRequest(status_code),
+          status_code: utilStatusRequest({ status: status_code }),
         })
       )
     } else {
       throw new Error(registerResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest(error.message)))
+    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
   }
 }
