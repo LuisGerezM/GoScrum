@@ -46,7 +46,7 @@ export const useUserForm = () => {
 
   useEffect(() => {
     if (error) {
-      alertMsg({ title: "ERROR", text: `${error}`, icon: "error", typeALert: "error" })
+      alertMsg({ title: "ERROR 😥", text: `${error}`, icon: "error", typeALert: "error" })
       dispatch(resetUserNotification())
     } else if (success_request) {
       dispatch(resetUserNotification())
@@ -62,9 +62,9 @@ export const useUserForm = () => {
       else if (user.role === "Team Member") routeToNavigate = 2
       else routeToNavigate = 3
 
-      alertMsg({ position: "top-end", title: "ÉXITO", text: `${status_code}`, icon: "success" })
+      alertMsg({ position: "top-end", title: "ÉXITO 😎", text: `${status_code}`, icon: "success" })
 
-      navigate(possibleRoutes[routeToNavigate])
+      // navigate(possibleRoutes[routeToNavigate])
     }
   }, [user, error, status_code, success_request, dispatch, pathName, navigate])
 
