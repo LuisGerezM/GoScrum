@@ -60,9 +60,9 @@ export const App = () => {
         <Route
           path="/register"
           element={
-            // <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-            <Auth pageTransition={pageTransition} />
-            // </motion.div>
+            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+              <Auth pageTransition={pageTransition} />
+            </motion.div>
           }
         />
         <Route
