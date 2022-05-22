@@ -17,7 +17,6 @@ const Form = ({ pathName, authData = null }) => {
     <form onSubmit={handleSubmit}>
       <div>
         <div className="title">{pathName === "login" ? "Iniciar sesión" : "Registro"}</div>
-
         <Input
           txtLabel="Nombre de usuario"
           name="userName"

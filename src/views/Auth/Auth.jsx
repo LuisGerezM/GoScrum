@@ -26,7 +26,9 @@ export const Auth = ({ pageTransition }) => {
     <>
       {loadingUser && <SpinnerLoad />}
       <motion.div className="auth" initial="out" animate="in" exit="out" variants={pageTransition}>
+      {/* <div className="auth"> */}
         <Form pathName={pathName} authData={authData} />
+      {/* </div> */}
       </motion.div>
     </>
   )

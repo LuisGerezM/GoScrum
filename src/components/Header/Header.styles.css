@@ -1,0 +1,62 @@
+header {
+  box-shadow: 0 2px 5px #dbdbdb;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px 15px 15px;
+}
+
+header > span > img {
+  width: 82px;
+  height: 17px;
+}
+
+header > div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper_rigth_header {
+  display: flex;
+  flex-direction: row;
+  font: var(--global-m-font-style) !important;
+}
+
+.wrapper_rigth_header > div {
+  padding-right: 10px;
+  color: var(--global-dark);
+}
+
+.wrapper_rigth_header > div > a {
+  width: 70px;
+  height: 25px;
+  font: var(--global-m-font-style);
+  text-decoration: none;
+  padding: 3px 15px;
+  border: 1px solid var(--global-primary-color);
+  border-radius: var(--global-radius);
+  background-color: var(--global-primary-color);
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  color: var(--global-ligth-color);
+}
+
+.wrapper_rigth_header > div > a:hover {
+  border: 1px solid var(--global-primary-color);
+  color: var(--global-primary-color);
+  background-color: var(--global-ligth-color);
+}
+
+.wrapper_rigth_header > button.logout {
+  width: 9px;
+  height: 18px;
+  color: var(--global-primary-color);
+  font: var(--global-m-font-style);
+  background: none;
+  border: none;
+}
+
+/* @media (min-width: 1200px) {
+      header > img {
+          width: 90px;
+      }
+  } */

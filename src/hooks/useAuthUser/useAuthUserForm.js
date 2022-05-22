@@ -64,7 +64,7 @@ export const useUserForm = () => {
 
       alertMsg({ position: "top-end", title: "ÉXITO 😎", text: `${status_code}`, icon: "success" })
 
-      // navigate(possibleRoutes[routeToNavigate])
+      navigate(possibleRoutes[routeToNavigate])
     }
   }, [user, error, status_code, success_request, dispatch, pathName, navigate])
 
