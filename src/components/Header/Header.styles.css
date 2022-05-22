@@ -2,7 +2,7 @@ header {
   box-shadow: 0 2px 5px #dbdbdb;
   display: flex;
   justify-content: space-between;
-  padding: 10px 15px 15px 15px;
+  padding: 12px 20px 15px 15px;
 }
 
 header > span > img {

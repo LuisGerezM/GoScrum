@@ -7,11 +7,9 @@ import { Navigate } from "react-router-dom"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
 
-import { motion } from "framer-motion"
-
 import "./Auth.styles.css"
 
-export const Auth = ({ pageTransition }) => {
+export const Auth = () => {
   const { loadingUser, pathName } = useUserForm()
 
   // register
@@ -25,11 +23,9 @@ export const Auth = ({ pageTransition }) => {
   return (
     <>
       {loadingUser && <SpinnerLoad />}
-      {/* <motion.div className="auth" initial="out" animate="in" exit="out" variants={pageTransition}> */}
       <div className="auth">
         <Form pathName={pathName} authData={authData} />
       </div>
-      {/* </motion.div> */}
     </>
   )
 }

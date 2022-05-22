@@ -1,10 +1,11 @@
-import React from "react"
 import { Link as LinkRR } from "react-router-dom"
 
-export const LinkReactRouter = ({ classDiv = "", classL = "", to, valueLink }) => (
-  <div className={classDiv}>
-    <LinkRR className={classL} to={to}>
-      {valueLink}
-    </LinkRR>
-  </div>
-)
+export const LinkReactRouter = ({ divClass = "", linkClass = "", to, valueLink }) => {
+  return (
+    <div className={divClass}>
+      <LinkRR className={linkClass} to={to}>
+        {valueLink}
+      </LinkRR>
+    </div>
+  )
+}

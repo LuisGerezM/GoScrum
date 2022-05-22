@@ -31,9 +31,10 @@ export const useUserForm = () => {
       formik.values.teamID = !formik.values.teamID ? uuidv4() : formik.values.teamID
       dispatch(registerUser(formik.values))
     }
-
-    // formik.resetForm()
   }
+
+  const formik = useFormik({ initialValues, validationSchema, onSubmit })
+  const { resetForm } = formik
 
   // change continent select
   const handleChangeContinent = (value) => {
@@ -63,12 +64,10 @@ export const useUserForm = () => {
       else routeToNavigate = 3
 
       alertMsg({ position: "top-end", title: "ÉXITO 😎", text: `${status_code}`, icon: "success" })
-
+      resetForm()
       navigate(possibleRoutes[routeToNavigate])
     }
-  }, [user, error, status_code, success_request, dispatch, pathName, navigate])
-
-  const formik = useFormik({ initialValues, validationSchema, onSubmit })
+  }, [user, error, status_code, success_request, dispatch, pathName, navigate, resetForm])
 
   return { formik, loadingUser, pathName, handleChangeSwitch, handleChangeContinent }
 }

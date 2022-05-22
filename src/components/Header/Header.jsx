@@ -1,12 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom"
-
-// importamos sólo useSelector ya que useDispatch ya se usó, y por tanto no hace falta usarlo varias veces
-import { useSelector } from "react-redux"
-
-import "./Header.styles.css"
 import { Button } from "components/Button/Button"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 import { useHeader } from "hooks/useHeader/useHeader"
+import { useSelector } from "react-redux"
+
+import "./Header.styles.css"
 
 export const Header = () => {
   const { user } = useSelector((state) => {
@@ -14,7 +11,7 @@ export const Header = () => {
   })
 
   const { handlerLogout, to, valueLink } = useHeader()
-
+  console.log("user", user)
   return (
     <header>
       <span>

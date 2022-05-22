@@ -16,14 +16,15 @@ const RequireAuth = ({ children }) => {
 }
 
 const pageTransition = {
-  in: { opacity: 1, transition: { duration: 0.7 } },
-  out: { opacity: 0, transition: { duration: 0.7 } },
+  key: "page",
+  in: { opacity: 1, transition: { duration: 1 } },
+  out: { opacity: 0, transition: { duration: 0 } },
 }
 
 export const App = () => {
   const location = useLocation()
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (
         <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
           <Header />
@@ -52,9 +53,9 @@ export const App = () => {
         <Route
           path="/login"
           element={
-            // <motion.div className="page" initial="out" animate="in" exit="out" transition={{ duration: 5 }} variants={pageTransition}>
-            <Auth pageTransition={pageTransition} />
-            // </motion.div> */}
+            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+              <Auth pageTransition={pageTransition} />
+            </motion.div>
           }
         />
         <Route
@@ -65,6 +66,7 @@ export const App = () => {
             </motion.div>
           }
         />
+
         <Route
           path="*"
           element={

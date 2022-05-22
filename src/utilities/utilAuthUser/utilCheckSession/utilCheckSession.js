@@ -4,5 +4,6 @@ export const utilCheckSession = (pathName) => {
   if (pathName === "login") {
     localStorage.getItem("token_user") && (getToken.status_t = true)
   }
+  
   return getToken
 }
