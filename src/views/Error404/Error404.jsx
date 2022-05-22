@@ -1,6 +1,5 @@
-import { Button } from "components/Button/Button"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
-import { Link } from "react-router-dom"
+
 import "./Error404.styles.css"
 
 export default function Error404({ pageTransition }) {
@@ -11,12 +10,12 @@ export default function Error404({ pageTransition }) {
           <img src="/img/not_found.png" alt="logo" />
         </div>
         <div>
-          <h1>
-            <span className="span-a">Upss...</span>
+          <div className="span-letter">
+            <span className="span-a">Upss...😵</span>
             <span className="span-b">No encontramos</span>
             <span className="span-c">la pagina buscada</span>
-          </h1>
-          <LinkReactRouter classN="btn-link" to="/login" valueLink="Ir a Login" />
+          </div>
+          <LinkReactRouter linkClass="btn-link" to="/login" valueLink="Ir a Login" />
         </div>
       </section>
     </>

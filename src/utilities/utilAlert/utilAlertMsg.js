@@ -27,7 +27,7 @@ export const alertMsg = async ({ title, text, icon, confirmButtonText = "Aceptar
       title: `${title}`,
       text: `${text}`,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 1300,
       color: "#214d87",
     })
     return true
