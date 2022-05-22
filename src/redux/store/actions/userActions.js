@@ -1,8 +1,10 @@
-import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 import { TYPES } from "../types/types"
-import { toast } from "react-toastify"
+// import { toast } from "react-toastify"
 
 import apiCall from "services/apiCall/apiCall"
+import { adapterLogin } from "adapters/adapterAuth/adapterLogin/adapterLogin"
+import { adapterRegister } from "adapters/adapterAuth/adapterRegister/adapterRegister"
+import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
@@ -21,7 +23,7 @@ export const userFailure = (error) => ({
 })
 
 export const resetUserNotification = () => ({
-  type: TYPES.RESET_USER_NOTIFICATION,
+  type: TYPES.RESET_NOTIFICATION,
 })
 
 export const loginUser = (authDataUser) => async (dispatch) => {
@@ -38,20 +40,23 @@ export const loginUser = (authDataUser) => async (dispatch) => {
     })
 
     if (loginResult.status_code === 200) {
+      // toast(utilStatusRequest(loginResult.status_code))
+
       localStorage.setItem("token_user", loginResult.result.token)
-      toast(utilStatusRequest(loginResult.status_code))
+      const { userName, role, status_code } = adapterLogin(loginResult)
+
       dispatch(
         userSuccess({
-          userName: loginResult.result.user.userName,
-          role: loginResult.result.user.role,
-          status_code: utilStatusRequest(loginResult.status_code),
+          userName,
+          role,
+          status_code: utilStatusRequest({ status: status_code }),
         })
       )
     } else {
       throw new Error(loginResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest(error.message)))
+    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
   }
 }
 
@@ -73,18 +78,21 @@ export const registerUser = (newUser) => async (dispatch) => {
     })
 
     if (registerResult.status_code === 201) {
-      toast(utilStatusRequest(registerResult.status_code))
+      // toast(utilStatusRequest(registerResult.status_code))
+
+      const { role, teamID, status_code } = adapterRegister(registerResult)
+
       dispatch(
         userSuccess({
-          role: registerResult.result.user.role,
-          teamID: registerResult.result.user.teamID,
-          status_code: utilStatusRequest(registerResult.status_code),
+          role,
+          teamID,
+          status_code: utilStatusRequest({ status: status_code }),
         })
       )
     } else {
       throw new Error(registerResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest(error.message)))
+    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
   }
 }

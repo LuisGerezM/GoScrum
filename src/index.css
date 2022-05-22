@@ -25,7 +25,7 @@
   /* example -> create task card */
   --global-xs-font-style: 400 8px/10px "Inter", sans-serif;
 
-  --global-primary-color: rgba(255, 69, 43, 1);
+  --global-primary-color: rgb(255, 66, 41);
   --global-ligth-color: rgba(255, 255, 255, 1);
   /* --global-dim-ligth-color:rgba(233, 233, 233, 1); */
   --global-dark: rgba(0, 0, 0, 1);
@@ -33,7 +33,6 @@
   --global-dim-gray-color: rgba(139, 139, 139, 1);
   --global-gray-dark-color: rgba(60, 60, 60, 1);
   --global-blue-color: hsl(198, 60%, 50%); /* focus inputs */
-
   --global-border: 1px solid rgba(233, 233, 233, 1);
   --global-radius: 8px;
   --global-shadow-box-cards: 0px 4px 4px rgba(0, 0, 0, 0.25);

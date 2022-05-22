@@ -1,0 +1,180 @@
+:root {
+  --not-found-start-color-a: hsl(236, 99%, 47%);
+  --not-found-end-color-a: hsl(175, 100%, 50%);
+  --not-found-content-a: "Upss...";
+  --not-found-start-color-b: hsl(270, 67%, 47%);
+  --not-found-end-color-b: hsl(330, 100%, 50%);
+  --not-found-content-b: "No encontramos";
+  --not-found-start-color-c: hsl(0, 100%, 65%);
+  --not-found-end-color-c: hsl(47, 95%, 57%);
+  --not-found-content-c: "la pagina buscada";
+  --not-found-animation-a: "a2";
+  --not-found-animation-b: "a3";
+}
+
+body {
+  margin: 0;
+}
+
+.grid-container {
+  min-height: 100vh;
+  font-family: system-ui;
+  place-content: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  background-color: var(--global-gray-color);
+}
+
+.grid-container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0.5rem;
+}
+
+.grid-container img {
+  width: 71%;
+  border: 2px solid black;
+  border-radius: 25%;
+  padding: 20px 20px 40px;
+}
+
+.grid-container .btn-link {
+  width: 50%;
+  text-align: center;
+  padding: 10px 20px;
+  font: var(--global-l-font-style);
+  background-color: hsl(7, 75%, 51%);
+  text-decoration: none;
+  color: var(--global-gray-color);
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+}
+
+.grid-container .btn-link:hover {
+  outline: 2px solid hsl(7, 75%, 51%);
+  background-color: var(--global-ligth-color);
+  color: hsl(7, 75%, 51%);
+}
+
+.grid-container h1 {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  margin: 0 0 16px;
+}
+
+span {
+  color: var(--global-dark);
+  display: block;
+  font-size: 60px;
+  line-height: 1.1;
+  position: relative;
+  padding: 4px 0px;
+}
+
+span:first-child::before {
+  animation-play-state: running;
+  animation-name: var(--animation, a);
+  animation-duration: 6s;
+  animation-iteration-count: 5;
+  background: linear-gradient(90deg, var(--not-found-start-color-a), var(--not-found-end-color-a));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-size: 60px;
+  position: absolute;
+  inset: 0;
+  content: var(--not-found-content-a);
+  opacity: 1;
+}
+
+span:nth-child(2)::before {
+  animation-name: var(--animation, b);
+  animation-duration: 6s;
+  animation-iteration-count: 5;
+  background: linear-gradient(90deg, var(--not-found-start-color-b), var(--not-found-end-color-b));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-size: 60px;
+  position: absolute;
+  inset: 0;
+  content: var(--not-found-content-b);
+  opacity: 1;
+}
+
+span:nth-child(3)::before {
+  animation-name: var(--animation, c);
+  animation-duration: 6s;
+  animation-iteration-count: 5;
+  background: linear-gradient(90deg, var(--not-found-start-color-c), var(--not-found-end-color-c));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fff;
+  font-size: 60px;
+  position: absolute;
+  inset: 0;
+  content: var(--not-found-content-c);
+  opacity: 1;
+}
+
+@keyframes a {
+  0%,
+  16.667%,
+  100% {
+    opacity: 1;
+  }
+
+  33.333%,
+  83.333% {
+    opacity: 0;
+  }
+}
+
+@keyframes b {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  33.333%,
+  50% {
+    opacity: 1;
+  }
+
+  16.667%,
+  66.667% {
+    opacity: 0;
+  }
+}
+
+@keyframes c {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+  }
+
+  66.667%,
+  83.333% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 470) {
+  h1 {
+    text-align: center;
+    --global-ml-font-style: 600 15px/18px "Inter", sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    margin: 0 0 16px;
+  }
+}

@@ -16,10 +16,10 @@ export const useUserForm = () => {
 
   const navigate = useNavigate()
 
+  const dispatch = useDispatch()
   const { loadingUser, user, error, status_code, success_request } = useSelector((state) => {
     return state.userReducer
   })
-  const dispatch = useDispatch()
 
   const initialValues = startValues(pathName)
 
@@ -32,10 +32,8 @@ export const useUserForm = () => {
       dispatch(registerUser(formik.values))
     }
 
-    formik.resetForm()
+    // formik.resetForm()
   }
-
-  const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
   // change continent select
   const handleChangeContinent = (value) => {
@@ -48,11 +46,9 @@ export const useUserForm = () => {
 
   useEffect(() => {
     if (error) {
-      // console.log("TRUE ERRORRRRRR", error)
-      alertMsg({ title: "ERROR", text: `${error}`, icon: "error" })
+      alertMsg({ title: "ERROR 😥", text: `${error}`, icon: "error", typeALert: "error" })
       dispatch(resetUserNotification())
     } else if (success_request) {
-      // console.log("estoy en EFECTOOO --->>", { success_request })
       dispatch(resetUserNotification())
 
       const possibleRoutes = {
@@ -66,17 +62,13 @@ export const useUserForm = () => {
       else if (user.role === "Team Member") routeToNavigate = 2
       else routeToNavigate = 3
 
-      alertMsg({ title: "ÉXITO", text: `${status_code}`, icon: "success" })
+      alertMsg({ position: "top-end", title: "ÉXITO 😎", text: `${status_code}`, icon: "success" })
 
-      navigate(possibleRoutes[routeToNavigate])
-
-      // console.log("user final -->", user)
-      // console.log("routeToNavigate -->", routeToNavigate)
-      // console.log("possibleRoutes[routeToNavigate] -->", possibleRoutes[routeToNavigate])
-
-      // return () => console.log("desmontando useAuthUSerForm -> efecto")
+      // navigate(possibleRoutes[routeToNavigate])
     }
   }, [user, error, status_code, success_request, dispatch, pathName, navigate])
+
+  const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
   return { formik, loadingUser, pathName, handleChangeSwitch, handleChangeContinent }
 }

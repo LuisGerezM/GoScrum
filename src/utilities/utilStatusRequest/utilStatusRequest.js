@@ -1,14 +1,14 @@
-export const utilStatusRequest = (status) => {
-  console.log(status)
-
+export const utilStatusRequest = ({ status, where = "auth", typeOfOperation = "" }) => {
+  console.log("status", status)
+  // typeOfOperation -> create, edit, etc
   const statusRequest = {
-    200: "Inicio de sesión existoso",
-    201: "Usuario registrado con éxito",
-    400: "Ups.. Ocurrió un problema",
-    401: "Ups.. Por favor verifica tus credenciales",
-    404: "Ups.. tenemos un problema",
-    409: "Ups.. Conflicto de solicitúd de usuario",
+    200: `${where === "auth" ? "Inicio de sesión existoso..." : `Operación realizada con éxito... ${typeOfOperation}`}`,
+    201: `${where === "auth" ? "Usuario registrado con éxito..." : `Operación realizada con éxito... ${typeOfOperation}`}`,
+    400: `Ups.. Ocurrió un problema... ${typeOfOperation}`,
+    401: `Ups.. Por favor verifica tus credenciales... ${typeOfOperation}`,
+    404: `Ups.. tenemos un problema... ${typeOfOperation}`,
+    409: `Ups.. Conflicto de solicitúd de usuario... ${typeOfOperation}`,
   }
 
-  return statusRequest[Number.parseInt(status)] ? statusRequest[Number.parseInt(status)] : "Ups.."
+  return statusRequest[status] ? statusRequest[status] : `Ups..Ponte en contacto con el administrador... ${typeOfOperation}`
 }

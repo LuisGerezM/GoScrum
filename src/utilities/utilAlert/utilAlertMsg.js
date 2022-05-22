@@ -1,15 +1,35 @@
 import Swal from "sweetalert2"
 
-export const alertMsg = async ({ title, text, icon, confirmButtonText = "Aceptar" }) => {
-  let takeResponse = await Swal.fire({
-    title: `${title}`,
-    text: `${text}`,
-    icon: `${icon}`,
-    confirmButtonText: `${confirmButtonText}`,
-    width: "400px",
-    timer: 3000,
-    timerProgressBar: true,
-  })
+import "./utilAlertMsj.styles.css"
 
-  return takeResponse
+export const alertMsg = async ({ title, text, icon, confirmButtonText = "Aceptar", typeALert = "success" }) => {
+  if (typeALert === "error") {
+    Swal.fire({
+      title: `${title}`,
+      text: `${text}`,
+      icon: `${icon}`,
+      width: "400px",
+      timer: 2500,
+      confirmButtonText: `${confirmButtonText}`,
+      timerProgressBar: true,
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    })
+    return false
+  } else {
+    Swal.fire({
+      position: "top-end",
+      icon: `${icon}`,
+      title: `${title}`,
+      text: `${text}`,
+      showConfirmButton: false,
+      timer: 1500,
+      color: "#214d87",
+    })
+    return true
+  }
 }
