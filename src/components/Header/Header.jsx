@@ -11,7 +11,7 @@ export const Header = () => {
   })
 
   const { handlerLogout, to, valueLink } = useHeader()
-  console.log("user", user)
+
   return (
     <header>
       <span>

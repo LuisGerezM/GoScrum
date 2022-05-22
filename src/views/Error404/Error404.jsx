@@ -2,7 +2,8 @@ import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 
 import "./Error404.styles.css"
 
-export default function Error404({ pageTransition }) {
+export default function Error404() {
+  const to = localStorage.getItem("token_user") ? "/" : "/login"
   return (
     <>
       <section className="grid-container">
@@ -15,7 +16,7 @@ export default function Error404({ pageTransition }) {
             <span className="span-b">No encontramos</span>
             <span className="span-c">la pagina buscada</span>
           </div>
-          <LinkReactRouter linkClass="btn-link" to="/login" valueLink="Ir a Login" />
+          <LinkReactRouter linkClass="btn-link" to={to} valueLink="Ir a Login" />
         </div>
       </section>
     </>
