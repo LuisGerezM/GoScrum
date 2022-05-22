@@ -4,7 +4,7 @@ export const useHeader = () => {
   const navigate = useNavigate()
 
   const handlerLogout = () => {
-    console.log("logOut")
+    // console.log("logOut")
     localStorage.removeItem("token_user")
     navigate("/login", { replace: true })
   }

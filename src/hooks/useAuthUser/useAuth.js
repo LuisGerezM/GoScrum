@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
-export const useAuthData = () => {
+export const useAuth = (pathName) => {
   const [authData, setAuthData] = useState(null)
   const [authDataError, setAuthDataError] = useState(false)
+  
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(`${BASEURL}auth/data`)
@@ -20,6 +24,16 @@ export const useAuthData = () => {
       setAuthDataError(false)
     }
   }, [])
+
+  useEffect(() => {
+    
+    if (utilCheckSession(pathName).status_t) return navigate('/', {replace: true})
+  
+    return () => {
+      console.log('desmontando efect useAuth - navigate')
+    }
+  }, [navigate, pathName])
+  
 
   return { authData, authDataError }
 }
