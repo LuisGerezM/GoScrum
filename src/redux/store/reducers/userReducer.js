@@ -23,8 +23,8 @@ export const userReducer = (state = initialUserState, action) => {
       }
 
       let dataUser = {}
-      if (action.payload.userName || action.payload.role === "Team Member") dataUser = possibleCases[1]
-      else if (action.payload.role === "Team Leader") dataUser = possibleCases[2]
+      if (action.payload.role === "Team Leader") dataUser = possibleCases[2]
+      else dataUser = possibleCases[1]
       // console.log("state en SUCCESSSSSSSSS", state)
       return { loadingUser: false, user: dataUser, error: "", status_code: action.payload.status_code, success_request: true }
 

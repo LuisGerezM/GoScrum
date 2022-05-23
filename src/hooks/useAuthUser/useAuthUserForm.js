@@ -64,6 +64,7 @@ export const useUserForm = () => {
       else routeToNavigate = 3
 
       alertMsg({ position: "top-end", title: "ÉXITO 😎", text: `${status_code}`, icon: "success" })
+
       resetForm()
       navigate(possibleRoutes[routeToNavigate], { replace: true })
     }
