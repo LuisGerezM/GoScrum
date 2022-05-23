@@ -5,7 +5,7 @@ import "./Donate.styles.css"
 const Donate = () => {
   return (
     <main>
-      <section>
+      <section className="donate">
         <div>
           <div className="title">Colaborá con el proyecto</div>
           <img src={logo} alt="logo GOScrum" />

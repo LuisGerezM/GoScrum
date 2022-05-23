@@ -6,41 +6,46 @@ main {
   align-items: center;
 }
 
-section {
+section.registered {
   width: 80%;
   padding: 20px 0;
   text-align: center;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-section > div {
+section.registered > div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-section > div > div.title {
+section.registered > div > div.title {
   padding-top: 10px;
   font: var(--global-xl-font-style);
 }
 
-section > div > img {
+section.registered > div > img {
   width: 60%;
   padding-top: 10px;
 }
 
-section > p {
+section.registered > p {
   width: 100%;
   font: var(--global-m-font-style);
   padding: 10px 0;
+  margin: 0;
 }
 
-section > p.p-id-team {
+section.registered > p.p-id-team {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-section .btn-copy {
+section.registered .btn-copy {
   text-align: center;
   padding: 10px 10px 5px 10px;
   cursor: pointer;
@@ -53,13 +58,13 @@ section .btn-copy {
   border-radius: var(--global-radius);
 }
 
-section .btn-copy:hover {
+section.registered .btn-copy:hover {
   color: var(--global-ligth-color);
   background-color: var(--global-blue-color);
   outline: 2px solid var(--global-blue-color);
 }
 
-section .btn-link {
+section.registered .btn-link {
   text-align: center;
   padding: 10px 20px;
   font: var(--global-l-font-style);
@@ -70,33 +75,36 @@ section .btn-link {
   border-radius: var(--global-radius);
 }
 
-section > div:nth-child(2) .btn-link:hover {
+section.registered > div:nth-child(2) .btn-link:hover {
   outline: 2px solid hsl(7, 75%, 51%);
   background-color: var(--global-ligth-color);
   color: hsl(7, 75%, 51%);
 }
 
 @media screen and (min-width: 470px) {
-  section {
+  section.registered {
     width: 50%;
-    padding: 20px 0;
+    padding: 20px 10px;
+    justify-content: center;
+    outline: 10px outset var(--global-blue-color);
   }
 
-  section > div {
+  section.registered > div {
     display: flex;
     align-items: center;
+    padding-top: 30px;
   }
 
-  section > div > img {
+  section.registered > div > img {
     width: 150px;
     padding-bottom: 10px;
   }
 
-  section .btn-copy {
+  section.registered .btn-copy {
     margin-left: 10px;
   }
 
-  section > div > a {
+  section.registered > div > a {
     width: 150px;
     padding: 5px 0 17px 0;
   }

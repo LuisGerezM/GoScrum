@@ -24,7 +24,7 @@ export const Header = () => {
         <div>
           <strong>{user.userName}</strong>
         </div>
-        <Button textBtn="X" classN="logout" onClick={handlerLogout} />
+        <Button textBtn="X" nameClass="logout" onClick={handlerLogout} />
       </div>
     </header>
   )

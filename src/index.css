@@ -42,6 +42,10 @@
   font: var(--global-sm-font-style);
 }
 
+body{
+  margin: 0;
+}
+
 input:focus,
 select:focus {
   outline: 1px solid var(--global-blue-color);

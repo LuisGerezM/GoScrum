@@ -6,7 +6,7 @@ const FooterForm = ({ to, valueLink }) => {
   const { loadingUser } = useUserForm()
   return (
     <>
-      <Button type="submit" textBtn="Enviar" classN="submit" disabled={loadingUser ? true : false} />
+      <Button type="submit" textBtn="Enviar" nameClass="submit" disabled={loadingUser ? true : false} />
       <LinkReactRouter divClass={"div-a"} linkClass={"a-form"} to={to} valueLink={valueLink} />
     </>
   )
