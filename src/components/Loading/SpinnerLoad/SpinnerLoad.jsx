@@ -2,7 +2,7 @@ import "./SpinnerLoad.styles.css"
 
 export const SpinnerLoad = () => {
   return (
-    <section>
+    <section className="spinner-load">
       <div className="lds-spinner">
         <div></div>
         <div></div>
