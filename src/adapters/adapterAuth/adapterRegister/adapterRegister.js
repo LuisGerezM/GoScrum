@@ -1,8 +1,8 @@
 export const adapterRegister = ({
   status_code,
   result: {
-    user: { teamID, role },
+    user: { userName, teamID, role },
   },
 }) => {
-  return { teamID, role, status_code: Number.parseInt(status_code) }
+  return { userName, teamID, role, status_code: Number.parseInt(status_code) }
 }

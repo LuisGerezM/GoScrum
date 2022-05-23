@@ -7,6 +7,7 @@ import { Tasks } from "views/Tasks/Tasks"
 import { Auth } from "views/Auth/Auth"
 import { Header } from "components/Header/Header"
 import Donate from "views/Donate/Donate"
+import { Registered } from "views/Registered/Registered"
 
 const Error404 = lazy(() => import("views/Error404/Error404"))
 
@@ -66,7 +67,14 @@ export const App = () => {
             </motion.div>
           }
         />
-
+        <Route
+          path="/registered/:teamID"
+          element={
+            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+              <Registered />
+            </motion.div>
+          }
+        />
         <Route
           path="*"
           element={

@@ -29,7 +29,7 @@ body {
 }
 
 .grid-container.not-header {
-  min-height: calc(100vh - 20px);;
+  min-height: calc(100vh - 20px);
 }
 
 .grid-container.with-header {
