@@ -89,7 +89,7 @@ const Form = ({ pathName, authData = null }) => {
             )}
 
             <Select
-              dataOption={authData?.Rol}
+              dataOption={authData?.role}
               txtLabel="Rol"
               name="role"
               values={values.role}
@@ -101,7 +101,7 @@ const Form = ({ pathName, authData = null }) => {
             />
 
             <Select
-              dataOption={authData?.continente}
+              dataOption={authData?.continent}
               txtLabel="Continente"
               name="continent"
               values={values.continent}
