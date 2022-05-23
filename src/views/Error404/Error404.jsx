@@ -1,22 +1,23 @@
-import { Button } from "components/Button/Button"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
-import { Link } from "react-router-dom"
+import error404 from "assets/img/not_found.png"
+
 import "./Error404.styles.css"
 
-export default function Error404({ pageTransition }) {
+export default function Error404() {
+  const to = localStorage.getItem("token_user") ? "/" : "/login"
   return (
     <>
-      <section className="grid-container">
+      <section className={`grid-container ${to === "/" ? "with-header" : "not-header "}`}>
         <div>
-          <img src="/img/not_found.png" alt="logo" />
+          <img src={error404} alt="error404 img" />
         </div>
         <div>
-          <h1>
-            <span className="span-a">Upss...</span>
+          <div className="span-letter">
+            <span className="span-a">Upss...😵</span>
             <span className="span-b">No encontramos</span>
             <span className="span-c">la pagina buscada</span>
-          </h1>
-          <LinkReactRouter classN="btn-link" to="/login" valueLink="Ir a Login" />
+          </div>
+          <LinkReactRouter linkClass="btn-link" to={to} valueLink="Ir a Login" />
         </div>
       </section>
     </>

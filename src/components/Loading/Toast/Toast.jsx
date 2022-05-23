@@ -1,7 +1,7 @@
 import React from "react"
 import { ToastContainer } from "react-toastify"
 
-export const Toast = ({ error = null }) => {
+export const Toast = ({ error = null, theme = "dark" }) => {
   return (
     <ToastContainer
       position="top-right"
@@ -18,3 +18,4 @@ export const Toast = ({ error = null }) => {
     />
   )
 }
+

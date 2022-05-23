@@ -1,7 +1,7 @@
 :root {
   --not-found-start-color-a: hsl(236, 99%, 47%);
   --not-found-end-color-a: hsl(175, 100%, 50%);
-  --not-found-content-a: "Upss...";
+  --not-found-content-a: "Upss..";
   --not-found-start-color-b: hsl(270, 67%, 47%);
   --not-found-end-color-b: hsl(330, 100%, 50%);
   --not-found-content-b: "No encontramos";
@@ -17,7 +17,9 @@ body {
 }
 
 .grid-container {
-  min-height: 100vh;
+  width: 100%;
+  /* min-height: 100vh; */
+  padding: 0 0 20px 0;
   font-family: system-ui;
   place-content: center;
   display: grid;
@@ -26,23 +28,35 @@ body {
   background-color: var(--global-gray-color);
 }
 
+.grid-container.not-header {
+  min-height: calc(100vh - 20px);
+}
+
+.grid-container.with-header {
+  min-height: calc(100vh - 67px);
+}
+
+
 .grid-container > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0.5rem;
+  padding: 0.8rem 0.5rem;
 }
 
 .grid-container img {
-  width: 71%;
+  width: 50%;
   border: 2px solid black;
   border-radius: 25%;
   padding: 20px 20px 40px;
 }
 
+.grid-container > div:nth-child(2) > div:nth-child(2) {
+  padding-top: 26px;
+}
+
 .grid-container .btn-link {
-  width: 50%;
   text-align: center;
   padding: 10px 20px;
   font: var(--global-l-font-style);
@@ -59,7 +73,7 @@ body {
   color: hsl(7, 75%, 51%);
 }
 
-.grid-container h1 {
+.grid-container > div > div.span-letter {
   text-align: center;
   font-size: 1rem;
   font-weight: 900;
@@ -67,16 +81,17 @@ body {
   margin: 0 0 16px;
 }
 
-span {
+.grid-container span {
   color: var(--global-dark);
   display: block;
-  font-size: 60px;
+  font-size: 26px;
   line-height: 1.1;
   position: relative;
-  padding: 4px 0px;
+  padding: 1px 3px 0 0;
 }
 
-span:first-child::before {
+.grid-container span:first-child::before {
+  padding: 0 37px 0 0;
   animation-play-state: running;
   animation-name: var(--animation, a);
   animation-duration: 6s;
@@ -86,14 +101,14 @@ span:first-child::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #fff;
-  font-size: 60px;
+  font-size: 26px;
   position: absolute;
   inset: 0;
   content: var(--not-found-content-a);
   opacity: 1;
 }
 
-span:nth-child(2)::before {
+.grid-container span:nth-child(2)::before {
   animation-name: var(--animation, b);
   animation-duration: 6s;
   animation-iteration-count: 5;
@@ -102,14 +117,14 @@ span:nth-child(2)::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #fff;
-  font-size: 60px;
+  font-size: 26px;
   position: absolute;
   inset: 0;
   content: var(--not-found-content-b);
   opacity: 1;
 }
 
-span:nth-child(3)::before {
+.grid-container span:nth-child(3)::before {
   animation-name: var(--animation, c);
   animation-duration: 6s;
   animation-iteration-count: 5;
@@ -118,7 +133,7 @@ span:nth-child(3)::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #fff;
-  font-size: 60px;
+  font-size: 26px;
   position: absolute;
   inset: 0;
   content: var(--not-found-content-c);
@@ -168,13 +183,51 @@ span:nth-child(3)::before {
   }
 }
 
-@media screen and (min-width: 470) {
-  h1 {
-    text-align: center;
-    --global-ml-font-style: 600 15px/18px "Inter", sans-serif;
-    font-size: 5rem;
-    font-weight: 800;
-    letter-spacing: -0.06em;
-    margin: 0 0 16px;
+@media screen and (min-width: 470px) {
+  .grid-container {
+    padding: 0;
+  }
+
+  .grid-container.not-header {
+    min-height: 100vh;
+  }
+  
+  .grid-container.with-header {
+    min-height: calc(100vh - 47px);
+  }
+
+  .grid-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0.5rem;
+  }
+
+  .grid-container img {
+    width: 81%;
+  }
+
+  .grid-container > div:nth-child(2) > div:nth-child(2) {
+    width: 70%;
+  }
+
+  .grid-container .btn-link {
+    padding: 15px 70px;
+  }
+
+  .grid-container span {
+    font-size: 60px;
+    padding: 4px 0px;
+  }
+
+  .grid-container span:first-child::before,
+  .grid-container span:nth-child(2)::before,
+  .grid-container span:nth-child(3)::before {
+    font-size: 60px;
+  }
+
+  .grid-container span:first-child::before {
+    padding: 0 88px 0 0;
   }
 }

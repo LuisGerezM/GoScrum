@@ -17,7 +17,6 @@ const Form = ({ pathName, authData = null }) => {
     <form onSubmit={handleSubmit}>
       <div>
         <div className="title">{pathName === "login" ? "Iniciar sesión" : "Registro"}</div>
-
         <Input
           txtLabel="Nombre de usuario"
           name="userName"
@@ -90,7 +89,7 @@ const Form = ({ pathName, authData = null }) => {
             )}
 
             <Select
-              dataOption={authData?.Rol}
+              dataOption={authData?.role}
               txtLabel="Rol"
               name="role"
               values={values.role}
@@ -102,7 +101,7 @@ const Form = ({ pathName, authData = null }) => {
             />
 
             <Select
-              dataOption={authData?.continente}
+              dataOption={authData?.continent}
               txtLabel="Continente"
               name="continent"
               values={values.continent}
