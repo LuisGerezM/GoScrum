@@ -3,6 +3,8 @@ import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 import { useHeader } from "hooks/useHeader/useHeader"
 import { useSelector } from "react-redux"
 
+import logo from "assets/img/GoScrum.png"
+
 import "./Header.styles.css"
 
 export const Header = () => {
@@ -15,7 +17,7 @@ export const Header = () => {
   return (
     <header>
       <span>
-        <img src="/img/GoScrum.png" alt="logo" />
+        <img src={logo} alt="logo GOScrum" />
       </span>
       <div className="wrapper_rigth_header">
         <LinkReactRouter to={to} valueLink={valueLink} />

@@ -18,8 +18,7 @@ body {
 
 .grid-container {
   width: 100%;
-  min-height: 100vh;
-  min-height: calc(100vh - 45px);
+  /* min-height: 100vh; */
   padding: 0 0 20px 0;
   font-family: system-ui;
   place-content: center;
@@ -28,6 +27,15 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   background-color: var(--global-gray-color);
 }
+
+.grid-container.not-header {
+  min-height: calc(100vh - 20px);;
+}
+
+.grid-container.with-header {
+  min-height: calc(100vh - 67px);
+}
+
 
 .grid-container > div {
   display: flex;
@@ -178,6 +186,14 @@ body {
 @media screen and (min-width: 470px) {
   .grid-container {
     padding: 0;
+  }
+
+  .grid-container.not-header {
+    min-height: 100vh;
+  }
+  
+  .grid-container.with-header {
+    min-height: calc(100vh - 47px);
   }
 
   .grid-container > div {
