@@ -1,11 +1,11 @@
 import React from "react"
 import { ToastContainer } from "react-toastify"
 
-export const Toast = ({ error = null, theme = "dark" }) => {
+export const Toast = ({ error = null, autoClose }) => {
   return (
     <ToastContainer
       position="top-right"
-      autoClose={1200}
+      autoClose={autoClose}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick

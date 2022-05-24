@@ -53,6 +53,7 @@ export const App = () => {
 
         <Route path="/login" element={<Auth pageTransition={pageTransition} />} />
         <Route path="/register" element={<Auth pageTransition={pageTransition} />} />
+
         <Route
           path="/registered/:teamID"
           element={

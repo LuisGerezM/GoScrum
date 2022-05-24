@@ -8,11 +8,13 @@ import logo from "assets/img/GoScrum.png"
 import "./Header.styles.css"
 
 export const Header = () => {
-  const { user } = useSelector((state) => {
+  const { user, success_request } = useSelector((state) => {
     return state.userReducer
   })
 
-  const { handlerLogout, to, valueLink } = useHeader()
+  const { handlerLogout, to, valueLink } = useHeader(success_request)
+
+  const nameUser = user?.userName || localStorage.getItem("userName")
 
   return (
     <header>
@@ -22,7 +24,7 @@ export const Header = () => {
       <div className="wrapper_rigth_header">
         <LinkReactRouter to={to} valueLink={valueLink} />
         <div>
-          <strong>{user.userName}</strong>
+          <strong>{nameUser}</strong>
         </div>
         <Button textBtn="X" nameClass="logout" onClick={handlerLogout} />
       </div>

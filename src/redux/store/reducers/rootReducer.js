@@ -1,6 +1,6 @@
 import { combineReducers } from "redux"
 import { userReducer } from "./userReducer"
-import {tasksReducer} from "./tasksReducer"
+import { tasksReducer } from "./tasksReducer"
 
 const rootReducer = combineReducers({
   userReducer,

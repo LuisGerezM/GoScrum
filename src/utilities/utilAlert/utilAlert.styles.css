@@ -1,23 +1,25 @@
 /* error */
 .swal2-container.swal2-center > .swal2-popup {
-  color: var(--global-dark);
+  color: var(--global-gray-dark-color);
   border: 2px solid var(--global-primary-color);
+  /* background-color: hsl(0, 0%, 7%); */
+  background: var(--global-ligth-color);
 }
 
 .swal2-styled.swal2-confirm {
-  background-color: rgb(19, 15, 250);
-  outline: 2px solid rgb(3, 1, 158);
+  background-color: hsl(234, 70%, 53%);
+  outline: 2px solid hsl(224, 62%, 45%);
 }
 
 .swal2-styled.swal2-confirm:hover {
   background-color: var(--global-ligth-color);
-  color: rgb(19, 15, 250);
-  outline: 2px solid rgb(19, 15, 250);
+  color: hsl(224, 70%, 53%);
+  outline: 4px solid hsl(224, 62%, 45%);
 }
 
 .swal2-timer-progress-bar {
   height: 0.26em;
-  background: linear-gradient(90deg, var(--global-primary-color), rgb(19, 15, 250));
+  background: linear-gradient(90deg, var(--global-primary-color), hsl(204, 70%, 53%));
 }
 
 /* success  */

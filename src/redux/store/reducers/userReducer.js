@@ -1,4 +1,4 @@
-const { TYPES } = require("../types/types")
+import { TYPES } from "../types/types"
 
 const initialUserState = {
   loadingUser: false,
@@ -8,33 +8,29 @@ const initialUserState = {
   success_request: false,
 }
 
-const { REQUEST, SUCCESS, FAILURE, RESET_NOTIFICATION } = TYPES
+const { USER_REQUEST, USER_SUCCESS, USER_FAILURE, USER_RESET_NOTIFICATION } = TYPES
 
 export const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
-    case REQUEST:
+    case USER_REQUEST:
       return { ...state, loadingUser: true }
 
-    case SUCCESS:
-      // console.log("---->>>>> case SUCCESS")
+    case USER_SUCCESS:
       const possibleCases = {
         1: { userName: action.payload.userName, role: action.payload.role },
         2: { userName: action.payload.userName, role: action.payload.role, teamID: action.payload.teamID },
       }
 
       let dataUser = {}
-      if (action.payload.userName || action.payload.role === "Team Member") dataUser = possibleCases[1]
-      else if (action.payload.role === "Team Leader") dataUser = possibleCases[2]
-      // console.log("state en SUCCESSSSSSSSS", state)
+      if (action.payload.role === "Team Leader") dataUser = possibleCases[2]
+      else if (action.payload.userName || action.payload.role === "Team Member") dataUser = possibleCases[1]
+
       return { loadingUser: false, user: dataUser, error: "", status_code: action.payload.status_code, success_request: true }
 
-    case FAILURE:
-      // console.log("case FAILURE")
+    case USER_FAILURE:
       return { loadingUser: false, user: [], error: action.payload, status_code: "", success_request: false }
 
-    case RESET_NOTIFICATION:
-      // console.log("---->>>>> case SUCCESS - state", state)
-      // console.log("RESET_USER_NOTIFICATION --> RETURNNNN --> ", { ...initialUserState, user: state.user })
+    case USER_RESET_NOTIFICATION:
       return { ...initialUserState, user: state.user }
 
     default:

@@ -1,6 +1,5 @@
-import { TYPES } from "../types/types"
-// import { toast } from "react-toastify"
 
+import { TYPES } from "../types/types"
 import apiCall from "services/apiCall/apiCall"
 import { adapterLogin } from "adapters/adapterAuth/adapterLogin/adapterLogin"
 import { adapterRegister } from "adapters/adapterAuth/adapterRegister/adapterRegister"
@@ -9,27 +8,26 @@ import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const userRequest = () => ({
-  type: TYPES.REQUEST,
+  type: TYPES.USER_REQUEST,
 })
 
 export const userSuccess = (data) => ({
-  type: TYPES.SUCCESS,
+  type: TYPES.USER_SUCCESS,
   payload: data,
 })
 
 export const userFailure = (error) => ({
-  type: TYPES.FAILURE,
+  type: TYPES.USER_FAILURE,
   payload: error,
 })
 
 export const resetUserNotification = () => ({
-  type: TYPES.RESET_NOTIFICATION,
+  type: TYPES.USER_RESET_NOTIFICATION,
 })
 
 export const loginUser = (authDataUser) => async (dispatch) => {
   try {
     dispatch(userRequest())
-
     const loginResult = await apiCall({
       method: "POST",
       url: `${BASEURL}auth/login`,
@@ -40,11 +38,12 @@ export const loginUser = (authDataUser) => async (dispatch) => {
     })
 
     if (loginResult.status_code === 200) {
-      // toast(utilStatusRequest(loginResult.status_code))
+ 
 
       localStorage.setItem("token_user", loginResult.result.token)
+      localStorage.setItem("userName", loginResult.result.user.userName)
       const { userName, role, status_code } = adapterLogin(loginResult)
-
+  
       dispatch(
         userSuccess({
           userName,
@@ -78,7 +77,6 @@ export const registerUser = (newUser) => async (dispatch) => {
     })
 
     if (registerResult.status_code === 201) {
-      // toast(utilStatusRequest(registerResult.status_code))
 
       const { role, teamID, status_code } = adapterRegister(registerResult)
 

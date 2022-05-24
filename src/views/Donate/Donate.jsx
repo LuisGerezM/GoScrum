@@ -1,3 +1,5 @@
+import logo from "assets/img/GoScrum.png"
+
 import "./Donate.styles.css"
 
 const Donate = () => {
@@ -6,7 +8,7 @@ const Donate = () => {
       <section className="donate">
         <div>
           <div className="title">Colaborá con el proyecto</div>
-          <img src="/img/GoScrum.png" alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <p>
           Si quieres apoyar y contribuir con la mejora o el desarrollo de nuevos proyectos, puedes aportar tu granito de arena. Sólo debes que pulsar

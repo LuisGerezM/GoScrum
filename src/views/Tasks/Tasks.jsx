@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react"
-
 import { useResize } from "hooks/useResize"
+import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import Card from "./components/Card/Card"
+import TaskForm from "./components/TaskForm/TaskForm"
+import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
 
 import debounce from "lodash.debounce"
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
-import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
-
 import { useDispatch, useSelector } from "react-redux"
 import { getTasks, deleteTask, editCardStatus } from "redux/store/actions/tasksActions"
 
 import "./Tasks.styles.css"
-import Card from "./components/Card/Card"
-import TaskForm from "./components/TaskForm/TaskForm"
-import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
-
 export const Tasks = () => {
   const [listTasks, setListTasks] = useState(null)
   const [renderListTasks, setRenderListTasks] = useState(null)
@@ -39,10 +36,6 @@ export const Tasks = () => {
     return state.tasksReducer
   })
   const dispatch = useDispatch() // para poder dispachar acciones a redux
-
-  // console.log({ tasks: tasks }); // llegan bien {tasks: Array(12)}
-  // console.log({ tasks: tasks, loadingTasks: loadingTasks }); // loadingTasks: false --> loadingTasks: true --> loadingTasks: false
-  // console.log("error en Tasks ....--->> ", error);
 
   useEffect(() => {
     if (tasks?.length) {

@@ -1,19 +1,17 @@
 import { FormControlLabel, Switch } from "@mui/material"
-import { useUserForm } from "hooks/useAuthUser/useAuthUserForm"
 import Input from "../Input/Input"
 import Select from "../Select/Select"
 import FooterForm from "./FooterForm"
-
 import { motion } from "framer-motion"
 
-const Form = ({ authData = null, showRegister }) => {
-  const {
-    formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
-    handleChangeSwitch,
-    handleChangeContinent,
-  } = useUserForm()
+import "react-toastify/dist/ReactToastify.css";
+
+
+const Form = ({ authData = null, showRegister, formik: { handleSubmit, handleChange, handleBlur, errors, touched, values }, handleChangeSwitch,
+handleChangeContinent, loadingUser }) => {
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <div>
         <div className="title">{!showRegister ? "Iniciar sesión" : "Registro"}</div>
@@ -127,10 +125,11 @@ const Form = ({ authData = null, showRegister }) => {
           </>
         )}
         <div>
-          <FooterForm to={!showRegister ? "/register" : "/login"} valueLink={!showRegister ? "Registrarme" : "Ir a Iniciar sesión"} />
+          <FooterForm to={!showRegister ? "/register" : "/login"} valueLink={!showRegister ? "Registrarme" : "Ir a Iniciar sesión"} loadingUser={loadingUser} />
         </div>
       </div>
     </form>
+    </>
   )
 }
 

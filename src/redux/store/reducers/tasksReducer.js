@@ -1,31 +1,34 @@
 import { TYPES } from "../types/types"
 
+
 const initialState = {
   loadingTasks: false,
   tasks: [],
   error: "",
 }
 
-const { REQUEST, SUCCESS, FAILURE } = TYPES
+const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE } = TYPES
 
 // el action para el switch (como el useReducer)
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST:
+    case TASKS_REQUEST:
+      console.log('REQUEST TASKS')
       return {
         ...state,
         loadingTasks: true,
       }
 
-    case SUCCESS:
-      // console.log("aqui", { action });
+    case TASKS_SUCCESS:
+      console.log('SUCCESS TASKS')
+      console.log("aqui", { action });
       return {
         loadingTasks: false,
         tasks: action.payload,
         error: "",
       }
 
-    case FAILURE:
+    case TASKS_FAILURE:
       return {
         loadingTasks: false,
         tasks: [],
