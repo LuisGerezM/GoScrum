@@ -201,7 +201,7 @@ export const Tasks = () => {
             </FormControl>
             <div>
               <div className="search">
-                <input type="text" placeholder="Seleccionar por titulo..." onChange={handleSearchTitle} disabled={listTasks?.length ? false : true} />
+                <input className="input-form" type="text" placeholder="Seleccionar por titulo..." onChange={handleSearchTitle} disabled={listTasks?.length ? false : true} />
               </div>
 
               {/* AÑADIR CONTROL A ESTE SELECT.. PARA QUE NO SE PUEDA SELECCIONAR "" */}
