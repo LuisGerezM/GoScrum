@@ -36,7 +36,7 @@
 }
 
 /* search  & select */
-#tasks input,
+#tasks input.input-form,
 #tasks select {
   width: 100%;
   /* width: 224px; */
@@ -58,7 +58,7 @@
   flex-direction: column;
 }
 
-#tasks input:focus,
+#tasks input.input-form:focus,
 #tasks select:focus {
   border: var(--global-blue-color);
   border: 1px solid var(--global-blue-color);
@@ -72,7 +72,7 @@
 }
 
 /* input and select filters */
-#tasks .search > input,
+#tasks .search > input.input-form,
 #tasks .select > select.importance {
   width: 100%;
   color: var(--global-gray-dark-color);
@@ -135,7 +135,7 @@
 
   #tasks .filters {
     display: flex !important;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
   }
 
@@ -144,10 +144,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
   }
 
-  .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root{
+  .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
     padding: 0;
   }
 
@@ -161,16 +160,65 @@
     margin-bottom: 0;
     margin-right: 10px;
   }
-  
-  
 }
 
 @media (min-width: 1200px) {
-  .filters {
+  #tasks .wrapper_list {
+    padding: 20px 8px 0px 4px;
+  }
+
+  #tasks .wrapper_list .list_header > div {
+    padding-left: 5px;
+  }
+
+  #tasks input.input-form,
+  #tasks select {
+    /* width: 218px; */
+    width: 182px;
+  }
+
+  .task-form > form > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0;
+  }
+
+  .task-form > form > div > div {
+    flex: 0;
+  }
+
+  #tasks .filters {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  #tasks .wrapper_list .css-160ry1v-MuiButtonBase-root-MuiRadio-root.Mui-checked,
+  #tasks .wrapper_list .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    padding: 9px 9px 9px 4px;
+  }
+
+  #tasks .search > input.input-form,
+  #tasks .select > select.importance {
+    width: 183px;
+  }
+
+  /* .task-form > form > div > div {
+    flex: auto;
+  } */
+
+  /* .filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
+  } */
 
   /* .filters input,
   .filters select {

@@ -2,7 +2,8 @@ header {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-between;
-  padding: 12px 20px 15px 15px;
+  /* padding: 12px 20px 15px 15px; */
+  padding: 12px 19px 15px 16px;
 }
 
 header > span > img {
