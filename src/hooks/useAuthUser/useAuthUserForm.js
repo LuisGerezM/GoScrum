@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useFormik } from "formik"
 
@@ -25,7 +25,7 @@ export const useUserForm = () => {
 
   const validationSchema = validateUserFormFields(pathName)
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     if (pathName === "login") dispatch(loginUser(formik.values))
     else {
       formik.values.teamID = !formik.values.teamID ? uuidv4() : formik.values.teamID

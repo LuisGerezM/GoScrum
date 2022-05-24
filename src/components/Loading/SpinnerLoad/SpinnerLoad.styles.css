@@ -1,4 +1,4 @@
-section.spinner-load > div.lds-spinner {
+div.lds-spinner {
   width: 100%;
   position: fixed;
   left: 50%;

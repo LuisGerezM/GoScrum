@@ -6,7 +6,7 @@ import FooterForm from "./FooterForm"
 
 import { motion } from "framer-motion"
 
-const Form = ({ pathName, authData = null }) => {
+const Form = ({ authData = null, showRegister }) => {
   const {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
     handleChangeSwitch,
@@ -16,7 +16,7 @@ const Form = ({ pathName, authData = null }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <div className="title">{pathName === "login" ? "Iniciar sesión" : "Registro"}</div>
+        <div className="title">{!showRegister ? "Iniciar sesión" : "Registro"}</div>
         <Input
           txtLabel="Nombre de usuario"
           name="userName"
@@ -39,7 +39,7 @@ const Form = ({ pathName, authData = null }) => {
           handleBlur={handleBlur}
         />
 
-        {pathName === "register" && (
+        {showRegister && (
           <>
             <Input
               txtLabel="Email"
@@ -127,7 +127,7 @@ const Form = ({ pathName, authData = null }) => {
           </>
         )}
         <div>
-          <FooterForm to={pathName === "login" ? "/register" : "/login"} valueLink={pathName === "login" ? "Registrarme" : "Ir a Iniciar sesión"} />
+          <FooterForm to={!showRegister ? "/register" : "/login"} valueLink={!showRegister ? "Registrarme" : "Ir a Iniciar sesión"} />
         </div>
       </div>
     </form>

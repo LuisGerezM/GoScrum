@@ -27,7 +27,7 @@ export const App = () => {
   return (
     <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (
-        <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+        <motion.div className="page-header" initial="out" animate="in" exit="out" variants={pageTransition}>
           <Header />
         </motion.div>
       )}
@@ -51,22 +51,8 @@ export const App = () => {
           }
         />
 
-        <Route
-          path="/login"
-          element={
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Auth pageTransition={pageTransition} />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Auth pageTransition={pageTransition} />
-            </motion.div>
-          }
-        />
+        <Route path="/login" element={<Auth pageTransition={pageTransition} />} />
+        <Route path="/register" element={<Auth pageTransition={pageTransition} />} />
         <Route
           path="/registered/:teamID"
           element={

@@ -62,6 +62,7 @@ export const loginUser = (authDataUser) => async (dispatch) => {
 
 export const registerUser = (newUser) => async (dispatch) => {
   const { userName, password, email, teamID, role, continent, region } = newUser
+
   try {
     dispatch(userRequest())
 
@@ -79,11 +80,10 @@ export const registerUser = (newUser) => async (dispatch) => {
     if (registerResult.status_code === 201) {
       // toast(utilStatusRequest(registerResult.status_code))
 
-      const { userName, role, teamID, status_code } = adapterRegister(registerResult)
+      const { role, teamID, status_code } = adapterRegister(registerResult)
 
       dispatch(
         userSuccess({
-          userName,
           role,
           teamID,
           status_code: utilStatusRequest({ status: status_code }),

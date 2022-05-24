@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
 
+import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
+
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const useAuth = (pathName) => {
@@ -15,10 +17,14 @@ export const useAuth = (pathName) => {
     fetch(`${BASEURL}auth/data`)
       .then((response) => response.json())
       .then((data) => {
+        console.log("data", data)
         setAuthData(adapterFormSelectData(data.result))
         setAuthDataError(false)
       })
-      .catch((error) => setAuthDataError(true))
+      .catch((error) => {
+        setAuthDataError(true)
+        alertMsg({ title: "ERROR", text: "Ups... Ocurrió un problema", icon: "error" })
+      })
 
     return () => {
       setAuthData(null)
