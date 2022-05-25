@@ -118,7 +118,7 @@ const TaskForm = () => {
             <div>
               <input
                 // className={errors.title ? "error" : ""}
-                className={touched.title && errors.title ? "error" : "input-form"}
+                className={touched.title && errors.title ? "error input-form" : "input-form"}
                 name="title"
                 type="text"
                 onChange={handleChange}

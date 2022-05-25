@@ -99,12 +99,13 @@
 
 #tasks .wrapper_list .list_group .list {
   flex: 1;
-  border-radius: var(--global-radius);
+  margin-bottom: 1.5rem;
   padding: 10px;
+  border-radius: var(--global-radius);
   /* box-shadow: 0 2px 5px var(--global-gray-color); */
   box-shadow: var(--global-shadow-box-cards);
   color: var(--global-ligth-color);
-  margin-bottom: 1.5rem;
+  background-color: var(--global-ligth-color);
 }
 
 #tasks .wrapper_list .list_group .list > div {
@@ -207,7 +208,7 @@
 
   #tasks .search > input.input-form,
   #tasks .select > select.importance {
-    width: 183px;
+    width: 224px;
   }
 
   /* .task-form > form > div > div {

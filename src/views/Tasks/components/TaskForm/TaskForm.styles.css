@@ -86,16 +86,17 @@
 }
 
 .task-form button {
+  width: 100px;
+  margin-top: 15px;
+  font: var(--global-m-font-style);
   transition: all 0.3s ease-out;
-  background-color: var(--global-primary-color);
+  padding: 8.5px !important;
+  justify-content: center;
+  cursor: pointer;
   border-radius: var(--global-radius);
   border: 1px solid var(--global-primary-color);
   color: var(--global-ligth-color);
-  padding: 8.5px !important;
-  font: var(--global-m-font-style);
-  cursor: pointer;
-  justify-content: center;
-  width: 100px;
+  background-color: var(--global-primary-color);
 }
 
 .task-form button:hover {

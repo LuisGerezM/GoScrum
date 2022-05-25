@@ -26,6 +26,7 @@ header > div {
 .wrapper_rigth_header > div {
   padding-right: 10px;
   color: var(--global-dark);
+  font: var(--global-m-font-style);
 }
 
 .wrapper_rigth_header > div > a {
@@ -47,11 +48,15 @@ header > div {
   background-color: var(--global-ligth-color);
 }
 
+.wrapper_rigth_header > div:nth-child(3) > strong {
+  font: var(--global-m-font-style);
+}
+
 .wrapper_rigth_header > button.logout {
   width: 9px;
   height: 18px;
   color: var(--global-primary-color);
-  font: var(--global-m-font-style);
+  /* font: var(--global-m-font-style); */
   background: none;
   border: none;
   cursor: pointer;

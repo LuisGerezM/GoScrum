@@ -8,6 +8,10 @@ import logo from "assets/img/GoScrum.png"
 import "./Header.styles.css"
 
 export const Header = () => {
+  const { tasks } = useSelector((state) => {
+    return state.tasksReducer
+  })
+
   const { user, success_request } = useSelector((state) => {
     return state.userReducer
   })
@@ -23,6 +27,7 @@ export const Header = () => {
       </span>
       <div className="wrapper_rigth_header">
         <LinkReactRouter to={to} valueLink={valueLink} />
+        <div>Tareas creadas: {tasks?.length}</div>
         <div>
           <strong>{nameUser}</strong>
         </div>
