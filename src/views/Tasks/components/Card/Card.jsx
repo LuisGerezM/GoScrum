@@ -1,8 +1,11 @@
-import { useState } from "react";
-import "./Card.styles.css";
+import { useCard } from "hooks/useTasks/useCard/useCard"
+import { BodyCard } from "./BodyCard/BodyCard"
+import { FooterCard } from "./FooterCard/FooterCard"
+import { HeaderCard } from "./HeaderCard/HeaderCard"
+
+import "./Card.styles.css"
 
 const Card = ({
-  // editCardStatus,
   // deleteCard,
   actionsCard,
   data: {
@@ -13,66 +16,19 @@ const Card = ({
     status,
     importance,
   },
-  data, // para conservar data sin desestructurar
+  data,
 }) => {
-  const [showMoreDescription, setShowMoreDescription] = useState(false);
-
-  const nameUser = localStorage.getItem("userName");
-
-  // conver time -> local
-  const dateTime = `${new Date(createdAt).toLocaleString()} hs.`;
-
-  // limit description
-  const limitString = (str) => {
-    if (str.length > 100)
-      return { string: str.slice(0, 97).concat("..."), addButton: true };
-    return { string: str, addButton: false };
-  };
+  const { handleSeeMore, limitString, dateTime, nameUser, showMoreDescription } = useCard(createdAt)
 
   return (
     <div className="card">
-      {/* Si el onClick sería onClick={deleteCard(_id, title)} -> da este error: Cannot update a component (`Tasks`) while rendering a different component (`Card`). To locate the bad setState() call inside `Card`, follow the stack trace as described in  */}
-      {nameUser === userName && (
-        <div
-          className="close"
-          // onClick={() => deleteCard(_id, title)}
-          onClick={() => actionsCard(data, "eliminar")}
-        >
-          X
-        </div>
-      )}
+      <HeaderCard nameUser={nameUser} userName={userName} actionsCard={actionsCard} data={data} title={title} />
 
-      <div className="title">{title}</div>
-      <div className="created">{dateTime}</div>
-      <div className="created">{userName}</div>
-      <button
-        className={status.toLowerCase()}
-        type="button"
-        // onClick={() => editCardStatus(data)}
-        onClick={() => actionsCard(data, "cambiar")}
-      >
-        {status.toLowerCase()}
-      </button>
-      <button className={importance.toLowerCase()} type="button">
-        {importance.toLowerCase()}
-      </button>
+      <BodyCard dateTime={dateTime} userName={userName} status={status} actionsCard={actionsCard} data={data} importance={importance} />
 
-      <p>
-        {showMoreDescription
-          ? description
-          : limitString(`${description}`).string}{" "}
-      </p>
-
-      {limitString(`${description}`).addButton && (
-        <button
-          type="button"
-          onClick={() => setShowMoreDescription((prevValue) => !prevValue)}
-        >
-          {showMoreDescription ? "Ver menos" : "Ver más"}
-        </button>
-      )}
+      <FooterCard showMoreDescription={showMoreDescription} description={description} limitString={limitString} handleSeeMore={handleSeeMore} />
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

@@ -5,8 +5,8 @@ import { toast } from "react-toastify"
 import { createTask, resetTasksNotification } from "redux/store/actions/tasksActions"
 import * as Yup from "yup"
 
-export const useCreateTaskForm = () => {
-  const { loadingTasks, error, success_request } = useSelector((state) => {
+export const useCreateTaskSection = () => {
+  const { loadingTasks, error, success_request, status_code } = useSelector((state) => {
     return state.tasksReducer
   })
 
@@ -35,7 +35,7 @@ export const useCreateTaskForm = () => {
 
   useEffect(() => {
     if (error) {
-      toast.info("Ups, ocurrió un problema al crear la tarea...")
+      toast.info(error)
       setTimeout(() => {
         dispatch(resetTasksNotification())
       }, 500)
@@ -44,8 +44,7 @@ export const useCreateTaskForm = () => {
 
   const { resetForm } = formik
   useEffect(() => {
-    if (success_request) {
-      // cambiar msj por status_code
+    if (success_request && success_request === "CREATE") {
       toast.info("Tu tarea se creó correctamente")
       dispatch(resetTasksNotification())
       resetForm()
@@ -53,7 +52,7 @@ export const useCreateTaskForm = () => {
     return () => {
       console.log("desmontando efect en useTaskForm")
     }
-  }, [success_request, resetForm, dispatch])
+  }, [success_request, status_code, resetForm, dispatch])
 
   return { formik, error, loadingTasks }
 }

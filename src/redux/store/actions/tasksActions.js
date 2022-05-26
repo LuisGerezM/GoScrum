@@ -1,13 +1,14 @@
+import { interDeleteTask } from "views/Tasks/Interceptor/interDeleteTask"
+import { interEditTask } from "views/Tasks/Interceptor/interEditTask"
+import { interGetTask } from "views/Tasks/Interceptor/interGetTask"
+import { interPostTask } from "views/Tasks/Interceptor/interPostTask"
 import { TYPES } from "../types/types"
-import { toast } from "react-toastify"
 
-const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
-
-export const tasksRequest = () => ({
+export const tasksRequest = (data) => ({
   type: TYPES.TASKS_REQUEST,
+  payload: data,
 })
 
-// en tasksReducer este payload lo usaremo así ->  tasks: action.payload,
 export const tasksSuccess = (data) => ({
   type: TYPES.TASKS_SUCCESS,
   payload: data,
@@ -22,115 +23,82 @@ export const resetTasksNotification = () => ({
   type: TYPES.TASKS_RESET_NOTIFICATION,
 })
 
-export const getTasks =
-  ({ path, statusResponse = null }) =>
-  (dispatch) => {
-    // FLUJO
-    // 1 -> despachear tasksRequest para generar el loading para llamar a la API
-    dispatch(tasksRequest())
-    fetch(`${BASEURL}task${path}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token_user")}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // 2 -> si salio todo OK, despachear tasksSuccess con el resultado de la data que obtenemos
-        // console.log("dataaaa", data); // tatus_code: 200, message: 'OK'
+export const resetTasksState = () => ({
+  type: TYPES.TASKS_RESET_STATE,
+})
 
-        const { result } = data
-        if (data.message === "OK") dispatch(tasksSuccess({ result, statusResponse }))
-        else throw new Error("Ups, ocurrió un problema...")
-      })
-      .catch((error) => {
-        // u otro 2 -> si algo salio mal, despachear tasksFailure con el error
-        // console.log("error - catch", error);
-        // console.log("error.message - catch", error.message);
-        dispatch(tasksFailure(error.message))
-      })
+export const getTasks =
+  ({ path, statusResponse = "" }) =>
+  async (dispatch) => {
+    try {
+      const typeAction = statusResponse ? statusResponse : "default"
+      dispatch(tasksRequest(typeAction))
+
+      const taskRequest = await interGetTask(path, typeAction)
+
+      if (taskRequest.statusGet === "success") {
+        const { data, statusCode } = taskRequest.data
+        dispatch(tasksSuccess({ data, typeAction, statusCode }))
+      } else {
+        throw new Error(taskRequest.msg)
+      }
+    } catch (error) {
+      console.log({ error })
+      dispatch(tasksFailure(error.message))
+    }
   }
 
-export const deleteTask = (id) => (dispatch) => {
-  dispatch(tasksRequest())
-  fetch(`${BASEURL}task/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token_user")}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log("data", data); // data {status_code: 404, message: 'Not Found'}
-      if (data.status_code === 200) dispatch(getTasks({ path: "", statusResponse: "DELETE" }))
-      else throw new Error("Ups, ocurrió un problema...")
-    })
-    .catch((error) => {
-      // console.log("error - catch", error);
-      // console.log("error.message - catch", error.message);
-      dispatch(tasksFailure(error.message))
-    })
+export const deleteTask = (id) => async (dispatch) => {
+  try {
+    dispatch(tasksRequest("DELETE"))
+
+    const taskRequest = await interDeleteTask(id)
+
+    console.log("taskRequest -->> createTask -->>", taskRequest)
+
+    if (taskRequest.statusGet === "success") {
+      const { status_code } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "DELETE", status_code }))
+    } else throw new Error(taskRequest.msg)
+  } catch (error) {
+    console.log({ error })
+    dispatch(tasksFailure(error.message))
+  }
 }
 
-export const editCardStatus = (data) => (dispatch) => {
-  dispatch(tasksRequest())
-  const { tile, importance, description } = data
-  const statusArray = ["NEW", "IN PROGRESS", "FINISHED"]
+export const editCardStatus = (data) => async (dispatch) => {
+  try {
+    dispatch(tasksRequest("EDIT"))
 
-  const newStatusIndex = statusArray.indexOf(data.status) > 1 ? 0 : statusArray.indexOf(data.status) + 1
+    const statusArray = ["NEW", "IN PROGRESS", "FINISHED"]
+    const newStatusIndex = statusArray.indexOf(data.status) > 1 ? 0 : statusArray.indexOf(data.status) + 1
 
-  fetch(`${BASEURL}task/${data._id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token_user")}`,
-    },
-    body: JSON.stringify({
-      task: {
-        tile,
-        importance,
-        status: statusArray[newStatusIndex],
-        description,
-      },
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log("data", data); // data {status_code: 404, message: 'Not Found'}
-      if (data.status_code === 200) dispatch(getTasks({ path: "", statusResponse: "EDIT" }))
-      else throw new Error("Ups, ocurrió un problema...")
-    })
-    .catch((error) => {
-      // console.log("error - catch", error);
-      // console.log("error.message - catch", error.message);
-      dispatch(tasksFailure(error.message))
-    })
+    const newStatus = statusArray[newStatusIndex]
+
+    const taskRequest = await interEditTask(data, newStatus)
+
+    if (taskRequest.statusGet === "success") {
+      const { status_code } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code }))
+    } else throw new Error(taskRequest.msg)
+  } catch (error) {
+    console.log({ error })
+    dispatch(tasksFailure(error.message))
+  }
 }
 
-export const createTask = (data) => (dispatch) => {
-  dispatch(tasksRequest())
-  fetch(`${BASEURL}task`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token_user")}`,
-    },
-    body: JSON.stringify({
-      task: data,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log("data", data); // data {status_code: 404, message: 'Not Found'}
-      if (data.status_code === 200) {
-        dispatch(getTasks({ path: "", statusResponse: "CREATE" }))
-      } else throw new Error("error create")
-    })
-    .catch((error) => {
-      // // console.log("error - catch", error);
-      // // console.log("error.message - catch", error.message);
-      dispatch(tasksFailure(error.message))
-      // toast(error.message);
-    })
+export const createTask = (data) => async (dispatch) => {
+  try {
+    dispatch(tasksRequest("CREATE"))
+
+    const taskRequest = await interPostTask(data)
+
+    if (taskRequest.statusGet === "success") {
+      const { status_code } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "CREATE", status_code }))
+    } else throw new Error(taskRequest.msg)
+  } catch (error) {
+    console.log({ error })
+    dispatch(tasksFailure(error.message))
+  }
 }

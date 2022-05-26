@@ -9,7 +9,7 @@ export const PaintingCardsList = ({ renderListTasks, isPhone }) => {
       ) : (
         <>
           {threecolumnListCards.map((columnList) => (
-            <div className="list">
+            <div key={columnList.nameType} className="list">
               <div>{columnList.txtDiv}</div>
               {renderSeparateCards(columnList.nameType)}
             </div>

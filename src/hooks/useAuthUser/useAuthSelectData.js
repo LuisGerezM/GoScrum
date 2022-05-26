@@ -9,7 +9,6 @@ const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const useAuthSelectData = (pathName) => {
   const [authData, setAuthData] = useState(null)
-  // const [authDataError, setAuthDataError] = useState(false)
   const [showRegister, setShowRegister] = useState(false)
   const [loadingMountAuth, setLoadingMountAuth] = useState(false)
 

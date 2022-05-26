@@ -1,6 +1,6 @@
 import { RenderListCards } from "./RenderListCards/RenderListCards"
 
-export const ShowCardsSection = ({ error, isPhone, loadingTasks, renderListTasks, searchTitle, msgTasks, loadingInputSearch }) => {
+export const ShowCardsSection = ({ error, isPhone, loadingTasks, renderListTasks, searchTitle, msgTasks }) => {
   return (
     <>
       {error && error !== "error create" ? (
@@ -14,7 +14,6 @@ export const ShowCardsSection = ({ error, isPhone, loadingTasks, renderListTasks
           loadingTasks={loadingTasks}
           searchTitle={searchTitle}
           msgTasks={msgTasks}
-          loadingInputSearch={loadingInputSearch}
         />
       )}
     </>

@@ -1,9 +1,9 @@
-import { useCreateTaskForm } from "hooks/useTasks/useCreateTaskForm"
-import { useTaskSelectData } from "hooks/useTasks/useTaskSelectData"
+import { useCreateTaskSection } from "hooks/useTasks/useCreateTaskSection/useCreateTaskSection"
+import { useTaskSelectData } from "hooks/useTasks/useCreateTaskSection/useTaskSelectData"
 import { TaskForm } from "./Form/TaskForm"
 
-import "react-toastify/dist/ReactToastify.css"
 import { Toast } from "components/Loading/Toast/Toast"
+import "react-toastify/dist/ReactToastify.css"
 
 import "./CreateTasksSection.styles.css"
 
@@ -12,7 +12,7 @@ export const CreateTasksSection = () => {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
     error,
     loadingTasks,
-  } = useCreateTaskForm()
+  } = useCreateTaskSection()
 
   const { dataSelect, loadingTaskData } = useTaskSelectData()
 
@@ -33,7 +33,7 @@ export const CreateTasksSection = () => {
         loadingTasks={loadingTasks}
       />
 
-      <Toast error={error === "error create" ? "😥" : "😎"} />
+      <Toast error={error ? "😥" : "😎"} />
     </section>
   )
 }

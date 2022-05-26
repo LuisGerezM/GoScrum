@@ -25,10 +25,10 @@ export const userReducer = (state = initialUserState, action) => {
       if (action.payload.role === "Team Leader") dataUser = possibleCases[2]
       else if (action.payload.userName || action.payload.role === "Team Member") dataUser = possibleCases[1]
 
-      return { loadingUser: false, user: dataUser, error: "", status_code: action.payload.status_code, success_request: true }
+      return { ...initialUserState, user: dataUser, status_code: action.payload.status_code, success_request: true }
 
     case USER_FAILURE:
-      return { loadingUser: false, user: [], error: action.payload, status_code: "", success_request: false }
+      return { ...initialUserState, error: action.payload }
 
     case USER_RESET_NOTIFICATION:
       return { ...initialUserState, user: state.user }

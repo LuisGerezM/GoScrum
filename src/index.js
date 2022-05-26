@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 import { store } from "redux/store/store"
 
 import "./index.css"
-// console.log("store", store);
+
 render(
   <BrowserRouter>
     <Provider store={store}>
