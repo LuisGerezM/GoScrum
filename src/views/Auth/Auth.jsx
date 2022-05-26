@@ -1,5 +1,5 @@
 import useAuthUserForm from "hooks/useAuthUser/useAuthUserForm"
-import { useAuth } from "hooks/useAuthUser/useAuth"
+import { useAuthSelectData } from "hooks/useAuthUser/useAuthSelectData"
 
 import Form from "./components/Form/Form"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
@@ -10,7 +10,7 @@ import "./Auth.styles.css"
 export const Auth = ({ pageTransition }) => {
   const { loadingUser, pathName, formik, handleChangeSwitch, handleChangeContinent } = useAuthUserForm()
 
-  const { authData, showRegister, loadingMountAuth } = useAuth(pathName)
+  const { authData, showRegister, loadingMountAuth } = useAuthSelectData(pathName)
 
   if (loadingMountAuth) return <SpinnerLoad />
 

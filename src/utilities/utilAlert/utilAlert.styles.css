@@ -9,6 +9,7 @@
 .swal2-styled.swal2-confirm {
   background-color: hsl(234, 70%, 53%);
   outline: 2px solid hsl(224, 62%, 45%);
+  line-height: 1.1;
 }
 
 .swal2-styled.swal2-confirm:hover {

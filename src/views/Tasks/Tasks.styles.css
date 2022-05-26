@@ -99,12 +99,13 @@
 
 #tasks .wrapper_list .list_group .list {
   flex: 1;
-  border-radius: var(--global-radius);
+  margin-bottom: 1.5rem;
   padding: 10px;
+  border-radius: var(--global-radius);
   /* box-shadow: 0 2px 5px var(--global-gray-color); */
   box-shadow: var(--global-shadow-box-cards);
   color: var(--global-ligth-color);
-  margin-bottom: 1.5rem;
+  background-color: var(--global-ligth-color);
 }
 
 #tasks .wrapper_list .list_group .list > div {
@@ -167,6 +168,10 @@
     padding: 20px 8px 0px 4px;
   }
 
+  #tasks .wrapper_list.no-tasks {
+    height: calc(100vh - 96.8px);
+  }
+
   #tasks .wrapper_list .list_header > div {
     padding-left: 5px;
   }
@@ -175,19 +180,6 @@
   #tasks select {
     /* width: 218px; */
     width: 182px;
-  }
-
-  .task-form > form > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 0;
-  }
-
-  .task-form > form > div > div {
-    flex: 0;
   }
 
   #tasks .filters {
@@ -207,7 +199,7 @@
 
   #tasks .search > input.input-form,
   #tasks .select > select.importance {
-    width: 183px;
+    width: 224px;
   }
 
   /* .task-form > form > div > div {
