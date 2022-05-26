@@ -1,4 +1,5 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import Input from "components/Input/Input"
 import Select from "components/Select/Select"
 import { useTaskSelectData } from "hooks/useTasks/useTaskSelectData"
 
@@ -11,9 +12,7 @@ export const FilterCardsSection = ({
   handleChangeImportance,
   valueSelect,
 }) => {
-
-    
-    const { dataSelect } = useTaskSelectData()
+  const { dataSelect } = useTaskSelectData()
 
   return (
     <div className="filters">
@@ -24,44 +23,24 @@ export const FilterCardsSection = ({
         </RadioGroup>
       </FormControl>
       <div>
-        <div className="search">
-          <input
-            className="input-form"
-            type="text"
-            placeholder="Seleccionar por titulo..."
-            onChange={handleSearchTitle}
-            disabled={listTasks?.length ? false : true}
-          />
-        </div>
-
-        {/* AÑADIR CONTROL A ESTE SELECT.. PARA QUE NO SE PUEDA SELECCIONAR "" */}
+        <Input
+          nameClassDiv="search"
+          nameClass="input-form"
+          type="text"
+          placeholder="Seleccionar por titulo..."
+          handleChange={handleSearchTitle}
+          disabled={listTasks?.length ? false : true}
+        />
         <Select
-              nameClass="importance"
-              dataOption={dataSelect?.importance}
-              name="importance"
-              values={valueSelect}
-              txtDefaultOption="Seleccionar un estado"
-              handleChange={handleChangeImportance}
-              disabled={!renderListTasks?.length && true}
-              ubication = 'filter'
-            />
-        {/* <div className="select">
-          <select
-            className="importance"
-            name="importance"
-            onChange={handleChangeImportance}
-            value={valueSelect}
-            disabled={renderListTasks?.length ? false : true}
-          >
-            <option value="" disabled>
-              Seleccionar una prioridad
-            </option>
-            <option value="ALL">Todas</option>
-            <option value="LOW">Baja</option>
-            <option value="MEDIUM">Media</option>
-            <option value="HIGH">Alta</option>
-          </select>
-        </div> */}
+          nameClass="importance"
+          dataOption={dataSelect?.importance}
+          name="importance"
+          values={valueSelect}
+          txtDefaultOption="Seleccionar un estado"
+          handleChange={handleChangeImportance}
+          disabled={!renderListTasks?.length && true}
+          ubication="filter"
+        />
       </div>
     </div>
   )
