@@ -168,6 +168,10 @@
     padding: 20px 8px 0px 4px;
   }
 
+  #tasks .wrapper_list.no-tasks {
+    height: calc(100vh - 96.8px);
+  }
+
   #tasks .wrapper_list .list_header > div {
     padding-left: 5px;
   }
@@ -176,19 +180,6 @@
   #tasks select {
     /* width: 218px; */
     width: 182px;
-  }
-
-  .task-form > form > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 0;
-  }
-
-  .task-form > form > div > div {
-    flex: 0;
   }
 
   #tasks .filters {

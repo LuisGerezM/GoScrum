@@ -1,4 +1,4 @@
-import { adapterFormSelectData } from "adapters/adapterAuth/adapterRegister/adapterFormSelectData"
+import { adapterFormSelectData } from "views/Auth/adapters/adapterAuth/adapterRegister/adapterFormSelectData"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
@@ -7,7 +7,7 @@ import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
-export const useAuth = (pathName) => {
+export const useAuthSelectData = (pathName) => {
   const [authData, setAuthData] = useState(null)
   // const [authDataError, setAuthDataError] = useState(false)
   const [showRegister, setShowRegister] = useState(false)

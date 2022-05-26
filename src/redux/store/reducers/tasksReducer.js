@@ -1,39 +1,44 @@
 import { TYPES } from "../types/types"
 
-
 const initialState = {
   loadingTasks: false,
   tasks: [],
   error: "",
+  status_code: "",
+  success_request: false,
 }
 
-const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE } = TYPES
+const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_RESET_NOTIFICATION } = TYPES
 
 // el action para el switch (como el useReducer)
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case TASKS_REQUEST:
-      console.log('REQUEST TASKS')
       return {
         ...state,
         loadingTasks: true,
       }
 
     case TASKS_SUCCESS:
-      console.log('SUCCESS TASKS')
-      console.log("aqui", { action });
+      console.log("SUCCESS TASKS")
+      console.log("aqui", { action })
       return {
-        loadingTasks: false,
-        tasks: action.payload,
-        error: "",
+        ...initialState,
+        tasks: action.payload.result,
+        // agrgar status code
+        success_request: action.payload.statusResponse,
       }
 
     case TASKS_FAILURE:
       return {
-        loadingTasks: false,
-        tasks: [],
-        error: action.payload, // este tiene error -> pasado por tasksFailure
+        ...initialState,
+        // agrgar status code
+        error: action.payload,
       }
+
+    case TASKS_RESET_NOTIFICATION:
+      console.log("TASKS_RESET_NOTIFICATION")
+      return { ...initialState, tasks: state.tasks}
 
     default:
       return state

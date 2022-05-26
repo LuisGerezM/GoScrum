@@ -104,7 +104,26 @@
   background-color: var(--global-ligth-color);
 }
 
+
+.Toastify__close-button.Toastify__close-button--dark{
+  width: 48px !important;
+  margin: auto 0 !important;
+}
+
 @media (min-width: 1200px) {
+  .task-form > form > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0;
+  }
+
+  .task-form > form > div > div {
+    flex: 0;
+  }
+
   .task-form textarea {
     width: 559px;
     margin-top: 10px;

@@ -6,6 +6,14 @@ div.lds-spinner {
   margin: -50px 0 0 -25px;
 }
 
+div.lds-spinner.tasks-create {
+  width: 100%;
+  position: fixed;
+  left: 43%;
+  top: 57%;
+  z-index: 1;
+}
+
 .lds-spinner {
   display: inline-block;
   position: relative;
@@ -75,11 +83,32 @@ div.lds-spinner {
   transform: rotate(330deg);
   animation-delay: 0s;
 }
+
 @keyframes lds-spinner {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  div.lds-spinner.tasks-create {
+    width: 100%;
+    position: fixed;
+    left: 48%;
+    top: 54%;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  div.lds-spinner.tasks-create {
+    width: 100%;
+    position: fixed;
+    left: 16%;
+    top: 36%;
+    z-index: 1;
   }
 }

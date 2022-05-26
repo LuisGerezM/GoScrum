@@ -5,6 +5,7 @@ export const useHeader = (success_request) => {
 
   const handlerLogout = () => {
     localStorage.removeItem("token_user")
+    localStorage.removeItem("userName")
     navigate("/login", { replace: true })
   }
 

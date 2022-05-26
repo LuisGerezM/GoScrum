@@ -1,23 +1,20 @@
 import "./SpinnerLoad.styles.css"
 
-export const SpinnerLoad = () => {
+export const SpinnerLoad = ({ nameClass = "" }) => {
   return (
- 
-      <div className="lds-spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
- 
+    <div className={"lds-spinner " + (nameClass ? "tasks-create" : "")}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   )
 }
-

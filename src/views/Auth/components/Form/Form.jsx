@@ -1,6 +1,6 @@
 import { FormControlLabel, Switch } from "@mui/material"
-import Input from "../Input/Input"
-import Select from "../Select/Select"
+import Input from "../../../../components/Input/Input"
+import Select from "../../../../components/Select/Select"
 import FooterForm from "./FooterForm"
 import { motion } from "framer-motion"
 
