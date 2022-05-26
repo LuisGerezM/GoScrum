@@ -87,7 +87,7 @@
 
 .task-form button {
   width: 100px;
-  margin-top: 15px;
+  margin: 10px 0;
   font: var(--global-m-font-style);
   transition: all 0.3s ease-out;
   padding: 8.5px !important;
@@ -104,10 +104,25 @@
   background-color: var(--global-ligth-color);
 }
 
+.task-form button[type="submit"]:disabled {
+  border: var(--global-border);
+  background-color: var(--global-gray-color);
+  color: var(--global-gray-dark-color);
+}
 
-.Toastify__close-button.Toastify__close-button--dark{
+.Toastify__close-button.Toastify__close-button--dark {
   width: 48px !important;
   margin: auto 0 !important;
+}
+
+.task-form > div:first-child {
+  padding-top: 19px;
+}
+
+@media (min-width: 900px) {
+  .task-form > div:first-child {
+    padding-top: 19px;
+  }
 }
 
 @media (min-width: 1200px) {

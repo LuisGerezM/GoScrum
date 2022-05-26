@@ -76,7 +76,7 @@ header > div {
 
   header > span > img {
     width: 82px;
-    padding-bottom: 0px;
+    padding: 0px;
   }
 
   .wrapper_rigth_header {

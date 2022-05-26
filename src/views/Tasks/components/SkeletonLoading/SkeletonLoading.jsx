@@ -8,7 +8,7 @@ export const SkeletonLoading = ({ count = 4, height = 60, width = null, nameClas
         <div key={sk} className={nameClass}>
           <SkeletonTheme baseColor="#d6d2d2" highlightColor="#594a4a" borderRadius="0.5rem" duration={4}>
             <Skeleton count={count} height={height} width={width} />
-          </SkeletonTheme>{" "}
+          </SkeletonTheme>
         </div>
       ))}
     </>

@@ -16,6 +16,7 @@ export const ListCardsSection = () => {
     tasksFromWho,
     searchTitle,
     msgTasks,
+    loadingInputSearch
   } = useListCardSection()
 
   return (
@@ -39,6 +40,7 @@ export const ListCardsSection = () => {
         renderListTasks={renderListTasks}
         searchTitle={searchTitle}
         msgTasks={msgTasks}
+        loadingInputSearch={loadingInputSearch}
       />
     </section>
   )

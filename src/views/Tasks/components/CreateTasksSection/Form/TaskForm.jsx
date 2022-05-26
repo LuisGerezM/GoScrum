@@ -58,8 +58,7 @@ export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handl
                 handleBlur={handleBlur}
               />
             </div>
-
-            <FooterForm error={error} />
+            <FooterForm error={error} loadingTasks={loadingTasks}/>
           </>
         )}
       </form>

@@ -2,11 +2,10 @@ import { useCreateTaskForm } from "hooks/useTasks/useCreateTaskForm"
 import { useTaskSelectData } from "hooks/useTasks/useTaskSelectData"
 import { TaskForm } from "./Form/TaskForm"
 
-import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { Toast } from "components/Loading/Toast/Toast"
 
 import "./CreateTasksSection.styles.css"
-import { Toast } from "components/Loading/Toast/Toast"
 
 export const CreateTasksSection = () => {
   const {

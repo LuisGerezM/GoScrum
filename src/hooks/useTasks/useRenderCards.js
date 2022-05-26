@@ -15,26 +15,21 @@ export const useRenderCards = (renderListTasks) => {
 
     if (takeResponse) {
       dispatch(action === "eliminar" ? deleteTask(data._id) : editCardStatus(data))
-      // if (action === "eliminar") dispatch(deleteTask(data._id));
-      // if (action === "cambiar") dispatch(editCardStatus(data));
     }
   }
 
   // phone
-  const renderAllCards = () =>
-    renderListTasks?.map((data) => (
-      <Card
-        key={data._id}
-        data={data}
-        // deleteCard={handleDeleteCart}
-        // editCardStatus={handleEditCardStatus}
-        actionsCard={handleActionsCard}
-      />
-    ))
+  const renderAllCards = () => renderListTasks?.map((data) => <Card key={data._id} data={data} actionsCard={handleActionsCard} />)
 
   // desk
   const renderSeparateCards = (status) =>
     renderListTasks?.filter((data) => data.status === `${status}`).map((data) => <Card key={data._id} data={data} actionsCard={handleActionsCard} />)
 
-  return { renderAllCards, renderSeparateCards }
+  const threecolumnListCards = [
+    { nameType: "NEW", txtDiv: "Nuevas" },
+    { nameType: "IN PROGRESS", txtDiv: "En proceso" },
+    { nameType: "FINISHED", txtDiv: "Finalizadas" },
+  ]
+
+  return { renderAllCards, renderSeparateCards, threecolumnListCards }
 }

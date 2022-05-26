@@ -23,6 +23,7 @@ export const useListCardSection = () => {
 
   // input search
   const [searchTitle, setSearchTitle] = useState(null)
+  const [loadingInputSearch, setLoadingInputSearch] = useState(false)
 
   // select
   const [valueSelect, setValueSelect] = useState("")
@@ -71,10 +72,15 @@ export const useListCardSection = () => {
   }
 
   const handleSearchTitle = debounce((e) => {
-    setSearchTitle(e.target.value)
-  }, 1000)
+    setLoadingInputSearch(true)
+    setTimeout(() => {
+      setSearchTitle(e.target.value)
+      setLoadingInputSearch(false)
+    }, 500)
+  }, 500)
 
   const handleChangeImportance = (e) => {
+    setLoadingInputSearch(true)
     if (e.currentTarget.value === "ALL") {
       setValueSelect(e.currentTarget.value)
       setRenderListTasks(listTasks)
@@ -82,6 +88,9 @@ export const useListCardSection = () => {
       setValueSelect(e.currentTarget.value)
       setRenderListTasks(listTasks.filter((data) => data.importance === e.currentTarget.value))
     }
+    setTimeout(() => {
+      setLoadingInputSearch(false)
+    }, 500)
   }
 
   return {
@@ -97,5 +106,6 @@ export const useListCardSection = () => {
     tasksFromWho,
     searchTitle,
     msgTasks,
+    loadingInputSearch,
   }
 }
