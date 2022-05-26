@@ -1,7 +1,6 @@
 import React from "react"
 
 const OptionsSelect = ({ txtDefaultOption, dataOption, ubication }) => {
-  
   return (
     <>
       <option value="">{txtDefaultOption}</option>

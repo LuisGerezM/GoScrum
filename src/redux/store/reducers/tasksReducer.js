@@ -8,37 +8,35 @@ const initialState = {
   success_request: false,
 }
 
-const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_RESET_NOTIFICATION } = TYPES
+const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_RESET_NOTIFICATION, TASKS_RESET_STATE } = TYPES
 
-// el action para el switch (como el useReducer)
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
     case TASKS_REQUEST:
       return {
         ...state,
-        loadingTasks: true,
+        loadingTasks: action.payload,
       }
 
     case TASKS_SUCCESS:
-      console.log("SUCCESS TASKS")
-      console.log("aqui", { action })
       return {
         ...initialState,
-        tasks: action.payload.result,
-        // agrgar status code
-        success_request: action.payload.statusResponse,
+        tasks: action.payload.data,
+        status_code: action.payload.statusCode,
+        success_request: action.payload.typeAction,
       }
 
     case TASKS_FAILURE:
       return {
         ...initialState,
-        // agrgar status code
         error: action.payload,
       }
 
     case TASKS_RESET_NOTIFICATION:
-      console.log("TASKS_RESET_NOTIFICATION")
-      return { ...initialState, tasks: state.tasks}
+      return { ...initialState, tasks: state.tasks }
+
+    case TASKS_RESET_STATE:
+      return { ...initialState }
 
     default:
       return state

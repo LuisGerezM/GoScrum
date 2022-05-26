@@ -8,7 +8,7 @@ import { TextArea } from "./TextArea/TextArea"
 export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handleChange, handleBlur, values, dataSelect, error, loadingTasks }) => {
   return (
     <>
-      {loadingTasks && <SpinnerLoad nameClass="tasks-create" />}
+      {loadingTasks === "CREATE" && <SpinnerLoad nameClass="tasks-create" />}
       <form onSubmit={handleSubmit}>
         {loadingTaskData ? (
           <SkeletonLoading width={559} />
@@ -58,7 +58,7 @@ export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handl
                 handleBlur={handleBlur}
               />
             </div>
-            <FooterForm error={error} loadingTasks={loadingTasks}/>
+            <FooterForm error={error} loadingTasks={loadingTasks} />
           </>
         )}
       </form>

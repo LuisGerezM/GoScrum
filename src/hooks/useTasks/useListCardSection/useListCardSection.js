@@ -2,6 +2,7 @@ import { debounce } from "@mui/material"
 import { useResize } from "hooks/useResize"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { toast } from "react-toastify"
 import { getTasks, resetTasksNotification } from "redux/store/actions/tasksActions"
 
 export const useListCardSection = () => {
@@ -12,7 +13,7 @@ export const useListCardSection = () => {
 
   const [msgTasks, setMsgTasks] = useState(null)
 
-  const { loadingTasks, tasks, error, success_request } = useSelector((state) => {
+  const { loadingTasks, tasks, error, success_request, status_code } = useSelector((state) => {
     return state.tasksReducer
   })
   const dispatch = useDispatch()
@@ -23,7 +24,6 @@ export const useListCardSection = () => {
 
   // input search
   const [searchTitle, setSearchTitle] = useState(null)
-  const [loadingInputSearch, setLoadingInputSearch] = useState(false)
 
   // select
   const [valueSelect, setValueSelect] = useState("")
@@ -31,30 +31,35 @@ export const useListCardSection = () => {
   useEffect(() => {
     if (error) {
       setMsgTasks("Ups... Ocurrió un problema ... Pongase en contacto con el administrador ")
+      dispatch(resetTasksNotification())
     }
-
-    return () => {
-      console.log("desmontando efect --> error")
-    }
-  }, [error])
+  }, [error, dispatch])
 
   useEffect(() => {
-    console.log("success_request", success_request)
-    if (tasks?.length) {
+    if (tasks.length > 0) {
       setListTasks(tasks)
       setRenderListTasks(tasks)
       setMsgTasks(null)
-    } else if (success_request) {
-      console.log("entre aqui")
+    } else if (tasks?.length === 0) {
       setMsgTasks("Aún no tienes tareas")
       dispatch(resetTasksNotification())
     }
-  }, [tasks, success_request, dispatch])
+  }, [tasks, dispatch])
+
+  useEffect(() => {
+    if (success_request === "DELETE" || success_request === "EDIT") {
+      toast.info(status_code)
+      dispatch(resetTasksNotification())
+    }
+
+    return () => {
+      console.log("desmontnado efecto - useListCardSection")
+    }
+  }, [success_request, status_code, dispatch])
 
   useEffect(() => {
     setRenderListTasks(null)
-
-    dispatch(getTasks(tasksFromWho === "MY" ? { path: "/me", statusResponse: "" } : { path: "", statusResponse: null }))
+    dispatch(getTasks(tasksFromWho === "MY" ? { path: "/me" } : { path: "" }))
   }, [tasksFromWho, dispatch])
 
   useEffect(() => {
@@ -72,15 +77,10 @@ export const useListCardSection = () => {
   }
 
   const handleSearchTitle = debounce((e) => {
-    setLoadingInputSearch(true)
-    setTimeout(() => {
-      setSearchTitle(e.target.value)
-      setLoadingInputSearch(false)
-    }, 500)
-  }, 500)
+    setSearchTitle(e.target.value)
+  }, 1000)
 
   const handleChangeImportance = (e) => {
-    setLoadingInputSearch(true)
     if (e.currentTarget.value === "ALL") {
       setValueSelect(e.currentTarget.value)
       setRenderListTasks(listTasks)
@@ -88,9 +88,6 @@ export const useListCardSection = () => {
       setValueSelect(e.currentTarget.value)
       setRenderListTasks(listTasks.filter((data) => data.importance === e.currentTarget.value))
     }
-    setTimeout(() => {
-      setLoadingInputSearch(false)
-    }, 500)
   }
 
   return {
@@ -106,6 +103,5 @@ export const useListCardSection = () => {
     tasksFromWho,
     searchTitle,
     msgTasks,
-    loadingInputSearch,
   }
 }

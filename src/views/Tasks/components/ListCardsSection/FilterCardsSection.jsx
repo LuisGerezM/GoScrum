@@ -1,7 +1,7 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material"
 import Input from "components/Input/Input"
 import Select from "components/Select/Select"
-import { useTaskSelectData } from "hooks/useTasks/useTaskSelectData"
+import { useTaskSelectData } from "hooks/useTasks/useCreateTaskSection/useTaskSelectData"
 
 export const FilterCardsSection = ({
   handleChangeRadioBtn,

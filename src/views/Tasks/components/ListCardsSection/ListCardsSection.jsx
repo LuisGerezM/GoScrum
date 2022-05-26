@@ -1,4 +1,5 @@
-import { useListCardSection } from "hooks/useTasks/useListCardSection"
+import { useHeigthListSection } from "hooks/useTasks/useListCardSection/useHeigthListSection"
+import { useListCardSection } from "hooks/useTasks/useListCardSection/useListCardSection"
 import { FilterCardsSection } from "./FilterCardsSection"
 import { ShowCardsSection } from "./ShowCardsSection"
 
@@ -16,11 +17,12 @@ export const ListCardsSection = () => {
     tasksFromWho,
     searchTitle,
     msgTasks,
-    loadingInputSearch
   } = useListCardSection()
 
+  const { sizeHeigth } = useHeigthListSection(renderListTasks, searchTitle)
+
   return (
-    <section className={"wrapper_list" + (msgTasks || searchTitle ? " no-tasks" : "")}>
+    <section className={"wrapper_list" + (msgTasks || sizeHeigth || loadingTasks ? " no-tasks" : "")}>
       <div className="list_header">
         <div>Mis tareas</div>
       </div>
@@ -40,7 +42,6 @@ export const ListCardsSection = () => {
         renderListTasks={renderListTasks}
         searchTitle={searchTitle}
         msgTasks={msgTasks}
-        loadingInputSearch={loadingInputSearch}
       />
     </section>
   )

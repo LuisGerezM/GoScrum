@@ -1,4 +1,3 @@
-
 import { TYPES } from "../types/types"
 import apiCall from "services/apiCall/apiCall"
 import { adapterLogin } from "views/Auth/adapters/adapterAuth/adapterLogin/adapterLogin"
@@ -38,31 +37,23 @@ export const loginUser = (authDataUser) => async (dispatch) => {
     })
 
     if (loginResult.status_code === 200) {
- 
-
       localStorage.setItem("token_user", loginResult.result.token)
       localStorage.setItem("userName", loginResult.result.user.userName)
       const { userName, role, status_code } = adapterLogin(loginResult)
-  
-      dispatch(
-        userSuccess({
-          userName,
-          role,
-          status_code: utilStatusRequest({ status: status_code }),
-        })
-      )
+
+      dispatch(userSuccess({ userName, role, status_code: utilStatusRequest({ status: status_code }) }))
     } else {
       throw new Error(loginResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
+    dispatch(userFailure(utilStatusRequest({ status: error.message })))
   }
 }
 
 export const registerUser = (newUser) => async (dispatch) => {
-  const { userName, password, email, teamID, role, continent, region } = newUser
-
   try {
+    const { userName, password, email, teamID, role, continent, region } = newUser
+
     dispatch(userRequest())
 
     const registerResult = await apiCall({
@@ -77,20 +68,13 @@ export const registerUser = (newUser) => async (dispatch) => {
     })
 
     if (registerResult.status_code === 201) {
-
       const { role, teamID, status_code } = adapterRegister(registerResult)
 
-      dispatch(
-        userSuccess({
-          role,
-          teamID,
-          status_code: utilStatusRequest({ status: status_code }),
-        })
-      )
+      dispatch(userSuccess({ role, teamID, status_code: utilStatusRequest({ status: status_code }) }))
     } else {
       throw new Error(registerResult.status_code)
     }
   } catch (error) {
-    dispatch(userFailure(utilStatusRequest({ status: error.message, typeOfOperation: error.message })))
+    dispatch(userFailure(utilStatusRequest({ status: error.message })))
   }
 }
