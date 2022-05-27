@@ -34,7 +34,6 @@ export const tasksReducer = (state = initialState, action) => {
       }
 
     case TASKS_FORM_FIELDS_FOR_EDITING:
-      console.log("action.payload -->> TASKS_FORM_FIELDS_FOR_EDITING -->>", action.payload)
       return {
         ...initialState,
         tasks: state.tasks,

@@ -6,6 +6,8 @@ const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const interPostTask = async (data) => {
   try {
+    const { description, importance, status, title } = data
+
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem(AUTH)}`,
@@ -16,14 +18,13 @@ export const interPostTask = async (data) => {
       url: `${BASEURL}task`,
       headers,
       body: JSON.stringify({
-        task: data,
+        task: { description, importance, status, title },
       }),
     })
 
     const { status_code } = fetchingTasks
 
     if (fetchingTasks.status_code === 200) {
-      console.log('fetchingTasks -->> CREATE tasks >>', fetchingTasks)
       return { statusGet: "success", status_code }
     } else {
       throw new Error(Number.parseInt(status_code))

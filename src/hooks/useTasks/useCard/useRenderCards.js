@@ -16,7 +16,6 @@ export const useRenderCards = (renderListTasks) => {
 
     if (takeResponse) {
       if (action === "editar") {
-        console.log("ES EDITAR CARD", data)
         dispatch(tasksRequest("EDIT_CARD"))
         dispatch(taskFormFieldsForEditing(data))
       } else dispatch(action === "eliminar" ? deleteTask(data._id) : editCardStatus(data))

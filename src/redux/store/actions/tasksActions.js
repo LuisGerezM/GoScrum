@@ -96,7 +96,6 @@ export const editCard = (data) => async (dispatch) => {
     dispatch(tasksRequest("EDIT"))
 
     const taskRequest = await interEditTask(data)
-    console.log("taskRequest -->>", { taskRequest })
 
     if (taskRequest.statusGet === "success") {
       const { status_code, message } = taskRequest
