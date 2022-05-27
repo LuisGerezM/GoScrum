@@ -5,7 +5,23 @@ import { SkeletonLoading } from "../../SkeletonLoading/SkeletonLoading"
 import { FooterForm } from "./FooterForm/FooterForm"
 import { TextArea } from "./TextArea/TextArea"
 
-export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handleChange, handleBlur, values, dataSelect, error, loadingTasks }) => {
+export const TaskForm = ({
+  loadingTaskData,
+  handleSubmit,
+  touched,
+  errors,
+  handleChange,
+  handleBlur,
+  values,
+  dataSelect,
+  error,
+  loadingTasks,
+  title,
+  // initialValues,
+  // handlePrueba,
+  // editFormFields,
+  // handleChangeInput,
+}) => {
   return (
     <>
       {loadingTasks === "CREATE" && <SpinnerLoad nameClass="tasks-create" />}
@@ -25,6 +41,7 @@ export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handl
                 handleBlur={handleBlur}
                 touched={touched}
                 errors={errors.title}
+                desde="taskForm"
               />
               <Select
                 dataOption={dataSelect?.status}
@@ -41,7 +58,7 @@ export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handl
                 dataOption={dataSelect?.importance}
                 name="importance"
                 values={values.importance}
-                txtDefaultOption="Seleccionar un estado"
+                txtDefaultOption="Seleccionar una prioridad"
                 touched={touched}
                 errors={errors.importance}
                 handleChange={handleChange}
@@ -58,7 +75,12 @@ export const TaskForm = ({ loadingTaskData, handleSubmit, touched, errors, handl
                 handleBlur={handleBlur}
               />
             </div>
-            <FooterForm error={error} loadingTasks={loadingTasks} />
+            <FooterForm
+              error={error}
+              loadingTasks={loadingTasks}
+              title={title}
+              // initialValues={initialValues}
+            />
           </>
         )}
       </form>

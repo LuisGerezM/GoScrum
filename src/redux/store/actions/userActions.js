@@ -39,6 +39,8 @@ export const loginUser = (authDataUser) => async (dispatch) => {
     if (loginResult.status_code === 200) {
       localStorage.setItem("token_user", loginResult.result.token)
       localStorage.setItem("userName", loginResult.result.user.userName)
+      localStorage.setItem("role", loginResult.result.user.role)
+
       const { userName, role, status_code } = adapterLogin(loginResult)
 
       dispatch(userSuccess({ userName, role, status_code: utilStatusRequest({ status: status_code }) }))

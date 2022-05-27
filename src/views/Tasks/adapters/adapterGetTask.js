@@ -1,6 +1,6 @@
 import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
 
-export const adapterGetTask = ({ fetchingTasks, status_code, typeAction }) => {
+export const adapterGetTask = ({ fetchingTasks, status_code, messageRequest }) => {
   const { result } = fetchingTasks
 
   const data = result.map((taskDetail) => ({
@@ -14,7 +14,7 @@ export const adapterGetTask = ({ fetchingTasks, status_code, typeAction }) => {
     title: taskDetail.title,
   }))
 
-  const statusCode = utilStatusRequest({ status: Number.parseInt(status_code), where: "tasks", typeAction })
+  const statusCode = utilStatusRequest({ status: Number.parseInt(status_code), where: "tasks", messageRequest })
 
   return { data, statusCode }
 }

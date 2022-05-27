@@ -5,7 +5,7 @@ import { adapterGetTask } from "../adapters/adapterGetTask"
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 const { REACT_APP_AUTHORIZATION: AUTH } = process.env
 
-export const interGetTask = async (path, typeAction) => {
+export const interGetTask = async (path, messageRequest) => {
   try {
     const headers = {
       "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export const interGetTask = async (path, typeAction) => {
     const { status_code } = fetchingTasks
 
     if (fetchingTasks.message === "OK") {
-      const adapterResponse = adapterGetTask({ fetchingTasks, status_code, typeAction })
+      const adapterResponse = adapterGetTask({ fetchingTasks, status_code, messageRequest })
       return { statusGet: "success", data: adapterResponse }
     } else {
       throw new Error(status_code)

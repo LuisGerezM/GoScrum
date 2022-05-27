@@ -19,8 +19,14 @@ export const tasksFailure = (error) => ({
   payload: error,
 })
 
-export const resetTasksNotification = () => ({
+export const taskFormFieldsForEditing = (data) => ({
+  type: TYPES.TASKS_FORM_FIELDS_FOR_EDITING,
+  payload: data,
+})
+
+export const resetTasksNotification = (data) => ({
   type: TYPES.TASKS_RESET_NOTIFICATION,
+  payload: data,
 })
 
 export const resetTasksState = () => ({
@@ -28,13 +34,13 @@ export const resetTasksState = () => ({
 })
 
 export const getTasks =
-  ({ path, statusResponse = "" }) =>
+  ({ path, statusResponse = "", messageRequest = null }) =>
   async (dispatch) => {
     try {
       const typeAction = statusResponse ? statusResponse : "default"
       dispatch(tasksRequest(typeAction))
 
-      const taskRequest = await interGetTask(path, typeAction)
+      const taskRequest = await interGetTask(path, messageRequest)
 
       if (taskRequest.statusGet === "success") {
         const { data, statusCode } = taskRequest.data
@@ -54,11 +60,9 @@ export const deleteTask = (id) => async (dispatch) => {
 
     const taskRequest = await interDeleteTask(id)
 
-    console.log("taskRequest -->> createTask -->>", taskRequest)
-
     if (taskRequest.statusGet === "success") {
-      const { status_code } = taskRequest
-      dispatch(getTasks({ path: "", statusResponse: "DELETE", status_code }))
+      const { status_code, message } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "DELETE", status_code, messageRequest: message }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
     console.log({ error })
@@ -78,11 +82,27 @@ export const editCardStatus = (data) => async (dispatch) => {
     const taskRequest = await interEditTask(data, newStatus)
 
     if (taskRequest.statusGet === "success") {
-      const { status_code } = taskRequest
-      dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code }))
+      const { status_code, message } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code, messageRequest: message }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
     console.log({ error })
+    dispatch(tasksFailure(error.message))
+  }
+}
+
+export const editCard = (data) => async (dispatch) => {
+  try {
+    dispatch(tasksRequest("EDIT"))
+
+    const taskRequest = await interEditTask(data)
+    console.log("taskRequest -->>", { taskRequest })
+
+    if (taskRequest.statusGet === "success") {
+      const { status_code, message } = taskRequest
+      dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code, messageRequest: message }))
+    } else throw new Error(taskRequest.msg)
+  } catch (error) {
     dispatch(tasksFailure(error.message))
   }
 }
