@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { deleteTask, editCardStatus } from "redux/store/actions/tasksActions"
+import { deleteTask, editCardStatus, taskFormFieldsForEditing, tasksRequest } from "redux/store/actions/tasksActions"
 import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
 import Card from "views/Tasks/components/Card/Card"
 
@@ -8,13 +8,18 @@ export const useRenderCards = (renderListTasks) => {
 
   const handleActionsCard = async (data, action) => {
     let takeResponse = await utilAlertConfirm({
-      title: `Estás seguro de que deseas ${action} la tarea '${data.title}'?`,
+      title: `Estás seguro de ${action}?`,
+      text: `Tarea afectada: '${data.title}'`,
       icon: "question",
       showCancelButton: true,
     })
 
     if (takeResponse) {
-      dispatch(action === "eliminar" ? deleteTask(data._id) : editCardStatus(data))
+      if (action === "editar") {
+        console.log("ES EDITAR CARD", data)
+        dispatch(tasksRequest("EDIT_CARD"))
+        dispatch(taskFormFieldsForEditing(data))
+      } else dispatch(action === "eliminar" ? deleteTask(data._id) : editCardStatus(data))
     }
   }
 

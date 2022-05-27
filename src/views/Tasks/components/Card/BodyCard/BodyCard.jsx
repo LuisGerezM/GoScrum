@@ -8,7 +8,7 @@ export const BodyCard = ({ dateTime, status, actionsCard, data, importance, user
     <>
       <div className="created">{dateTime}</div>
       <div className="created">{userName}</div>
-      <Button nameClass={statusInLowerCase} type="button" onClick={() => actionsCard(data, "cambiar")} textBtn={statusInLowerCase} />
+      <Button nameClass={statusInLowerCase} type="button" onClick={() => actionsCard(data, "editar status")} textBtn={statusInLowerCase} />
       <Button nameClass={importanceInLowerCase} type="button" textBtn={importanceInLowerCase} />
     </>
   )

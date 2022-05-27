@@ -1,26 +1,44 @@
 import { useFormik } from "formik"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { createTask, resetTasksNotification } from "redux/store/actions/tasksActions"
+import { createTask, editCard, resetTasksNotification } from "redux/store/actions/tasksActions"
 import * as Yup from "yup"
 
 export const useCreateTaskSection = () => {
-  const { loadingTasks, error, success_request, status_code } = useSelector((state) => {
+  const { loadingTasks, error, success_request, status_code, task_edit } = useSelector((state) => {
     return state.tasksReducer
   })
 
-  const dispatch = useDispatch()
+  const [editFormFields, setEditFormFields] = useState({})
 
   const initialValues = {
     title: "",
     status: "",
     importance: "",
     description: "",
+    textForm: { title: "Crear", subTitle: "Crea" },
   }
 
+  const dispatch = useDispatch()
+
   const onSubmit = () => {
-    dispatch(createTask(formik.values))
+    if (Object.keys(editFormFields).length === 0) dispatch(createTask(formik.values))
+    else {
+      const { title, status, importance, description } = formik.values
+
+      const valuesToEdit = {
+        _id: editFormFields._id,
+        title,
+        status,
+        importance,
+        description,
+      }
+
+      resetForm()
+      setEditFormFields({})
+      dispatch(editCard(valuesToEdit))
+    }
   }
 
   const required = "*Campo obligatorio"
@@ -33,6 +51,21 @@ export const useCreateTaskSection = () => {
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit })
 
+  const { setFieldValue, resetForm } = formik
+
+  useEffect(() => {
+    if (Object.keys(task_edit).length > 0) {
+      task_edit.textForm = { title: "Editar", subtitle: "Edita" }
+      setEditFormFields(task_edit)
+      setFieldValue("title", task_edit.title)
+      setFieldValue("importance", task_edit.importance)
+      setFieldValue("status", task_edit.status)
+      setFieldValue("description", task_edit.description)
+      dispatch(resetTasksNotification())
+      toast.info("Ahora puedes editar la tarea")
+    }
+  }, [task_edit, setFieldValue, dispatch])
+
   useEffect(() => {
     if (error) {
       toast.info(error)
@@ -42,17 +75,19 @@ export const useCreateTaskSection = () => {
     }
   }, [error, dispatch])
 
-  const { resetForm } = formik
   useEffect(() => {
     if (success_request && success_request === "CREATE") {
       toast.info("Tu tarea se creó correctamente")
       dispatch(resetTasksNotification())
       resetForm()
     }
-    return () => {
-      console.log("desmontando efect en useTaskForm")
-    }
   }, [success_request, status_code, resetForm, dispatch])
 
-  return { formik, error, loadingTasks }
+  return {
+    formik,
+    error,
+    loadingTasks,
+    initialValues,
+    editFormFields,
+  }
 }

@@ -12,14 +12,19 @@ export const CreateTasksSection = () => {
     formik: { handleSubmit, handleChange, handleBlur, errors, touched, values },
     error,
     loadingTasks,
+    initialValues,
+    editFormFields,
   } = useCreateTaskSection()
 
   const { dataSelect, loadingTaskData } = useTaskSelectData()
 
+  const title = Object.keys(editFormFields).length > 0 ? editFormFields.textForm.title : initialValues.textForm.title
+  const subTitle = Object.keys(editFormFields).length > 0 ? editFormFields.textForm.subTitle : initialValues.textForm.subTitle
+
   return (
     <section className="task-form">
-      <div>Crear Tarea</div>
-      <p>Crea tus tareas</p>
+      <div>{title} Tarea</div>
+      <p>{subTitle} tus tareas</p>
       <TaskForm
         loadingTaskData={loadingTaskData}
         handleSubmit={handleSubmit}
@@ -31,6 +36,7 @@ export const CreateTasksSection = () => {
         dataSelect={dataSelect}
         error={error}
         loadingTasks={loadingTasks}
+        title={title}
       />
 
       <Toast error={error ? "😥" : "😎"} />

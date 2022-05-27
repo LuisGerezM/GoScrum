@@ -6,6 +6,7 @@ const { REACT_APP_AUTHORIZATION: AUTH } = process.env
 
 export const interEditTask = async (data, newStatus = null) => {
   const { tile, importance, description } = data
+  const status = newStatus ? newStatus : data.status
   try {
     const headers = {
       "Content-Type": "application/json",
@@ -20,16 +21,16 @@ export const interEditTask = async (data, newStatus = null) => {
         task: {
           tile,
           importance,
-          status: newStatus,
+          status,
           description,
         },
       }),
     })
 
-    const { status_code } = fetchingTasks
+    const { status_code, message } = fetchingTasks
 
     if (fetchingTasks.status_code === 200) {
-      return { statusGet: "success", status_code }
+      return { statusGet: "success", status_code, message }
     } else {
       throw new Error(Number.parseInt(status_code))
     }

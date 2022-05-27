@@ -51,10 +51,6 @@ export const useListCardSection = () => {
       toast.info(status_code)
       dispatch(resetTasksNotification())
     }
-
-    return () => {
-      console.log("desmontnado efecto - useListCardSection")
-    }
   }, [success_request, status_code, dispatch])
 
   useEffect(() => {

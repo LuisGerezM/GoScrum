@@ -17,10 +17,11 @@ export const interDeleteTask = async (id) => {
       headers,
     })
 
-    const { status_code } = deleteTask
+    const { status_code, message } = deleteTask
 
     if (deleteTask.status_code === 200) {
-      return { statusGet: "success", status_code }
+      console.log('deleteTask -->> DELETE tasks >>', deleteTask)
+      return { statusGet: "success", status_code, message }
     } else {
       throw new Error(Number.parseInt(status_code))
     }

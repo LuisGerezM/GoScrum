@@ -1,4 +1,4 @@
-import { useRenderCards } from "hooks/useTasks/useRenderCards"
+import { useRenderCards } from "hooks/useTasks/useCard/useRenderCards"
 
 export const PaintingCardsList = ({ renderListTasks, isPhone }) => {
   const { renderAllCards, renderSeparateCards, threecolumnListCards } = useRenderCards(renderListTasks)

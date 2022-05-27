@@ -3,12 +3,13 @@ import { TYPES } from "../types/types"
 const initialState = {
   loadingTasks: false,
   tasks: [],
+  task_edit: {},
   error: "",
   status_code: "",
   success_request: false,
 }
 
-const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_RESET_NOTIFICATION, TASKS_RESET_STATE } = TYPES
+const { TASKS_REQUEST, TASKS_SUCCESS, TASKS_FAILURE, TASKS_FORM_FIELDS_FOR_EDITING, TASKS_RESET_NOTIFICATION, TASKS_RESET_STATE } = TYPES
 
 export const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -30,6 +31,14 @@ export const tasksReducer = (state = initialState, action) => {
       return {
         ...initialState,
         error: action.payload,
+      }
+
+    case TASKS_FORM_FIELDS_FOR_EDITING:
+      console.log("action.payload -->> TASKS_FORM_FIELDS_FOR_EDITING -->>", action.payload)
+      return {
+        ...initialState,
+        tasks: state.tasks,
+        task_edit: action.payload,
       }
 
     case TASKS_RESET_NOTIFICATION:

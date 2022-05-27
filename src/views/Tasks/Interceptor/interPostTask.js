@@ -23,6 +23,7 @@ export const interPostTask = async (data) => {
     const { status_code } = fetchingTasks
 
     if (fetchingTasks.status_code === 200) {
+      console.log('fetchingTasks -->> CREATE tasks >>', fetchingTasks)
       return { statusGet: "success", status_code }
     } else {
       throw new Error(Number.parseInt(status_code))
