@@ -20,7 +20,6 @@ export const interDeleteTask = async (id) => {
     const { status_code, message } = deleteTask
 
     if (deleteTask.status_code === 200) {
-      console.log('deleteTask -->> DELETE tasks >>', deleteTask)
       return { statusGet: "success", status_code, message }
     } else {
       throw new Error(Number.parseInt(status_code))
