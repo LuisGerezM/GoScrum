@@ -1,9 +1,12 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
 
 export const useCard = (createdAt) => {
   const [showMoreDescription, setShowMoreDescription] = useState(false)
 
-  const nameUser = localStorage.getItem("userName")
+  const { user } = useSelector((state) => {
+    return state.userReducer
+  })
 
   // conver time -> local
   const dateTime = `${new Date(createdAt).toLocaleString()} hs.`
@@ -16,5 +19,14 @@ export const useCard = (createdAt) => {
 
   const handleSeeMore = () => setShowMoreDescription((prevValue) => !prevValue)
 
-  return { handleSeeMore, limitString, dateTime, nameUser, showMoreDescription }
+  const queryUserOnLine = () => {
+    return user
+  }
+  return {
+    handleSeeMore,
+    limitString,
+    dateTime,
+    queryUserOnLine,
+    showMoreDescription,
+  }
 }

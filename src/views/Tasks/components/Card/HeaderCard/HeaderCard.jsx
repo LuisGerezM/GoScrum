@@ -1,11 +1,21 @@
+import { utilQueryUserData } from "utilities/utilQueryUserData"
 import { DeleteCardButton } from "./DeleteCardButton"
 import { EditCardButton } from "./EditCardButton"
 
-export const HeaderCard = ({ nameUser, userName, actionsCard, data, title }) => {
+export const HeaderCard = ({
+  userName,
+  actionsCard,
+  data,
+  title,
+  queryUserOnLine,
+}) => {
+  const { enableUserActions } = utilQueryUserData({ userName, queryUserOnLine })
+  console.log("enableUserActions", { enableUserActions })
+
   return (
     <>
-      <EditCardButton nameUser={nameUser} userName={userName} actionsCard={actionsCard} data={data} />
-      <DeleteCardButton nameUser={nameUser} userName={userName} actionsCard={actionsCard} data={data} />
+      <EditCardButton enableUserActions={enableUserActions} actionsCard={actionsCard} data={data} />
+      <DeleteCardButton enableUserActions={enableUserActions} actionsCard={actionsCard} data={data} />
       <div className="title">{title}</div>
     </>
   )

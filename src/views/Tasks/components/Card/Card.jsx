@@ -6,7 +6,6 @@ import { HeaderCard } from "./HeaderCard/HeaderCard"
 import "./Card.styles.css"
 
 const Card = ({
-  // deleteCard,
   actionsCard,
   data: {
     title,
@@ -18,11 +17,16 @@ const Card = ({
   },
   data,
 }) => {
-  const { handleSeeMore, limitString, dateTime, nameUser, showMoreDescription } = useCard(createdAt)
+  const { handleSeeMore, limitString, dateTime, 
+    // nameUser, 
+    showMoreDescription, queryUserOnLine } = useCard(createdAt)
 
   return (
     <div className="card">
-      <HeaderCard nameUser={nameUser} userName={userName} actionsCard={actionsCard} data={data} title={title} />
+      <HeaderCard 
+      queryUserOnLine={queryUserOnLine}
+      // nameUser={nameUser} 
+      userName={userName} actionsCard={actionsCard} data={data} title={title} />
 
       <BodyCard dateTime={dateTime} userName={userName} status={status} actionsCard={actionsCard} data={data} importance={importance} />
 
