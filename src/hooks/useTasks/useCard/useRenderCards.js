@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import { useDispatch } from "react-redux"
 import { deleteTask, editCardStatus, taskFormFieldsForEditing, tasksRequest } from "redux/store/actions/tasksActions"
 import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
@@ -23,11 +24,24 @@ export const useRenderCards = (renderListTasks) => {
   }
 
   // phone
-  const renderAllCards = () => renderListTasks?.map((data) => <Card key={data._id} data={data} actionsCard={handleActionsCard} />)
+  const renderAllCards = () => (
+    <AnimatePresence>
+      {renderListTasks?.map((data, index) => (
+        <Card key={data._id} data={data} actionsCard={handleActionsCard} index={index} />
+      ))}
+    </AnimatePresence>
+  )
 
   // desk
-  const renderSeparateCards = (status) =>
-    renderListTasks?.filter((data) => data.status === `${status}`).map((data) => <Card key={data._id} data={data} actionsCard={handleActionsCard} />)
+  const renderSeparateCards = (status) => (
+    <AnimatePresence>
+      {renderListTasks
+        ?.filter((data) => data.status === `${status}`)
+        .map((data, index) => (
+          <Card key={data._id} data={data} actionsCard={handleActionsCard} index={index} />
+        ))}
+    </AnimatePresence>
+  )
 
   const threecolumnListCards = [
     { nameType: "NEW", txtDiv: "Nuevas" },

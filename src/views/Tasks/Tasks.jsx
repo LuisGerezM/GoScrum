@@ -1,4 +1,4 @@
-import {CreateTasksSection} from "./components/CreateTasksSection/CreateTasksSection"
+import { CreateTasksSection } from "./components/CreateTasksSection/CreateTasksSection"
 import { ListCardsSection } from "./components/ListCardsSection/ListCardsSection"
 
 import "./Tasks.styles.css"
