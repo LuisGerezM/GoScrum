@@ -1,9 +1,9 @@
 import CloseIcon from "@mui/icons-material/Close"
 
-export const DeleteCardButton = ({ nameUser, userName, actionsCard, data }) => {
+export const DeleteCardButton = ({ actionsCard, data, enableUserActions }) => {
   return (
     <>
-      {nameUser === userName && (
+      {enableUserActions.status && (
         <div className="close" onClick={() => actionsCard(data, "eliminar")}>
           <CloseIcon />
         </div>
