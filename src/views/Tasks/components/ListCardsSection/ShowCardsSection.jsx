@@ -3,9 +3,9 @@ import { RenderListCards } from "./RenderListCards/RenderListCards"
 export const ShowCardsSection = ({ error, isPhone, loadingTasks, renderListTasks, searchTitle, msgTasks }) => {
   return (
     <>
-      {error && error !== "error create" ? (
+      {error && error.name !== "error create" ? (
         <div className="error">
-          <div>{error}</div>
+          <div>{error.message + " - " + error.name}</div>
         </div>
       ) : (
         <RenderListCards

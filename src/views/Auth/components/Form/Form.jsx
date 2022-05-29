@@ -1,7 +1,7 @@
 import { FormControlLabel, Switch } from "@mui/material"
 import Input from "../../../../components/Input/Input"
 import Select from "../../../../components/Select/Select"
-import FooterForm from "./FooterForm"
+import FooterAuthForm from "./FooterAuthForm"
 import { motion } from "framer-motion"
 
 import "react-toastify/dist/ReactToastify.css"
@@ -129,7 +129,7 @@ const Form = ({
             </>
           )}
           <div>
-            <FooterForm
+            <FooterAuthForm
               to={!showRegister ? "/register" : "/login"}
               valueLink={!showRegister ? "Registrarme" : "Ir a Iniciar sesión"}
               loadingUser={loadingUser}

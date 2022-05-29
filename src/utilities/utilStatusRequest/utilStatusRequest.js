@@ -1,6 +1,4 @@
 export const utilStatusRequest = ({ status, where = "auth", messageRequest = null, typeAction = null }) => {
-  // console.log("status", status)
-
   const statusRequest = {
     200: `${where === "auth" ? "Inicio de sesión existoso..." : `Operación realizada con éxito... ${messageRequest}`}`,
     201: `${where === "auth" ? "Usuario registrado con éxito..." : `Operación realizada con éxito... ${messageRequest}`}`,

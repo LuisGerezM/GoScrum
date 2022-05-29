@@ -2,7 +2,7 @@ import { useFormik } from "formik"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { createTask, editCard, resetTasksNotification } from "redux/store/actions/tasksActions"
+import { createTask, editCard, resetTasksNotification, tasksFailure } from "redux/store/actions/tasksActions"
 import * as Yup from "yup"
 
 export const useCreateTaskSection = () => {
@@ -35,8 +35,6 @@ export const useCreateTaskSection = () => {
         description,
       }
 
-      resetForm()
-      setEditFormFields({})
       dispatch(editCard(valuesToEdit))
     }
   }
@@ -55,7 +53,7 @@ export const useCreateTaskSection = () => {
 
   useEffect(() => {
     if (Object.keys(task_edit).length > 0) {
-      task_edit.textForm = { title: "Editar", subtitle: "Edita" }
+      task_edit.textForm = { title: "Editar", subTitle: "Edita" }
       setEditFormFields(task_edit)
       setFieldValue("title", task_edit.title)
       setFieldValue("importance", task_edit.importance)
@@ -67,17 +65,19 @@ export const useCreateTaskSection = () => {
   }, [task_edit, setFieldValue, dispatch])
 
   useEffect(() => {
-    if (error) {
-      toast.info(error)
-      setTimeout(() => {
-        dispatch(resetTasksNotification())
-      }, 500)
+    if (
+      Object.keys(error).length > 0 &&
+      (error.name === "error create" || error.name === "error edit card" || error.name === "error edit status card")
+    ) {
+      toast.info(error.message)
+      dispatch(tasksFailure(error))
     }
   }, [error, dispatch])
 
   useEffect(() => {
-    if (success_request && success_request === "CREATE") {
-      toast.info("Tu tarea se creó correctamente")
+    if (success_request && (success_request === "CREATE" || success_request === "EDIT")) {
+      success_request === "CREATE" ? toast.info("Tu tarea se creó correctamente") : toast.info(status_code)
+      setEditFormFields({})
       dispatch(resetTasksNotification())
       resetForm()
     }

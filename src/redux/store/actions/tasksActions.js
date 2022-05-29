@@ -1,8 +1,8 @@
+import { TYPES } from "../types/types"
 import { interDeleteTask } from "views/Tasks/Interceptor/interDeleteTask"
 import { interEditTask } from "views/Tasks/Interceptor/interEditTask"
 import { interGetTask } from "views/Tasks/Interceptor/interGetTask"
 import { interPostTask } from "views/Tasks/Interceptor/interPostTask"
-import { TYPES } from "../types/types"
 
 export const tasksRequest = (data) => ({
   type: TYPES.TASKS_REQUEST,
@@ -49,8 +49,8 @@ export const getTasks =
         throw new Error(taskRequest.msg)
       }
     } catch (error) {
-      console.log({ error })
-      dispatch(tasksFailure(error.message))
+      const message = error.message
+      dispatch(tasksFailure({ message, name: "error get card" }))
     }
   }
 
@@ -65,8 +65,8 @@ export const deleteTask = (id) => async (dispatch) => {
       dispatch(getTasks({ path: "", statusResponse: "DELETE", status_code, messageRequest: message }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
-    console.log({ error })
-    dispatch(tasksFailure(error.message))
+    const message = error.message
+    dispatch(tasksFailure({ message, name: "error delete card" }))
   }
 }
 
@@ -86,8 +86,8 @@ export const editCardStatus = (data) => async (dispatch) => {
       dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code, messageRequest: message }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
-    console.log({ error })
-    dispatch(tasksFailure(error.message))
+    const message = error.message
+    dispatch(tasksFailure({ message, name: "error edit status card" }))
   }
 }
 
@@ -102,7 +102,8 @@ export const editCard = (data) => async (dispatch) => {
       dispatch(getTasks({ path: "", statusResponse: "EDIT", status_code, messageRequest: message }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
-    dispatch(tasksFailure(error.message))
+    const message = error.message
+    dispatch(tasksFailure({ message, name: "error edit card" }))
   }
 }
 
@@ -117,7 +118,7 @@ export const createTask = (data) => async (dispatch) => {
       dispatch(getTasks({ path: "", statusResponse: "CREATE", status_code }))
     } else throw new Error(taskRequest.msg)
   } catch (error) {
-    console.log({ error })
-    dispatch(tasksFailure(error.message))
+    const message = error.message
+    dispatch(tasksFailure({ message, name: "error create" }))
   }
 }

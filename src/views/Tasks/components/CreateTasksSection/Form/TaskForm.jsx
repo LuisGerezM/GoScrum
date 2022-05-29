@@ -2,7 +2,7 @@ import Input from "components/Input/Input"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 import Select from "components/Select/Select"
 import { SkeletonLoading } from "../../SkeletonLoading/SkeletonLoading"
-import { FooterForm } from "./FooterForm/FooterForm"
+import { FooterTaskForm } from "./FooterTaskForm/FooterTaskForm"
 import { TextArea } from "./TextArea/TextArea"
 
 export const TaskForm = ({
@@ -17,10 +17,6 @@ export const TaskForm = ({
   error,
   loadingTasks,
   title,
-  // initialValues,
-  // handlePrueba,
-  // editFormFields,
-  // handleChangeInput,
 }) => {
   return (
     <>
@@ -75,12 +71,7 @@ export const TaskForm = ({
                 handleBlur={handleBlur}
               />
             </div>
-            <FooterForm
-              error={error}
-              loadingTasks={loadingTasks}
-              title={title}
-              // initialValues={initialValues}
-            />
+            <FooterTaskForm error={error} loadingTasks={loadingTasks} title={title} />
           </>
         )}
       </form>
