@@ -3,7 +3,7 @@ import { useResize } from "hooks/useResize"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
-import { getTasks, resetTasksNotification } from "redux/store/actions/tasksActions"
+import { getTasks, resetTasksNotification, tasksFailure } from "redux/store/actions/tasksActions"
 
 export const useListCardSection = () => {
   const { isPhone } = useResize()
@@ -29,9 +29,15 @@ export const useListCardSection = () => {
   const [valueSelect, setValueSelect] = useState("")
 
   useEffect(() => {
-    if (error) {
+    if (
+      Object.keys(error).length > 0 &&
+      error.name !== "error create" &&
+      error.name !== "error edit card" &&
+      error.name !== "error edit status card"
+    ) {
       setMsgTasks("Ups... Ocurrió un problema ... Pongase en contacto con el administrador ")
-      dispatch(resetTasksNotification())
+      toast.info(error.message)
+      dispatch(tasksFailure(error))
     }
   }, [error, dispatch])
 
@@ -42,15 +48,14 @@ export const useListCardSection = () => {
       setMsgTasks(null)
     } else if (tasks?.length === 0) {
       setMsgTasks("Aún no tienes tareas")
-      dispatch(resetTasksNotification())
     }
   }, [tasks, dispatch])
 
   useEffect(() => {
-    if (success_request === "DELETE" || success_request === "EDIT") {
+    if (success_request === "DELETE") {
       toast.info(status_code)
       dispatch(resetTasksNotification())
-    }
+    } else if (success_request === "default") dispatch(resetTasksNotification())
   }, [success_request, status_code, dispatch])
 
   useEffect(() => {

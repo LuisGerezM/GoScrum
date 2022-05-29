@@ -38,8 +38,7 @@ export const CreateTasksSection = () => {
         loadingTasks={loadingTasks}
         title={title}
       />
-
-      <Toast error={error ? "😥" : "😎"} />
+      <Toast error={error} />
     </section>
   )
 }

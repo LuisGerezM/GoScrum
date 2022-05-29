@@ -4,7 +4,7 @@ export const utilTransition = (transition) => {
       hidden: {
         opacity: 0,
         transition: {
-          duration: 1,
+          duration: 0.3,
         },
       },
       visible: (custom) => ({

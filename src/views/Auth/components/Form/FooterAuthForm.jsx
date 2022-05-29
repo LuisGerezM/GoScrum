@@ -1,7 +1,7 @@
 import { Button } from "components/Button/Button"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 
-const FooterForm = ({ to, valueLink, loadingUser }) => {
+const FooterAuthForm = ({ to, valueLink, loadingUser }) => {
   return (
     <>
       <Button type="submit" textBtn="Enviar" nameClass="submit" disabled={loadingUser ? true : false} />
@@ -10,4 +10,4 @@ const FooterForm = ({ to, valueLink, loadingUser }) => {
   )
 }
 
-export default FooterForm
+export default FooterAuthForm
