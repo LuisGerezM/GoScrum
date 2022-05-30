@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 import logo from "assets/img/GoScrum.png"
 
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 import "react-toastify/dist/ReactToastify.css"
 
-import { useState } from "react"
 import { useRegistered } from "hooks/useAuthUser/useRegistered"
 
-import "./Registered.styles.css"
 import { Toast } from "components/Loading/Toast/Toast"
+import { Button } from "components/Button/Button"
+
+import "./Registered.styles.css"
 
 export const Registered = () => {
   const { user } = useSelector((state) => {
@@ -21,16 +21,14 @@ export const Registered = () => {
 
   return (
     <main>
-      <section>
+      <section className="registered">
         <div className="top">
           <img src={logo} alt="logo GOScrum" />
           <div className="title">Bienvenido Team Lider {user.userName}</div>
         </div>
         <p className="p-id-team">
-          El teamID de tu equipo es: {teamID}{" "}
-          <button className="btn-copy" onClick={handleCopyTeamId}>
-            <ContentCopyIcon />
-          </button>
+          El teamID de tu equipo es: {teamID}
+          <Button nameClass="btn-copy" textBtn={<ContentCopyIcon />} onClick={handleCopyTeamId} />
         </p>
 
         <p>Ahora puedes compartirlo a los miembros de tu equipo</p>

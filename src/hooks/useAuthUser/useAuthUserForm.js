@@ -10,13 +10,14 @@ import { startValues, validateUserFormFields } from "utilities/utilAuthUser/util
 
 import { v4 as uuidv4 } from "uuid"
 
-export const useUserForm = () => {
+const useAuthUserForm = () => {
   const location = useLocation()
   const pathName = location.pathname.slice(1)
 
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
+
   const { loadingUser, user, error, status_code, success_request } = useSelector((state) => {
     return state.userReducer
   })
@@ -72,3 +73,5 @@ export const useUserForm = () => {
 
   return { formik, loadingUser, pathName, handleChangeSwitch, handleChangeContinent }
 }
+
+export default useAuthUserForm

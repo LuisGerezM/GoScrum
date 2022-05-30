@@ -1,11 +1,15 @@
+import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
+import { resetTasksState } from "redux/store/actions/tasksActions"
 
-export const useHeader = () => {
+export const useHeader = (success_request) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handlerLogout = () => {
-    // console.log("logOut")
+    dispatch(resetTasksState())
     localStorage.removeItem("token_user")
+    localStorage.removeItem("userName")
     navigate("/login", { replace: true })
   }
 

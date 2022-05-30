@@ -1,16 +1,18 @@
 import React from "react"
 import { ToastContainer } from "react-toastify"
 
-export const Toast = ({ error = null, theme = "dark" }) => {
+import "./Toast.styles.css"
+
+export const Toast = ({ autoClose = 1500, error = null}) => {
   return (
     <ToastContainer
       position="top-right"
-      autoClose={1200}
+      icon={error && Object.keys(error).length > 0 && error.name ? "😥" : "😎"}
+      autoClose={autoClose}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick
       rtl={false}
-      icon={error === "error create" ? "😥" : "😎"}
       theme={"dark"}
       pauseOnFocusLoss
       draggable
@@ -18,4 +20,3 @@ export const Toast = ({ error = null, theme = "dark" }) => {
     />
   )
 }
-

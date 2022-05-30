@@ -1,5 +1,33 @@
+.error-auth-data {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--global-primary-color);
+  padding-left: 20px;
+}
+
+.error-auth-data > div:first-child {
+  font: var(--global-l-font-style);
+}
+
+.error-auth-data > div:nth-child(2) {
+  padding: 10px 0 0 28px;
+}
+
+.error-auth-data > div:nth-child(2) > a {
+  text-align: center;
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+  text-decoration: none;
+  font: var(--global-l-font-style);
+  background-color: hsl(7, 75%, 51%);
+  color: var(--global-gray-color);
+  padding: 5px 30px;
+}
+
 .auth {
-  min-height: calc(100vh - 170px);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +72,7 @@
   border-radius: var(--global-radius);
 }
 
-.auth button {
+.auth button.submit {
   width: 402px;
   height: 45px;
   cursor: pointer;
@@ -56,7 +84,7 @@
   color: var(--global-ligth-color);
 }
 
-.auth button:hover {
+.auth button.submit:hover {
   border: 1px solid var(--global-primary-color);
   background-color: var(--global-ligth-color);
   color: var(--global-primary-color);
@@ -150,7 +178,6 @@
   }
 
   .auth > form > div > div {
-    /* padding: 15px 10px 0 10px; */
     padding: 15px 0 0 10px;
   }
 
@@ -162,7 +189,7 @@
     width: 97%;
   }
 
-  .auth button {
+  .auth button.submit {
     width: 97%;
     padding-left: 0;
   }

@@ -8,6 +8,7 @@ import { Auth } from "views/Auth/Auth"
 import { Header } from "components/Header/Header"
 import Donate from "views/Donate/Donate"
 import { Registered } from "views/Registered/Registered"
+import { utilTransition } from "utilities/utilTransition"
 
 const Error404 = lazy(() => import("views/Error404/Error404"))
 
@@ -16,18 +17,14 @@ const RequireAuth = ({ children }) => {
   return children
 }
 
-const pageTransition = {
-  key: "page",
-  in: { opacity: 1, transition: { duration: 1 } },
-  out: { opacity: 0, transition: { duration: 0 } },
-}
-
 export const App = () => {
   const location = useLocation()
+  const pageTransition = utilTransition("pageTransition")
+
   return (
     <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (
-        <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+        <motion.div className="page-header" initial="out" animate="in" exit="out" variants={pageTransition}>
           <Header />
         </motion.div>
       )}
@@ -51,22 +48,9 @@ export const App = () => {
           }
         />
 
-        <Route
-          path="/login"
-          element={
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Auth pageTransition={pageTransition} />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-              <Auth pageTransition={pageTransition} />
-            </motion.div>
-          }
-        />
+        <Route path="/login" element={<Auth pageTransition={pageTransition} />} />
+        <Route path="/register" element={<Auth pageTransition={pageTransition} />} />
+
         <Route
           path="/registered/:teamID"
           element={

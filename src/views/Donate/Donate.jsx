@@ -5,10 +5,10 @@ import "./Donate.styles.css"
 const Donate = () => {
   return (
     <main>
-      <section>
+      <section className="donate">
         <div>
           <div className="title">Colaborá con el proyecto</div>
-          <img src={logo} alt="logo GOScrum" />
+          <img src={logo} alt="logo" />
         </div>
         <p>
           Si quieres apoyar y contribuir con la mejora o el desarrollo de nuevos proyectos, puedes aportar tu granito de arena. Sólo debes que pulsar

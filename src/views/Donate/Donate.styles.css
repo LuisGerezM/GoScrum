@@ -6,34 +6,34 @@ main {
   align-items: center;
 }
 
-section {
+section.donate {
   width: 80%;
   padding: 20px 0;
   text-align: center;
 }
 
-section > div {
+section.donate > div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-section > div > div.title {
+section.donate > div > div.title {
   font: var(--global-xl-font-style);
 }
 
-section > div > img {
+section.donate > div > img {
   width: 60%;
   padding-top: 10px;
 }
 
-section > p {
+section.donate > p {
   width: 100%;
   font: var(--global-m-font-style);
   padding: 10px 0;
 }
 
-section > div > a {
+section.donate > div > a {
   width: 100%;
   height: 25px;
   font: var(--global-m-font-style);
@@ -47,29 +47,38 @@ section > div > a {
   color: var(--global-ligth-color);
 }
 
-section > div > a:hover {
+section.donate > div > a:hover {
   border: 1px solid var(--global-primary-color);
   color: var(--global-primary-color);
   background-color: var(--global-ligth-color);
 }
 
 @media screen and (min-width: 470px) {
-  section {
+  section.donate {
     width: 50%;
     padding: 20px 0;
   }
 
-  section > div {
+  section.donate > div {
     display: flex;
     align-items: center;
   }
 
-  section > div > img {
+  section.donate > div > img {
     width: 150px;
   }
 
-  section > div > a {
+  section.donate > div > a {
     width: 150px;
     padding: 5px 0 17px 0;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  section.donate {
+    width: 50%;
+    padding: 35px 15px 20px 15px;
+    justify-content: center;
+    outline: 10px outset #b04329;
   }
 }

@@ -27,7 +27,6 @@
 
   --global-primary-color: rgb(255, 66, 41);
   --global-ligth-color: rgba(255, 255, 255, 1);
-  /* --global-dim-ligth-color:rgba(233, 233, 233, 1); */
   --global-dark: rgba(0, 0, 0, 1);
   --global-gray-color: rgba(229, 229, 229, 1);
   --global-dim-gray-color: rgba(139, 139, 139, 1);
@@ -40,6 +39,10 @@
 
 * {
   font: var(--global-sm-font-style);
+}
+
+body {
+  margin: 0;
 }
 
 input:focus,

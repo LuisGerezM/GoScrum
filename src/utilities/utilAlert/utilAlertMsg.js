@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 
-import "./utilAlertMsj.styles.css"
+import "./utilAlert.styles.css"
 
 export const alertMsg = async ({ title, text, icon, confirmButtonText = "Aceptar", typeALert = "success" }) => {
   if (typeALert === "error") {

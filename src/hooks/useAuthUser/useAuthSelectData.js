@@ -1,34 +1,42 @@
-import { adapterFormSelectData } from "adapters/adapterAuth/adapterRegister/adapterFormSelectData"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
+import { adapterFormSelectData } from "views/Auth/adapters/adapterRegister/adapterFormSelectData"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
-export const useAuth = (pathName) => {
+export const useAuthSelectData = (pathName) => {
   const [authData, setAuthData] = useState(null)
-  const [authDataError, setAuthDataError] = useState(false)
+  const [showRegister, setShowRegister] = useState(false)
+  const [loadingMountAuth, setLoadingMountAuth] = useState(false)
 
   const navigate = useNavigate()
 
   useEffect(() => {
+    setLoadingMountAuth(true)
     fetch(`${BASEURL}auth/data`)
       .then((response) => response.json())
       .then((data) => {
         setAuthData(adapterFormSelectData(data.result))
-        setAuthDataError(false)
       })
-      .catch((error) => setAuthDataError(true))
+      .catch((error) => {
+        console.log("error", error)
+      })
+      .finally(() => setLoadingMountAuth(false))
 
     return () => {
       setAuthData(null)
-      setAuthDataError(false)
     }
   }, [])
 
   useEffect(() => {
     if (utilCheckSession(pathName).status_t) return navigate("/", { replace: true })
+    if (pathName === "register") setShowRegister(true)
+
+    return () => {
+      setShowRegister(false)
+    }
   }, [navigate, pathName])
 
-  return { authData, authDataError }
+  return { authData, showRegister, loadingMountAuth }
 }
