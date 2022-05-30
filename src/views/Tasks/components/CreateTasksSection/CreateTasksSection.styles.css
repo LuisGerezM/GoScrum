@@ -84,7 +84,6 @@
 
 .task-form .footer-form {
   display: flex;
-  align-items: center;
   color: var(--global-primary-color);
 }
 
