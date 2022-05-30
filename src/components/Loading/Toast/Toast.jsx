@@ -3,11 +3,11 @@ import { ToastContainer } from "react-toastify"
 
 import "./Toast.styles.css"
 
-export const Toast = ({ autoClose = 1500, error }) => {
+export const Toast = ({ autoClose = 1500, error = null}) => {
   return (
     <ToastContainer
       position="top-right"
-      icon={Object.keys(error).length > 0 && error.name ? "😥" : "😎"}
+      icon={error && Object.keys(error).length > 0 && error.name ? "😥" : "😎"}
       autoClose={autoClose}
       hideProgressBar={false}
       newestOnTop={false}

@@ -1,8 +1,9 @@
 import { TYPES } from "../types/types"
 import apiCall from "services/apiCall/apiCall"
-import { adapterLogin } from "views/Auth/adapters/adapterAuth/adapterLogin/adapterLogin"
-import { adapterRegister } from "views/Auth/adapters/adapterAuth/adapterRegister/adapterRegister"
+import { adapterLogin } from "views/Auth/adapters/adapterLogin/adapterLogin"
+
 import { utilStatusRequest } from "utilities/utilStatusRequest/utilStatusRequest"
+import { adapterRegister } from "views/Auth/adapters/adapterRegister/adapterRegister"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 

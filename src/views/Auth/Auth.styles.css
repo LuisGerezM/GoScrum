@@ -1,3 +1,31 @@
+.error-auth-data {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--global-primary-color);
+  padding-left: 20px;
+}
+
+.error-auth-data > div:first-child {
+  font: var(--global-l-font-style);
+}
+
+.error-auth-data > div:nth-child(2) {
+  padding: 10px 0 0 28px;
+}
+
+.error-auth-data > div:nth-child(2) > a {
+  text-align: center;
+  border: var(--global-border);
+  border-radius: var(--global-radius);
+  text-decoration: none;
+  font: var(--global-l-font-style);
+  background-color: hsl(7, 75%, 51%);
+  color: var(--global-gray-color);
+  padding: 5px 30px;
+}
+
 .auth {
   min-height: 100vh;
   display: flex;

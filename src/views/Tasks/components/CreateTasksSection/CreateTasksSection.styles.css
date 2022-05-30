@@ -17,6 +17,10 @@
   font: var(--global-m-font-style);
 }
 
+.task-form > div.error {
+  padding-bottom: 10px;
+}
+
 .task-form > form {
   width: 100%;
   padding-right: 15px;
