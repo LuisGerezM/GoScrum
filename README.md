@@ -31,8 +31,26 @@ La aplicación debe contar con:
 
 ## **Assets 🎨**
 
-Ellos enviaron un diseño UI representativo que nos sugieren seguir para el desarrollo de la aplicación. Haz [click aqui](https://www.figma.com/file/wSmFpIbc3uk60Qy0IsMvtt/GOSCRUM?node-id=0%3A1) para verlo.   
- 
- # Reslución 
+Ellos enviaron un diseño UI representativo que nos sugieren seguir para el desarrollo de la aplicación. Haz [click aqui](https://www.figma.com/file/wSmFpIbc3uk60Qy0IsMvtt/GOSCRUM?node-id=0%3A1) para verlo.
 
-## ***Proyecto "Go Scrum" - Estructura***
+#### **_Vista de escritorio..._**
+
+[![Desktop view](https://raw.githubusercontent.com/LuisGerezM/GoScrum/master/src/assets/design/GoScrum-DesktopView.png)](https://github.com/LuisGerezM/GoScrum/blob/master/src/assets/design/GoScrum-DesktopView.png)
+
+#### **_Vista de tablet..._**
+
+[![Tablet view](https://raw.githubusercontent.com/LuisGerezM/GoScrum/master/src/assets/design/GoScrum-TabletView.png)](https://github.com/LuisGerezM/GoScrum/blob/master/src/assets/design/GoScrum-TabletView.png)
+
+#### **_Vista de teléfono móvil..._**
+
+[![Mobile view](https://raw.githubusercontent.com/LuisGerezM/GoScrum/master/src/assets/design/GoScrum-MobileView.png)](https://github.com/LuisGerezM/GoScrum/blob/master/src/assets/design/GoScrum-MobileView.png)
+
+# Resolución
+
+## **_Proyecto "Go Scrum" - Estructura_**
+
+[![GoScrum-structure](https://raw.githubusercontent.com/LuisGerezM/GoScrum/master/src/assets/design/GoScrum-Estructura.png)](https://github.com/LuisGerezM/GoScrum/blob/master/src/assets/design/GoScrum-Estructura.png)
+
+### **_Herramientas utilizadas:_**
+
+#### [React](https://es.reactjs.org/), [React Router Dom v6](https://reactrouter.com/docs/en/v6/getting-started/overview), [Redux](https://es.redux.js.org/), [Redux Thunk](https://github.com/reduxjs/redux-thunk), [Formik](https://formik.org/), [Yup](https://www.npmjs.com/package/yup), [UUID](https://www.npmjs.com/package/uuid), [Framer Motion](https://www.framer.com/docs/), [Material UI](https://mui.com/), [SweetAlert2](https://sweetalert2.github.io/), [React Toastify](https://fkhadra.github.io/react-toastify/introduction/), [React Loading Skeleton](hthttps://www.npmjs.com/package/react-loading-skeleton)
