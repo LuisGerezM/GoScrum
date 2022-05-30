@@ -16,7 +16,7 @@ export const CreateTasksSection = () => {
     editFormFields,
   } = useCreateTaskSection()
 
-  const { dataSelect, loadingTaskData } = useTaskSelectData()
+  const { dataSelect, loadingTaskData, errorTaskData } = useTaskSelectData()
 
   const title = Object.keys(editFormFields).length > 0 ? editFormFields.textForm.title : initialValues.textForm.title
   const subTitle = Object.keys(editFormFields).length > 0 ? editFormFields.textForm.subTitle : initialValues.textForm.subTitle
@@ -25,6 +25,7 @@ export const CreateTasksSection = () => {
     <section className="task-form">
       <div>{title} Tarea</div>
       <p>{subTitle} tus tareas</p>
+      {!dataSelect && errorTaskData && <div className="error"> Tuvimos un problema, comunicate con el administrador</div>}
       <TaskForm
         loadingTaskData={loadingTaskData}
         handleSubmit={handleSubmit}

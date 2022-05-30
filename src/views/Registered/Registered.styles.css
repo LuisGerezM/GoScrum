@@ -64,6 +64,10 @@ section.registered .btn-copy:hover {
   outline: 2px solid var(--global-blue-color);
 }
 
+section > p > button > .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+  font-size: 1.8rem !important;
+}
+
 section.registered .btn-link {
   text-align: center;
   padding: 10px 20px;

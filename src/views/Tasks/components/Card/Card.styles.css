@@ -28,10 +28,11 @@
 }
 
 .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 .card > .title {
+  width: 75%;
   color: var(--global-dark);
   font: var(--global-mml-font-style);
   margin: 0 0 0.2rem;

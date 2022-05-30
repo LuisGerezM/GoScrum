@@ -1,9 +1,7 @@
-import { adapterFormSelectData } from "views/Auth/adapters/adapterAuth/adapterRegister/adapterFormSelectData"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
-
-import { alertMsg } from "utilities/utilAlert/utilAlertMsg"
+import { adapterFormSelectData } from "views/Auth/adapters/adapterRegister/adapterFormSelectData"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
@@ -22,7 +20,7 @@ export const useAuthSelectData = (pathName) => {
         setAuthData(adapterFormSelectData(data.result))
       })
       .catch((error) => {
-        alertMsg({ title: "ERROR", text: "Ups... Ocurrió un problema", icon: "error" })
+        console.log("error", error)
       })
       .finally(() => setLoadingMountAuth(false))
 
