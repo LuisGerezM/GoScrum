@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "react-dom"
-import { BrowserRouter } from "react-router-dom"
+import { HashRouter } from "react-router-dom"
 import { App } from "./App"
 import { Provider } from "react-redux"
 import { store } from "redux/store/store"
@@ -8,10 +8,10 @@ import { store } from "redux/store/store"
 import "./index.css"
 
 render(
-  <BrowserRouter basename="GoScrum/">
+  <HashRouter>
     <Provider store={store}>
       <App />
     </Provider>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 )

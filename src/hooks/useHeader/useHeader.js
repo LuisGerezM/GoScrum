@@ -1,16 +1,27 @@
 import { useDispatch } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { resetTasksState } from "redux/store/actions/tasksActions"
+import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
 
 export const useHeader = (success_request) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handlerLogout = () => {
-    dispatch(resetTasksState())
-    localStorage.removeItem("token_user")
-    localStorage.removeItem("userName")
-    navigate("/login", { replace: true })
+  const handlerLogout = async () => {
+    let takeResponse = await utilAlertConfirm({
+      title: `Estás seguro que desea cerrar sesión?`,
+      text: `Por favor confirmar acción`,
+      icon: "question",
+      showCancelButton: true,
+    })
+
+    if (takeResponse) {
+      dispatch(resetTasksState())
+      localStorage.removeItem("token_user")
+      localStorage.removeItem("role")
+      localStorage.removeItem("userName")
+      navigate("/login", { replace: true })
+    }
   }
 
   const location = useLocation()

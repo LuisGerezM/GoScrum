@@ -25,7 +25,7 @@ const Card = ({
   const cardsTransition = utilTransition("cardsTransition")
 
   return (
-    <motion.div className="card" custom={{ delay: (index + 1) * 0.4 }} initial="hidden" animate="visible" exit="hidden" variants={cardsTransition}>
+    <motion.div className="card" custom={{ delay: (index + 1) * 0.2 }} initial="hidden" animate="visible" exit="hidden" variants={cardsTransition}>
       <HeaderCard queryUserOnLine={queryUserOnLine} userName={userName} actionsCard={actionsCard} data={data} title={title} />
 
       <BodyCard dateTime={dateTime} userName={userName} status={status} actionsCard={actionsCard} data={data} importance={importance} />
