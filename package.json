@@ -2,6 +2,7 @@
   "name": "goscrumproject",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://LuisGerezM.github.io/GoScrum",
   "dependencies": {
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
@@ -12,6 +13,7 @@
     "@testing-library/react": "12.1.2",
     "formik": "2.2.9",
     "framer-motion": "6.3.3",
+    "gh-pages": "^4.0.0",
     "react": "17.0.2",
     "react-content-loader": "6.1.0",
     "react-dom": "17.0.2",
@@ -27,6 +29,8 @@
     "yup": "0.32.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
