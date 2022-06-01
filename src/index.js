@@ -8,7 +8,7 @@ import { store } from "redux/store/store"
 import "./index.css"
 
 render(
-  <BrowserRouter>
+  <BrowserRouter basename="GoScrum/">
     <Provider store={store}>
       <App />
     </Provider>
