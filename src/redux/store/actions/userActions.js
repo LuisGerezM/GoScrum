@@ -57,6 +57,11 @@ export const registerUser = (newUser) => async (dispatch) => {
   try {
     const { userName, password, email, teamID, role, continent, region } = newUser
 
+    const regionResponseAdapted = {}
+    if (region === "Brasil") regionResponseAdapted.region = "Brazil"
+    else if (region === "America del Norte") regionResponseAdapted.region = "Otro"
+    else regionResponseAdapted.region = region
+
     dispatch(userRequest())
 
     const registerResult = await apiCall({
@@ -66,10 +71,9 @@ export const registerUser = (newUser) => async (dispatch) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: { userName, password, email, teamID, role, continent, region },
+        user: { userName, password, email, teamID, role, continent, region: regionResponseAdapted.region },
       }),
     })
-
     if (registerResult.status_code === 201) {
       const { role, teamID, status_code } = adapterRegister(registerResult)
 

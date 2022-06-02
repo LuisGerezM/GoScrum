@@ -33,7 +33,11 @@
 
 /* position radio label  */
 .css-qfz70r-MuiFormGroup-root {
-  justify-content: center;
+  justify-content: start;
+}
+
+#tasks .wrapper_list .filters .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
+  padding: 0;
 }
 
 /* search  & select */
@@ -147,9 +151,9 @@
     align-items: center;
   }
 
-  .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
+  /* .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
     padding: 0;
-  }
+  } */
 
   #tasks .filters > div:nth-child(2) {
     flex-direction: row;

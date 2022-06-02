@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { resetTasksState } from "redux/store/actions/tasksActions"
 import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
 
-export const useHeader = (success_request) => {
+export const useHeader = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -28,7 +28,7 @@ export const useHeader = (success_request) => {
   const pathName = location.pathname.slice(1)
 
   const to = pathName === "donate" ? "/" : "/donate"
-  const valueLink = pathName === "donate" ? "Ir a Inicio" : "Donar"
+  const valueLink = pathName === "donate" ? "Inicio" : "Donar"
 
   return { handlerLogout, to, valueLink }
 }

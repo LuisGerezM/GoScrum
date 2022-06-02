@@ -5,6 +5,7 @@ import { HeaderCard } from "./HeaderCard/HeaderCard"
 
 import { motion } from "framer-motion"
 import { utilTransition } from "utilities/utilTransition"
+import { utilQueryUserData } from "utilities/utilQueryUserData"
 
 import "./Card.styles.css"
 
@@ -22,13 +23,31 @@ const Card = ({
   index,
 }) => {
   const { handleSeeMore, limitString, dateTime, showMoreDescription, queryUserOnLine } = useCard(createdAt)
+
+  const { enableUserActions } = utilQueryUserData({ userName, queryUserOnLine })
+
   const cardsTransition = utilTransition("cardsTransition")
 
   return (
     <motion.div className="card" custom={{ delay: (index + 1) * 0.2 }} initial="hidden" animate="visible" exit="hidden" variants={cardsTransition}>
-      <HeaderCard queryUserOnLine={queryUserOnLine} userName={userName} actionsCard={actionsCard} data={data} title={title} />
+      <HeaderCard
+        queryUserOnLine={queryUserOnLine}
+        userName={userName}
+        actionsCard={actionsCard}
+        data={data}
+        title={title}
+        enableUserActions={enableUserActions}
+      />
 
-      <BodyCard dateTime={dateTime} userName={userName} status={status} actionsCard={actionsCard} data={data} importance={importance} />
+      <BodyCard
+        dateTime={dateTime}
+        userName={userName}
+        status={status}
+        actionsCard={actionsCard}
+        data={data}
+        importance={importance}
+        enableUserActions={enableUserActions}
+      />
 
       <FooterCard showMoreDescription={showMoreDescription} description={description} limitString={limitString} handleSeeMore={handleSeeMore} />
     </motion.div>

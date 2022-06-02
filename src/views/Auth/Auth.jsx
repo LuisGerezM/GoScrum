@@ -7,11 +7,14 @@ import { motion } from "framer-motion"
 
 import "./Auth.styles.css"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
+import { useVerifyLoggedSesion } from "hooks/useAuthUser/useVerifyLoggedSesion"
 
 export const Auth = ({ pageTransition }) => {
   const { loadingUser, pathName, formik, handleChangeSwitch, handleChangeContinent } = useAuthUserForm()
-
-  const { authData, showRegister, loadingMountAuth } = useAuthSelectData(pathName)
+  
+  const { showRegister } = useVerifyLoggedSesion(pathName)
+  
+  const { authData, loadingMountAuth } = useAuthSelectData()
 
   if (loadingMountAuth) return <SpinnerLoad />
 
