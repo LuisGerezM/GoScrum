@@ -5,11 +5,9 @@ import "./Tasks.styles.css"
 
 export const Tasks = () => {
   return (
-    <>
-      <main id="tasks">
-        <CreateTasksSection />
-        <ListCardsSection />
-      </main>
-    </>
+    <main id="tasks">
+      <CreateTasksSection />
+      <ListCardsSection />
+    </main>
   )
 }

@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-const patternNoNumbers = /^[a-zA-Z]+\s*[-_@!]*[a-zA-Z]*[-_@!]*$/g
+const patternNoNumbers = /^[a-zA-Z]+\s*[-_@!.]*[a-zA-Z]*[-_@.!]*$/g
 const patternPassword = /^(?=.*[A-Z])(?=.*\d)+/g
 
 export const startValues = (pathName) => {

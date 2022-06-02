@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { utilCheckSession } from "utilities/utilAuthUser/utilCheckSession/utilCheckSession"
 import { adapterFormSelectData } from "views/Auth/adapters/adapterRegister/adapterFormSelectData"
 
 const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
-export const useAuthSelectData = (pathName) => {
+export const useAuthSelectData = () => {
   const [authData, setAuthData] = useState(null)
-  const [showRegister, setShowRegister] = useState(false)
   const [loadingMountAuth, setLoadingMountAuth] = useState(false)
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     setLoadingMountAuth(true)
@@ -29,14 +24,5 @@ export const useAuthSelectData = (pathName) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (utilCheckSession(pathName).status_t) return navigate("/", { replace: true })
-    if (pathName === "register") setShowRegister(true)
-
-    return () => {
-      setShowRegister(false)
-    }
-  }, [navigate, pathName])
-
-  return { authData, showRegister, loadingMountAuth }
+  return { authData, loadingMountAuth }
 }

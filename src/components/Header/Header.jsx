@@ -12,11 +12,11 @@ export const Header = () => {
     return state.tasksReducer
   })
 
-  const { user, success_request } = useSelector((state) => {
+  const { user } = useSelector((state) => {
     return state.userReducer
   })
 
-  const { handlerLogout, to, valueLink } = useHeader(success_request)
+  const { handlerLogout, to, valueLink } = useHeader()
 
   const nameUser = user?.userName || localStorage.getItem("userName")
 
