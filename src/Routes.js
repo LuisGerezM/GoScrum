@@ -1,12 +1,13 @@
 import { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
-import { motion } from "framer-motion"
+
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 
 import { Tasks } from "views/Tasks/Tasks"
 import { Auth } from "views/Auth/Auth"
 import Donate from "views/Donate/Donate"
 import { Registered } from "views/Registered/Registered"
+import { MotionView } from "components/MotionView/MotionView"
 
 const Error404 = lazy(() => import("views/Error404/Error404"))
 
@@ -17,18 +18,18 @@ const MainRoutes = ({ RequireAuth, location, pageTransition }) => {
         path="/"
         element={
           <RequireAuth>
-            <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+            <MotionView>
               <Tasks pageTransition={pageTransition} />
-            </motion.div>
+            </MotionView>
           </RequireAuth>
         }
       />
       <Route
         path="/donate"
         element={
-          <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+          <MotionView>
             <Donate />
-          </motion.div>
+          </MotionView>
         }
       />
 
@@ -38,19 +39,19 @@ const MainRoutes = ({ RequireAuth, location, pageTransition }) => {
       <Route
         path="/registered/:teamID"
         element={
-          <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
+          <MotionView>
             <Registered />
-          </motion.div>
+          </MotionView>
         }
       />
       <Route
         path="*"
         element={
-          <motion.div className="page" initial="out" animate="in" exit="out" variants={pageTransition}>
-            <Suspense fallback={<SpinnerLoad />}>
+          <Suspense fallback={<SpinnerLoad />}>
+            <MotionView>
               <Error404 pageTransition={pageTransition} />
-            </Suspense>
-          </motion.div>
+            </MotionView>
+          </Suspense>
         }
       />
     </Routes>

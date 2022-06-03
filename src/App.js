@@ -1,10 +1,11 @@
 import { Navigate, useLocation } from "react-router-dom"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 
 import { Header } from "components/Header/Header"
 
 import { utilTransition } from "utilities/utilTransition"
 import MainRoutes from "Routes"
+import { MotionView } from "components/MotionView/MotionView"
 
 const RequireAuth = ({ children }) => {
   if (!localStorage.getItem("token_user")) return <Navigate to="/login" replace={true} />
@@ -18,9 +19,9 @@ export const App = () => {
   return (
     <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (
-        <motion.div className="page-header" initial="out" animate="in" exit="out" variants={pageTransition}>
+        <MotionView>
           <Header />
-        </motion.div>
+        </MotionView>
       )}
       <MainRoutes RequireAuth={RequireAuth} location={location} pageTransition={pageTransition} />
     </AnimatePresence>
