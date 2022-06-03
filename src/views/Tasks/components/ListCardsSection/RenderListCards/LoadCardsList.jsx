@@ -6,7 +6,7 @@ export const LoadCardsList = ({ isPhone }) => {
       {isPhone ? (
         <SkeletonLoading count={3} height={80} nameClass="list phone" />
       ) : (
-        <SkeletonLoading count={2} height={150} width={"100%"} nameClass="list" repeat={[1, 2, 3]} />
+        <SkeletonLoading count={2} height={150} width={"100%"} nameClass="list" repeat={[10, 20, 30]} />
       )}
     </>
   )

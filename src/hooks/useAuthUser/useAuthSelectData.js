@@ -5,10 +5,9 @@ const { REACT_APP_BASEURL_GOSCRUMALKEMY: BASEURL } = process.env
 
 export const useAuthSelectData = () => {
   const [authData, setAuthData] = useState(null)
-  const [loadingMountAuth, setLoadingMountAuth] = useState(false)
+  const [loadingMountAuth, setLoadingMountAuth] = useState(true)
 
   useEffect(() => {
-    setLoadingMountAuth(true)
     fetch(`${BASEURL}auth/data`)
       .then((response) => response.json())
       .then((data) => {

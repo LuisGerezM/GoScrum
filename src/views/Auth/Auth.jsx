@@ -5,15 +5,16 @@ import Form from "./components/Form/Form"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 import { motion } from "framer-motion"
 
-import "./Auth.styles.css"
 import { LinkReactRouter } from "components/LinkReactRouter/LinkReactRouter"
 import { useVerifyLoggedSesion } from "hooks/useAuthUser/useVerifyLoggedSesion"
 
+import "./Auth.styles.css"
+
 export const Auth = ({ pageTransition }) => {
   const { loadingUser, pathName, formik, handleChangeSwitch, handleChangeContinent } = useAuthUserForm()
-  
+
   const { showRegister } = useVerifyLoggedSesion(pathName)
-  
+
   const { authData, loadingMountAuth } = useAuthSelectData()
 
   if (loadingMountAuth) return <SpinnerLoad />
