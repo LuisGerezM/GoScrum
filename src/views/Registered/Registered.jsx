@@ -12,7 +12,7 @@ import { Button } from "components/Button/Button"
 
 import "./Registered.styles.css"
 
-export const Registered = () => {
+export default function Registered() {
   const { user } = useSelector((state) => {
     return state.userReducer
   })

@@ -14,6 +14,7 @@ section.registered {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: var(--global-radius);
 }
 
 section.registered > div {

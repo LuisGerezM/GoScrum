@@ -21,7 +21,8 @@
 
 /* radio group button -> check circle */
 #tasks .wrapper_list .css-160ry1v-MuiButtonBase-root-MuiRadio-root.Mui-checked,
-#tasks .wrapper_list .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+#tasks .wrapper_list .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked,
+.css-1a5icme.Mui-checked {
   color: var(--global-primary-color) !important;
 }
 
@@ -140,6 +141,8 @@
 
   #tasks .filters {
     display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -150,9 +153,12 @@
     align-items: center;
   }
 
-  /* .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
-    padding: 0;
-  } */
+  /* position label radio btn  */
+  .css-1jaw3da,
+  .css-j204z7-MuiFormControlLabel-root {
+    margin-left: -11px !important;
+    margin-right: 12px !important;
+  }
 
   #tasks .filters > div:nth-child(2) {
     flex-direction: row;
@@ -166,7 +172,20 @@
   }
 }
 
+/* Radios  */
+.MuiFormGroup-root.MuiFormGroup-row.css-p58oka .MuiFormGroup-root.MuiFormGroup-row.css-p58oka .css-1jaw3da,
+.css-1jaw3da {
+  padding: 0 !important;
+}
+
 @media (min-width: 1200px) {
+  /* Radios position  */
+  .css-1jaw3da,
+  .css-j204z7-MuiFormControlLabel-root {
+    margin-left: -3px !important;
+    margin-right: 3px !important;
+  }
+
   #tasks .wrapper_list {
     padding: 20px 8px 0px 4px;
   }
@@ -185,16 +204,6 @@
     width: 182px;
   }
 
-  #tasks .filters {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
-    padding: 0 !important;
-    margin: 0;
-  }
-
   #tasks .wrapper_list .css-160ry1v-MuiButtonBase-root-MuiRadio-root.Mui-checked,
   #tasks .wrapper_list .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
     padding: 9px 9px 9px 4px;
@@ -204,19 +213,4 @@
   #tasks .select > select.importance {
     width: 224px;
   }
-
-  /* .task-form > form > div > div {
-    flex: auto;
-  } */
-
-  /* .filters {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  } */
-
-  /* .filters input,
-  .filters select {
-    height: 3rem;
-  } */
 }

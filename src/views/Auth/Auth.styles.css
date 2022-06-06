@@ -124,18 +124,32 @@
 /* register  */
 
 /* switch  */
-.MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.css-j204z7-MuiFormControlLabel-root {
-  padding: 20px 0 0 20px;
+form > div > .MuiFormGroup-root.MuiFormGroup-row.css-p58oka .css-1jaw3da,
+.css-1jaw3da,
+form > div > .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.label-switch.css-1jaw3da,
+form
+  > div
+  > .MuiFormControlLabel-root.MuiFormControlLabel-labelPlacementEnd.label-switch.css-j204z7-MuiFormControlLabel-root.css-j204z7-MuiFormControlLabel-root {
+  padding: 20px 0 0 20px !important;
 }
 
 /* switch shadow ball off  */
-.shadow .MuiSwitch-thumb.css-jsexje-MuiSwitch-thumb {
+.shadow .MuiSwitch-thumb.css-jsexje-MuiSwitch-thumb,
+.MuiSwitch-thumb.css-19gndve {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* switch color ball checked  */
-.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked,
+.MuiSwitch-switchBase .css-1nr2wod.Mui-checked,
+.MuiSwitch-switchBase.MuiSwitch-colorPrimary.Mui-checked.MuiButtonBase-root.MuiSwitch-switchBase.MuiSwitch-colorPrimary.Mui-checked.PrivateSwitchBase-root.Mui-checked.css-1nr2wod.MuiSwitch-thumb.css-19gndve.css-1nr2wod.css-1nr2wod.Mui-checked,
+.css-1nr2wod.Mui-checked {
   color: var(--global-primary-color) !important;
+}
+
+.MuiSwitch-switchBase.MuiSwitch-colorPrimary.Mui-checked.MuiButtonBase-root.MuiSwitch-switchBase.MuiSwitch-colorPrimary.Mui-checked.PrivateSwitchBase-root.Mui-checked.css-1nr2wod.MuiSwitch-thumb.css-19gndve.css-1nr2wod,
+.css-1nr2wod {
+  color: var(--global-ligth-color) !important;
 }
 
 .css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase {
@@ -143,7 +157,9 @@
 }
 
 /* switch input */
-.MuiSwitch-track.css-1yjjitx-MuiSwitch-track {
+.MuiSwitch-track.css-1yjjitx-MuiSwitch-track,
+.MuiSwitch-track.css-1nr2wod.Mui-checked.MuiSwitch-track,
+.MuiSwitch-track.css-1ju1kxc.css-1ju1kxc {
   background-color: rgba(255, 197, 190, 1) !important;
 }
 

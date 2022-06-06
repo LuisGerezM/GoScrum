@@ -11,6 +11,7 @@ section.donate {
   padding: 20px 25px;
   text-align: center;
   outline: 10px outset #b04329;
+  border-radius: var(--global-radius);
 }
 
 section.donate > div {

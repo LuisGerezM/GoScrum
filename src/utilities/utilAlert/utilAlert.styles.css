@@ -28,7 +28,7 @@
 }
 
 .swal2-popup.swal2-modal.swal2-icon-success.swal2-show:hover {
-  background: var(--global-ligth-color);
+  background-color: var(--global-ligth-color) !important;
   outline: 2px solid rgb(33, 77, 135);
 }
 
@@ -39,23 +39,24 @@
 /* confirm  */
 
 .swal2-confirm.swal2-styled {
-  background: 1px solid rgb(33, 77, 135);
+  background-color: rgb(33, 77, 135) !important;
   outline: 2px solid rgb(33, 77, 135);
 }
 
 .swal2-confirm.swal2-styled:hover {
-  background: var(--global-ligth-color);
+  background: var(--global-ligth-color) !important;
   outline: 2px solid rgb(33, 77, 135);
-  color: rgb(33, 77, 135);
+  color: rgb(33, 77, 135) !important;
 }
 
+/* cancel  */
 .swal2-styled.swal2-cancel {
-  background: var(--global-primary-color);
+  background-color: var(--global-primary-color) !important;
   outline: 2px solid var(--global-primary-color);
 }
 
 .swal2-styled.swal2-cancel:hover {
-  background: var(--global-ligth-color);
-  outline: 2px solid var(--global-primary-color) !important;
-  color: var(--global-primary-color);
+  background-color: var(--global-ligth-color) !important;
+  outline: 2px solid var(--global-primary-color);
+  color: var(--global-primary-color) !important;
 }

@@ -63,6 +63,7 @@ const Form = ({
                     input="primary"
                   />
                 }
+                className="label-switch"
                 label="Perteneces a un equipo creado"
                 checked={values.switch}
               />

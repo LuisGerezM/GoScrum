@@ -2,7 +2,7 @@ import logo from "assets/img/GoScrum.png"
 
 import "./Donate.styles.css"
 
-const Donate = () => {
+export default function Donate() {
   return (
     <main>
       <section className="donate">
@@ -24,5 +24,3 @@ const Donate = () => {
     </main>
   )
 }
-
-export default Donate
