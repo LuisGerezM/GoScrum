@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GoScrum/static/css/main.7558c2ce.css",
-    "main.js": "/GoScrum/static/js/main.44e13379.js",
+    "main.js": "/GoScrum/static/js/main.a4c34490.js",
     "static/css/916.77d4393c.chunk.css": "/GoScrum/static/css/916.77d4393c.chunk.css",
     "static/js/916.75d025d8.chunk.js": "/GoScrum/static/js/916.75d025d8.chunk.js",
     "static/css/486.2e1fc3ed.chunk.css": "/GoScrum/static/css/486.2e1fc3ed.chunk.css",
@@ -14,7 +14,7 @@
     "static/media/not_found.png": "/GoScrum/static/media/not_found.2b175e78e785b8b37dee.png",
     "index.html": "/GoScrum/index.html",
     "main.7558c2ce.css.map": "/GoScrum/static/css/main.7558c2ce.css.map",
-    "main.44e13379.js.map": "/GoScrum/static/js/main.44e13379.js.map",
+    "main.a4c34490.js.map": "/GoScrum/static/js/main.a4c34490.js.map",
     "916.77d4393c.chunk.css.map": "/GoScrum/static/css/916.77d4393c.chunk.css.map",
     "916.75d025d8.chunk.js.map": "/GoScrum/static/js/916.75d025d8.chunk.js.map",
     "486.2e1fc3ed.chunk.css.map": "/GoScrum/static/css/486.2e1fc3ed.chunk.css.map",
@@ -27,6 +27,6 @@
   },
   "entrypoints": [
     "static/css/main.7558c2ce.css",
-    "static/js/main.44e13379.js"
+    "static/js/main.a4c34490.js"
   ]
 }
