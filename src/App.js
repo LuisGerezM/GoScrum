@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { Navigate, Route, Routes, useLocation } from "react-router-dom"
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 import { SpinnerLoad } from "components/Loading/SpinnerLoad/SpinnerLoad"
 
@@ -9,7 +9,9 @@ import { utilTransition } from "utilities/utilTransition"
 import { routes } from "Routes"
 
 const RequireAuth = ({ children }) => {
-  if (!localStorage.getItem("token_user")) return <Navigate to="/login" replace={true} />
+  const { teamID } = useParams()
+
+  if (!teamID && !localStorage.getItem("token_user")) return <Navigate to="/login" replace={true} />
   return children
 }
 
@@ -17,7 +19,7 @@ const pageTransition = utilTransition("pageTransition")
 
 export const App = () => {
   const location = useLocation()
-
+  console.log("location", { location })
   return (
     <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (
