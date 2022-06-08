@@ -1,8 +1,5 @@
 import { TYPES } from "../types/types"
-import { interDeleteTask } from "views/Tasks/Interceptor/interDeleteTask"
-import { interEditTask } from "views/Tasks/Interceptor/interEditTask"
-import { interGetTask } from "views/Tasks/Interceptor/interGetTask"
-import { interPostTask } from "views/Tasks/Interceptor/interPostTask"
+import { interGetTask, interDeleteTask, interEditTask, interPostTask } from "views/Tasks/Interceptor/interIndex"
 
 export const tasksRequest = (data) => ({
   type: TYPES.TASKS_REQUEST,

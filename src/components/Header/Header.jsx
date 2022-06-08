@@ -8,17 +8,7 @@ import logo from "assets/img/GoScrum.png"
 import "./Header.styles.css"
 
 export const Header = () => {
-  const { tasks } = useSelector((state) => {
-    return state.tasksReducer
-  })
-
-  const { user } = useSelector((state) => {
-    return state.userReducer
-  })
-
-  const { handlerLogout, to, valueLink } = useHeader()
-
-  const nameUser = user?.userName || localStorage.getItem("userName")
+  const { handlerLogout, to, valueLink, tasks, nameUser } = useHeader()
 
   return (
     <header>

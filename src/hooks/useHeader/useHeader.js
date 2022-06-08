@@ -1,11 +1,21 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useLocation, useNavigate } from "react-router-dom"
 import { resetTasksState } from "redux/store/actions/tasksActions"
 import { utilAlertConfirm } from "utilities/utilAlert/utilAlertConfirm"
 
 export const useHeader = () => {
+  const { tasks } = useSelector((state) => {
+    return state.tasksReducer
+  })
+
+  const { user } = useSelector((state) => {
+    return state.userReducer
+  })
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const nameUser = user?.userName || localStorage.getItem("userName")
 
   const handlerLogout = async () => {
     let takeResponse = await utilAlertConfirm({
@@ -30,5 +40,5 @@ export const useHeader = () => {
   const to = pathName === "donate" ? "/" : "/donate"
   const valueLink = pathName === "donate" ? "Inicio" : "Donar"
 
-  return { handlerLogout, to, valueLink }
+  return { handlerLogout, to, valueLink, tasks, nameUser }
 }
