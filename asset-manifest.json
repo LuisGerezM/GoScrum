@@ -1,32 +1,32 @@
 {
   "files": {
     "main.css": "/GoScrum/static/css/main.7558c2ce.css",
-    "main.js": "/GoScrum/static/js/main.a4c34490.js",
+    "main.js": "/GoScrum/static/js/main.ad3693d5.js",
     "static/css/916.77d4393c.chunk.css": "/GoScrum/static/css/916.77d4393c.chunk.css",
     "static/js/916.75d025d8.chunk.js": "/GoScrum/static/js/916.75d025d8.chunk.js",
     "static/css/486.2e1fc3ed.chunk.css": "/GoScrum/static/css/486.2e1fc3ed.chunk.css",
     "static/js/486.0157a4d3.chunk.js": "/GoScrum/static/js/486.0157a4d3.chunk.js",
     "static/css/390.7322fa70.chunk.css": "/GoScrum/static/css/390.7322fa70.chunk.css",
-    "static/js/390.aa8fd263.chunk.js": "/GoScrum/static/js/390.aa8fd263.chunk.js",
+    "static/js/390.df3c4a38.chunk.js": "/GoScrum/static/js/390.df3c4a38.chunk.js",
     "static/css/768.e4634f80.chunk.css": "/GoScrum/static/css/768.e4634f80.chunk.css",
     "static/js/768.0f12a127.chunk.js": "/GoScrum/static/js/768.0f12a127.chunk.js",
     "static/js/463.9fac6cbf.chunk.js": "/GoScrum/static/js/463.9fac6cbf.chunk.js",
     "static/media/not_found.png": "/GoScrum/static/media/not_found.2b175e78e785b8b37dee.png",
     "index.html": "/GoScrum/index.html",
     "main.7558c2ce.css.map": "/GoScrum/static/css/main.7558c2ce.css.map",
-    "main.a4c34490.js.map": "/GoScrum/static/js/main.a4c34490.js.map",
+    "main.ad3693d5.js.map": "/GoScrum/static/js/main.ad3693d5.js.map",
     "916.77d4393c.chunk.css.map": "/GoScrum/static/css/916.77d4393c.chunk.css.map",
     "916.75d025d8.chunk.js.map": "/GoScrum/static/js/916.75d025d8.chunk.js.map",
     "486.2e1fc3ed.chunk.css.map": "/GoScrum/static/css/486.2e1fc3ed.chunk.css.map",
     "486.0157a4d3.chunk.js.map": "/GoScrum/static/js/486.0157a4d3.chunk.js.map",
     "390.7322fa70.chunk.css.map": "/GoScrum/static/css/390.7322fa70.chunk.css.map",
-    "390.aa8fd263.chunk.js.map": "/GoScrum/static/js/390.aa8fd263.chunk.js.map",
+    "390.df3c4a38.chunk.js.map": "/GoScrum/static/js/390.df3c4a38.chunk.js.map",
     "768.e4634f80.chunk.css.map": "/GoScrum/static/css/768.e4634f80.chunk.css.map",
     "768.0f12a127.chunk.js.map": "/GoScrum/static/js/768.0f12a127.chunk.js.map",
     "463.9fac6cbf.chunk.js.map": "/GoScrum/static/js/463.9fac6cbf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7558c2ce.css",
-    "static/js/main.a4c34490.js"
+    "static/js/main.ad3693d5.js"
   ]
 }
