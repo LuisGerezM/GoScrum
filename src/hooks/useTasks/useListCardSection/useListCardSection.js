@@ -37,7 +37,7 @@ export const useListCardSection = () => {
     ) {
       setMsgTasks("Ups... Ocurrió un problema ... Pongase en contacto con el administrador ")
       toast.info(error.message)
-      dispatch(tasksFailure(error))
+      dispatch(resetTasksNotification(error))
     }
   }, [error, dispatch])
 

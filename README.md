@@ -51,6 +51,23 @@ Ellos enviaron un diseño UI representativo que nos sugieren seguir para el desa
 
 [![GoScrum-structure](https://raw.githubusercontent.com/LuisGerezM/GoScrum/master/src/assets/design/GoScrum-Estructura.png)](https://github.com/LuisGerezM/GoScrum/blob/master/src/assets/design/GoScrum-Estructura.png)
 
+### **_Prueba:_**
+Puedes crear tus usuarios para probar, o bien usar:
+- _LIDERES_:
+        
+        userName: tLeaderLG
+        password: 12345A
+
+- _MIEMBROS_:
+    
+        miembro_1: (con tareas)
+        "userName":"tMemberLG_a", 
+        "password": "12345A"
+
+        miembro_2: (sin tareas)
+        "userName":"tMemberLG_d",
+        "password": "12345A"
+
 ### **_Herramientas utilizadas:_**
 
 #### [React](https://es.reactjs.org/), [React Router Dom v6](https://reactrouter.com/docs/en/v6/getting-started/overview), [Redux](https://es.redux.js.org/), [Redux Thunk](https://github.com/reduxjs/redux-thunk), [Formik](https://formik.org/), [Yup](https://www.npmjs.com/package/yup), [UUID](https://www.npmjs.com/package/uuid), [Framer Motion](https://www.framer.com/docs/), [Material UI](https://mui.com/), [SweetAlert2](https://sweetalert2.github.io/), [React Toastify](https://fkhadra.github.io/react-toastify/introduction/), [React Loading Skeleton](https://www.npmjs.com/package/react-loading-skeleton)

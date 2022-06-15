@@ -19,7 +19,7 @@ const pageTransition = utilTransition("pageTransition")
 
 export const App = () => {
   const location = useLocation()
-  console.log("location", { location })
+
   return (
     <AnimatePresence initial={false}>
       {localStorage.getItem("token_user") && (

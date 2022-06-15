@@ -70,7 +70,7 @@ export const useCreateTaskSection = () => {
       (error.name === "error create" || error.name === "error edit card" || error.name === "error edit status card")
     ) {
       toast.info(error.message)
-      dispatch(tasksFailure(error))
+      dispatch(resetTasksNotification())
     }
   }, [error, dispatch])
 
